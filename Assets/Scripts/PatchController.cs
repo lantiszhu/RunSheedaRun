@@ -47,12 +47,33 @@ public class PatchController : MonoBehaviour {
 	GameObject currentPatch;
 	PatchTypes currentpatchType;
 
-	LinkedList<Patch> patchesList = new LinkedList<Patch>();
-	int queueCapacity = 5;
+	LinkedList<Patch> patchesList;
+	const int queueCapacity = 5;
 	int straightPatchCount = 2;
 
 	void Start () 
 	{	
+		patchesList = new LinkedList<Patch>();
+			
+		if (!currentPatch)
+		{
+			//currentPatch = GameObject.Instantiate(straightPatchList[0],Vector3.zero,Quaternion.identity) as Transform;
+			currentPatch = (GameObject)Instantiate(straightPatchList[0]);
+			patchesList.AddFirst(new Patch(currentPatch.transform,PatchTypes.straight));
+			currentpatchType = PatchTypes.straight;
+		}
+		
+		straightPatchCount = Random.Range(2,4);
+		for (int i = 0; i < queueCapacity-1; i++)
+		{
+			updatePatch();
+		}
+	}
+	
+	public void Restart()
+	{
+		patchesList.Clear();
+		
 		if (!currentPatch)
 		{
 			//currentPatch = GameObject.Instantiate(straightPatchList[0],Vector3.zero,Quaternion.identity) as Transform;
@@ -67,6 +88,7 @@ public class PatchController : MonoBehaviour {
 			updatePatch();
 		}
 	}
+	
 	public Patch getCurrentPatch()
 	{
 		return patchesList.Last.Value;		

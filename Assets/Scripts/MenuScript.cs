@@ -59,7 +59,7 @@ public class MenuScript : MonoBehaviour {
 	
 	private Transform tMenuGroup;//get the menu group parent
 	private int CurrentMenu = -1;	//current menu index
-	private int PreviousMenu = -1;
+	//private int PreviousMenu = -1;
 	private int iTapState = 0;//state of tap on screen
 	private int iAndroidBackTapState = 0;//state of tap on back button on android devices
 	
@@ -83,7 +83,7 @@ public class MenuScript : MonoBehaviour {
 	//Pause Menu
 	private Transform[] tPauseButtons;	//pause menu buttons transforms
 	private int iPauseButtonsCount = 2;	//total number of buttons on pause menu
-	private TextMesh tmPauseMenuMissionList;//mission description on the pause menu
+	//private TextMesh tmPauseMenuMissionList;//mission description on the pause menu
 	//Game Over Menu
 	private Transform[] tGameOverButtons;
 	private int iGameOverButtonsCount = 2;
@@ -155,7 +155,7 @@ public class MenuScript : MonoBehaviour {
 		tPauseButtons = new Transform[iPauseButtonsCount];
 		tPauseButtons[0] = tMenuTransforms[(int)Menus.PauseMenu].Find("Buttons/Button_Back");
 		tPauseButtons[1] = tMenuTransforms[(int)Menus.PauseMenu].Find("Buttons/Button_Resume");
-		tmPauseMenuMissionList = (TextMesh)tMenuTransforms[(int)Menus.PauseMenu].Find("Text_MissionDescription").GetComponent(typeof(TextMesh));
+		//tmPauseMenuMissionList = (TextMesh)tMenuTransforms[(int)Menus.PauseMenu].Find("Text_MissionDescription").GetComponent(typeof(TextMesh));
 		
 		//game over menu initialization
 		tMenuTransforms[(int)Menus.GameOverMenu] = (Transform)tMenuGroup.Find("GameOver").GetComponent(typeof(Transform));
@@ -223,6 +223,11 @@ public class MenuScript : MonoBehaviour {
 		//StartCoroutine(popUpAd());//start the coroutine to show that ad after unit time
 	}
 	
+	public void Restart()
+	{
+		ShowMenu((int)Menus.MainMenu);	//show Main Menu on game launch
+	}
+	
 	/*
 	*	FUNCTION: Show the Ad after every specific unit time.
 	*/
@@ -261,17 +266,15 @@ public class MenuScript : MonoBehaviour {
 	*	FUNCTION: Show the game over menu
 	*	CALLED BY:	InGameController.Update()
 	*/
-	public void displayGameOverMenu()
+	/*public void displayGameOverMenu()
 	{	
 		ShowMenu((int)Menus.GameOverMenu);	
-	}
+	}*/
 	
 	void FixedUpdate()
 	{		
 		//display countdown timer on Resume
-		if (iResumeGameState == 0)
-			;
-		else if (iResumeGameState == 1)//display the counter
+		if (iResumeGameState == 1)//display the counter
 		{
 			tmPauseCountdown = GameObject.Find("HUDMainGroup/HUDPauseCounter").GetComponent(typeof(TextMesh)) as TextMesh;
 			((MeshRenderer)GameObject.Find("HUDMainGroup/HUDPauseCounter").GetComponent(typeof(MeshRenderer))).enabled = true;
@@ -320,7 +323,7 @@ public class MenuScript : MonoBehaviour {
 		else if (iTapState == 2)//wait for user to release before detcting next tap
 		{
 			if (Physics.Raycast(HUDCamera.ScreenPointToRay(Input.mousePosition), out hit))//if a button has been tapped		
-			{				
+			{
 				//call the listner function of the active menu
 				if (CurrentMenu == (int)Menus.MainMenu)
 					handlerMainMenu(hit.transform);
@@ -388,10 +391,8 @@ public class MenuScript : MonoBehaviour {
 	{
 		if (tMainMenuButtons[0] == buttonTransform)//Tap to Play button
 		{
-			CloseMenu((int)Menus.MainMenu);
-			
-			hInGameController.launchGame();	//start the gameplay
-			toggleMenuScriptStatus(false);
+			CloseMenu((int)Menus.MainMenu);			
+			hInGameController.launchGame();	//start the gameplay			
 		}
 		/*else if (tMainMenuButtons[1] == buttonTransform)//information button
 		{

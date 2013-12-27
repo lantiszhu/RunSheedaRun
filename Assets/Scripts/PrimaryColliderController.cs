@@ -12,6 +12,6 @@ public class PrimaryColliderController : MonoBehaviour {
 	
 	void OnCollisionEnter(Collision collision)
 	{
-		//hInGameController.routineGameOver();
+		StartCoroutine(hInGameController.routineGameOver());
 	}
 }

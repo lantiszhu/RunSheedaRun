@@ -4,22 +4,37 @@ using System.Collections;
 public class InGameController : MonoBehaviour {
 	
 	private int iPauseStatus;
-	private int iGameOverStatus;
 	
+	private int iGameOverState;	
+	private const float fGameOverSceneDuration = 1;
+	private float fGameOverSceneStart;
+		
 	private bool bGamePaused;
 	
 	//script references
 	private MenuScript hMenuScript;
-	private PlayerController hPlayerController;
+	private GameController hGameController;
+	private PlayerController hPlayerController;	
 	
 	void Start ()
 	{
 		RenderSettings.fog = true;				//turn on fog on launch
 		
 		hMenuScript = (MenuScript)GameObject.Find("GUIGroup/MenuGroup").GetComponent(typeof(MenuScript));
+		hGameController = (GameController)this.GetComponent(typeof(GameController));
 		hPlayerController = (PlayerController)this.GetComponent(typeof(PlayerController));
 		
 		iPauseStatus = 0;
+		iGameOverState = 0;
+		bGamePaused = true;
+	}
+	
+	public void Restart()
+	{
+		RenderSettings.fog = true;				//turn on fog on launch
+		
+		iPauseStatus = 0;
+		iGameOverState = 0;
 		bGamePaused = true;
 	}
 		
@@ -40,12 +55,7 @@ public class InGameController : MonoBehaviour {
 			
 			bGamePaused = false;
 			iPauseStatus = 0;
-		}
-		
-		if (iGameOverStatus == 1)
-		{
-			
-		}
+		}		
 	}//end of fixed update
 	
 	/*
@@ -56,18 +66,46 @@ public class InGameController : MonoBehaviour {
 	public void launchGame()
 	{			
 		bGamePaused = false;//tell all scripts to resume
-					
-		hPlayerController.launchGame();//tell the PlayerController to start game		
+		
+		hMenuScript.toggleMenuScriptStatus(false);
+		hPlayerController.launchGame();//tell the PlayerController to start game
 	}
 	
-	private void routineGameOver()
+	/// <summary>
+	/// Routines the game over.
+	/// </summary>
+	/// <returns>
+	/// The game over.
+	/// </returns>
+	public IEnumerator routineGameOver()
 	{
-		hPlayerController.routineGameOver();
-		bGamePaused = true;
+		while(true)
+		{
+			yield return new WaitForFixedUpdate();
+			
+			if (iGameOverState == 0)
+			{
+				bGamePaused = true;
+				hPlayerController.routineGameOver();
+				fGameOverSceneStart = Time.time;
+				
+				iGameOverState = 1;
+			}
+			else if (iGameOverState == 1)
+			{
+				if ( (Time.time-fGameOverSceneStart) >= fGameOverSceneDuration)
+					iGameOverState = 2;
+			}
+			else if (iGameOverState == 2)
+			{		
+				hMenuScript.toggleMenuScriptStatus(true);//enable menu script
+				hMenuScript.ShowMenu((int)Menus.GameOverMenu);//show game over menu
+				break;
+			}
+		}//end of while
 		
-		hMenuScript.toggleMenuScriptStatus(true);//enable menu script
-		hMenuScript.ShowMenu((int)Menus.GameOverMenu);//show game over menu
-	}
+		StopCoroutine("routineGameOver");
+	}//end of routine Game Over function
 	
 	/*
 	*	FUNCTION: Execute a function based on button press in Pause Menu
@@ -76,11 +114,10 @@ public class InGameController : MonoBehaviour {
 	public void processClicksPauseMenu(PauseMenuEvents index)
 	{
 		if (index == PauseMenuEvents.MainMenu)
+			//hGameController.relaunchGame();
 			Application.LoadLevel("Game");
 		else if (index == PauseMenuEvents.Resume)
-		{	
-			//hNGUIMenuScript.toggleHUDGroupState(true);
-			
+		{							
 			iPauseStatus = 3;
 						
 			hPlayerController.togglePlayerAnimation(true);//pause legacy animations
@@ -94,9 +131,18 @@ public class InGameController : MonoBehaviour {
 	public void procesClicksDeathMenu(GameOverMenuEvents index)
 	{
 		if (index == GameOverMenuEvents.Play)
+		{
 			Application.LoadLevel("Game");
-		else if (index == GameOverMenuEvents.Back)	
+			/*hGameController.relaunchGame();
+			launchGame();*/
+		}
+		else if (index == GameOverMenuEvents.Back)
+		{
 			Application.LoadLevel("Game");
+			//hGameController.relaunchGame();
+			/*hMenuScript.toggleMenuScriptStatus(true);
+			hMenuScript.ShowMenu((int)Menus.MainMenu);*/
+		}
 	}//end of DM_ProcessClicks
 	
 	//paused state

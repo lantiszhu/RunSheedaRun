@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 42f3cbf9023694070b6a2ad589029de3
+guid: 752c4443426fb47e5adeba8efca3b756
 ModelImporter:
   serializedVersion: 15
   fileIDToRecycleName:
@@ -19,8 +19,8 @@ ModelImporter:
     100026: ElbowPart1_R
     100028: ElbowPart2_L
     100030: ElbowPart2_R
-    100032: Group
-    100034: group1
+    100032: Geometry
+    100034: Group
     100036: Hair_M
     100038: Head_M
     100040: Hip_L
@@ -49,27 +49,28 @@ ModelImporter:
     100086: NeckPart2_M
     100088: PinkyToe_L
     100090: PinkyToe_R
-    100092: polySurface368
-    100094: Root_M
-    100096: Scapula_L
-    100098: Scapula_R
+    100092: Root_M
+    100094: Scapula_L
+    100096: Scapula_R
+    100098: Sheeda
     100100: //RootNode
-    100102: Shoulder_L
-    100104: Shoulder_R
-    100106: ShoulderPart1_L
-    100108: ShoulderPart1_R
-    100110: ShoulderPart2_L
-    100112: ShoulderPart2_R
-    100114: ThumbFinger1_L
-    100116: ThumbFinger1_R
-    100118: ThumbFinger2_L
-    100120: ThumbFinger2_R
-    100122: ThumbFinger3_L
-    100124: ThumbFinger3_R
-    100126: ThumbFinger4_L
-    100128: ThumbFinger4_R
-    100130: Wrist_L
-    100132: Wrist_R
+    100102: sheeda_28:Sheeda_Old
+    100104: Shoulder_L
+    100106: Shoulder_R
+    100108: ShoulderPart1_L
+    100110: ShoulderPart1_R
+    100112: ShoulderPart2_L
+    100114: ShoulderPart2_R
+    100116: ThumbFinger1_L
+    100118: ThumbFinger1_R
+    100120: ThumbFinger2_L
+    100122: ThumbFinger2_R
+    100124: ThumbFinger3_L
+    100126: ThumbFinger3_R
+    100128: ThumbFinger4_L
+    100130: ThumbFinger4_R
+    100132: Wrist_L
+    100134: Wrist_R
     400000: Ankle_L
     400002: Ankle_R
     400004: BackA_M
@@ -86,8 +87,8 @@ ModelImporter:
     400026: ElbowPart1_R
     400028: ElbowPart2_L
     400030: ElbowPart2_R
-    400032: Group
-    400034: group1
+    400032: Geometry
+    400034: Group
     400036: Hair_M
     400038: Head_M
     400040: Hip_L
@@ -116,40 +117,39 @@ ModelImporter:
     400086: NeckPart2_M
     400088: PinkyToe_L
     400090: PinkyToe_R
-    400092: polySurface368
-    400094: Root_M
-    400096: Scapula_L
-    400098: Scapula_R
+    400092: Root_M
+    400094: Scapula_L
+    400096: Scapula_R
+    400098: Sheeda
     400100: //RootNode
-    400102: Shoulder_L
-    400104: Shoulder_R
-    400106: ShoulderPart1_L
-    400108: ShoulderPart1_R
-    400110: ShoulderPart2_L
-    400112: ShoulderPart2_R
-    400114: ThumbFinger1_L
-    400116: ThumbFinger1_R
-    400118: ThumbFinger2_L
-    400120: ThumbFinger2_R
-    400122: ThumbFinger3_L
-    400124: ThumbFinger3_R
-    400126: ThumbFinger4_L
-    400128: ThumbFinger4_R
-    400130: Wrist_L
-    400132: Wrist_R
-    4300000: polySurface368
+    400102: sheeda_28:Sheeda_Old
+    400104: Shoulder_L
+    400106: Shoulder_R
+    400108: ShoulderPart1_L
+    400110: ShoulderPart1_R
+    400112: ShoulderPart2_L
+    400114: ShoulderPart2_R
+    400116: ThumbFinger1_L
+    400118: ThumbFinger1_R
+    400120: ThumbFinger2_L
+    400122: ThumbFinger2_R
+    400124: ThumbFinger3_L
+    400126: ThumbFinger3_R
+    400128: ThumbFinger4_L
+    400130: ThumbFinger4_R
+    400132: Wrist_L
+    400134: Wrist_R
+    4300000: sheeda_28:Sheeda_Old
     7400000: run
     7400002: jump
     7400004: strafe_left
     7400006: strafe_right
-    7400008: slide
-    7400010: roll
-    7400012: run_1
-    7400014: jump_1
-    7400016: stumble
+    7400008: stumble
+    7400010: slide
+    7400012: roll
     9500000: //RootNode
     11100000: //RootNode
-    13700000: polySurface368
+    13700000: sheeda_28:Sheeda_Old
   materials:
     importMaterials: 1
     materialName: 0
@@ -193,135 +193,137 @@ ModelImporter:
         weight: 1
       - path: Group
         weight: 1
-      - path: Group/group1
+      - path: Group/Geometry
         weight: 1
-      - path: Group/group1/Main
+      - path: Group/Geometry/Sheeda
         weight: 1
-      - path: Group/group1/Main/DeformationSystem
+      - path: Group/Main
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M
+      - path: Group/Main/DeformationSystem
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M
+      - path: Group/Main/DeformationSystem/Root_M
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Neck_M
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Neck_M/NeckPart1_M
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Neck_M
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Neck_M/NeckPart1_M/NeckPart2_M
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Neck_M/NeckPart1_M
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Neck_M/NeckPart1_M/NeckPart2_M/Head_M
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Neck_M/NeckPart1_M/NeckPart2_M
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Neck_M/NeckPart1_M/NeckPart2_M/Head_M/Hair_M
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Neck_M/NeckPart1_M/NeckPart2_M/Head_M
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Neck_M/NeckPart1_M/NeckPart2_M/Head_M/Hair_M
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/Cup_L
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/MiddleFinger1_L
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/Cup_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/MiddleFinger1_L/MiddleFinger2_L
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/MiddleFinger1_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/MiddleFinger1_L/MiddleFinger2_L/MiddleFinger3_L
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/MiddleFinger1_L/MiddleFinger2_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/MiddleFinger1_L/MiddleFinger2_L/MiddleFinger3_L/MiddleFinger4_L
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/MiddleFinger1_L/MiddleFinger2_L/MiddleFinger3_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/ThumbFinger1_L
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/MiddleFinger1_L/MiddleFinger2_L/MiddleFinger3_L/MiddleFinger4_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/ThumbFinger1_L/ThumbFinger2_L
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/ThumbFinger1_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/ThumbFinger1_L/ThumbFinger2_L/ThumbFinger3_L
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/ThumbFinger1_L/ThumbFinger2_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/ThumbFinger1_L/ThumbFinger2_L/ThumbFinger3_L/ThumbFinger4_L
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/ThumbFinger1_L/ThumbFinger2_L/ThumbFinger3_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/ThumbFinger1_L/ThumbFinger2_L/ThumbFinger3_L/ThumbFinger4_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/Cup_R
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/MiddleFinger1_R
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/Cup_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/MiddleFinger1_R/MiddleFinger2_R
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/MiddleFinger1_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/MiddleFinger1_R/MiddleFinger2_R/MiddleFinger3_R
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/MiddleFinger1_R/MiddleFinger2_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/MiddleFinger1_R/MiddleFinger2_R/MiddleFinger3_R/MiddleFinger4_R
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/MiddleFinger1_R/MiddleFinger2_R/MiddleFinger3_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/ThumbFinger1_R
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/MiddleFinger1_R/MiddleFinger2_R/MiddleFinger3_R/MiddleFinger4_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/ThumbFinger1_R/ThumbFinger2_R
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/ThumbFinger1_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/ThumbFinger1_R/ThumbFinger2_R/ThumbFinger3_R
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/ThumbFinger1_R/ThumbFinger2_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/ThumbFinger1_R/ThumbFinger2_R/ThumbFinger3_R/ThumbFinger4_R
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/ThumbFinger1_R/ThumbFinger2_R/ThumbFinger3_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_L
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/ThumbFinger1_R/ThumbFinger2_R/ThumbFinger3_R/ThumbFinger4_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L
+      - path: Group/Main/DeformationSystem/Root_M/Hip_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L
+      - path: Group/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L/Knee_L
+      - path: Group/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L/Knee_L/Ankle_L
+      - path: Group/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L/Knee_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L/Knee_L/Ankle_L/MiddleToe1_L
+      - path: Group/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L/Knee_L/Ankle_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L/Knee_L/Ankle_L/MiddleToe1_L/BigToe_L
+      - path: Group/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L/Knee_L/Ankle_L/MiddleToe1_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L/Knee_L/Ankle_L/MiddleToe1_L/MiddleToe2_L
+      - path: Group/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L/Knee_L/Ankle_L/MiddleToe1_L/BigToe_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L/Knee_L/Ankle_L/MiddleToe1_L/PinkyToe_L
+      - path: Group/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L/Knee_L/Ankle_L/MiddleToe1_L/MiddleToe2_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_R
+      - path: Group/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L/Knee_L/Ankle_L/MiddleToe1_L/PinkyToe_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R
+      - path: Group/Main/DeformationSystem/Root_M/Hip_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R
+      - path: Group/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R/Knee_R
+      - path: Group/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R/Knee_R/Ankle_R
+      - path: Group/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R/Knee_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R/Knee_R/Ankle_R/MiddleToe1_R
+      - path: Group/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R/Knee_R/Ankle_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R/Knee_R/Ankle_R/MiddleToe1_R/BigToe_R
+      - path: Group/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R/Knee_R/Ankle_R/MiddleToe1_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R/Knee_R/Ankle_R/MiddleToe1_R/MiddleToe2_R
+      - path: Group/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R/Knee_R/Ankle_R/MiddleToe1_R/BigToe_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R/Knee_R/Ankle_R/MiddleToe1_R/PinkyToe_R
+      - path: Group/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R/Knee_R/Ankle_R/MiddleToe1_R/MiddleToe2_R
         weight: 1
-      - path: polySurface368
+      - path: Group/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R/Knee_R/Ankle_R/MiddleToe1_R/PinkyToe_R
+        weight: 1
+      - path: sheeda_28:Sheeda_Old
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
@@ -353,135 +355,137 @@ ModelImporter:
         weight: 1
       - path: Group
         weight: 1
-      - path: Group/group1
+      - path: Group/Geometry
         weight: 1
-      - path: Group/group1/Main
+      - path: Group/Geometry/Sheeda
         weight: 1
-      - path: Group/group1/Main/DeformationSystem
+      - path: Group/Main
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M
+      - path: Group/Main/DeformationSystem
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M
+      - path: Group/Main/DeformationSystem/Root_M
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Neck_M
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Neck_M/NeckPart1_M
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Neck_M
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Neck_M/NeckPart1_M/NeckPart2_M
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Neck_M/NeckPart1_M
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Neck_M/NeckPart1_M/NeckPart2_M/Head_M
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Neck_M/NeckPart1_M/NeckPart2_M
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Neck_M/NeckPart1_M/NeckPart2_M/Head_M/Hair_M
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Neck_M/NeckPart1_M/NeckPart2_M/Head_M
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Neck_M/NeckPart1_M/NeckPart2_M/Head_M/Hair_M
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/Cup_L
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/MiddleFinger1_L
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/Cup_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/MiddleFinger1_L/MiddleFinger2_L
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/MiddleFinger1_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/MiddleFinger1_L/MiddleFinger2_L/MiddleFinger3_L
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/MiddleFinger1_L/MiddleFinger2_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/MiddleFinger1_L/MiddleFinger2_L/MiddleFinger3_L/MiddleFinger4_L
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/MiddleFinger1_L/MiddleFinger2_L/MiddleFinger3_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/ThumbFinger1_L
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/MiddleFinger1_L/MiddleFinger2_L/MiddleFinger3_L/MiddleFinger4_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/ThumbFinger1_L/ThumbFinger2_L
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/ThumbFinger1_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/ThumbFinger1_L/ThumbFinger2_L/ThumbFinger3_L
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/ThumbFinger1_L/ThumbFinger2_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/ThumbFinger1_L/ThumbFinger2_L/ThumbFinger3_L/ThumbFinger4_L
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/ThumbFinger1_L/ThumbFinger2_L/ThumbFinger3_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/ThumbFinger1_L/ThumbFinger2_L/ThumbFinger3_L/ThumbFinger4_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/Cup_R
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/MiddleFinger1_R
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/Cup_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/MiddleFinger1_R/MiddleFinger2_R
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/MiddleFinger1_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/MiddleFinger1_R/MiddleFinger2_R/MiddleFinger3_R
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/MiddleFinger1_R/MiddleFinger2_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/MiddleFinger1_R/MiddleFinger2_R/MiddleFinger3_R/MiddleFinger4_R
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/MiddleFinger1_R/MiddleFinger2_R/MiddleFinger3_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/ThumbFinger1_R
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/MiddleFinger1_R/MiddleFinger2_R/MiddleFinger3_R/MiddleFinger4_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/ThumbFinger1_R/ThumbFinger2_R
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/ThumbFinger1_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/ThumbFinger1_R/ThumbFinger2_R/ThumbFinger3_R
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/ThumbFinger1_R/ThumbFinger2_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/ThumbFinger1_R/ThumbFinger2_R/ThumbFinger3_R/ThumbFinger4_R
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/ThumbFinger1_R/ThumbFinger2_R/ThumbFinger3_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_L
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/ThumbFinger1_R/ThumbFinger2_R/ThumbFinger3_R/ThumbFinger4_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L
+      - path: Group/Main/DeformationSystem/Root_M/Hip_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L
+      - path: Group/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L/Knee_L
+      - path: Group/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L/Knee_L/Ankle_L
+      - path: Group/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L/Knee_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L/Knee_L/Ankle_L/MiddleToe1_L
+      - path: Group/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L/Knee_L/Ankle_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L/Knee_L/Ankle_L/MiddleToe1_L/BigToe_L
+      - path: Group/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L/Knee_L/Ankle_L/MiddleToe1_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L/Knee_L/Ankle_L/MiddleToe1_L/MiddleToe2_L
+      - path: Group/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L/Knee_L/Ankle_L/MiddleToe1_L/BigToe_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L/Knee_L/Ankle_L/MiddleToe1_L/PinkyToe_L
+      - path: Group/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L/Knee_L/Ankle_L/MiddleToe1_L/MiddleToe2_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_R
+      - path: Group/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L/Knee_L/Ankle_L/MiddleToe1_L/PinkyToe_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R
+      - path: Group/Main/DeformationSystem/Root_M/Hip_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R
+      - path: Group/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R/Knee_R
+      - path: Group/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R/Knee_R/Ankle_R
+      - path: Group/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R/Knee_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R/Knee_R/Ankle_R/MiddleToe1_R
+      - path: Group/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R/Knee_R/Ankle_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R/Knee_R/Ankle_R/MiddleToe1_R/BigToe_R
+      - path: Group/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R/Knee_R/Ankle_R/MiddleToe1_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R/Knee_R/Ankle_R/MiddleToe1_R/MiddleToe2_R
+      - path: Group/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R/Knee_R/Ankle_R/MiddleToe1_R/BigToe_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R/Knee_R/Ankle_R/MiddleToe1_R/PinkyToe_R
+      - path: Group/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R/Knee_R/Ankle_R/MiddleToe1_R/MiddleToe2_R
         weight: 1
-      - path: polySurface368
+      - path: Group/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R/Knee_R/Ankle_R/MiddleToe1_R/PinkyToe_R
+        weight: 1
+      - path: sheeda_28:Sheeda_Old
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
@@ -513,135 +517,137 @@ ModelImporter:
         weight: 1
       - path: Group
         weight: 1
-      - path: Group/group1
+      - path: Group/Geometry
         weight: 1
-      - path: Group/group1/Main
+      - path: Group/Geometry/Sheeda
         weight: 1
-      - path: Group/group1/Main/DeformationSystem
+      - path: Group/Main
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M
+      - path: Group/Main/DeformationSystem
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M
+      - path: Group/Main/DeformationSystem/Root_M
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Neck_M
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Neck_M/NeckPart1_M
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Neck_M
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Neck_M/NeckPart1_M/NeckPart2_M
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Neck_M/NeckPart1_M
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Neck_M/NeckPart1_M/NeckPart2_M/Head_M
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Neck_M/NeckPart1_M/NeckPart2_M
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Neck_M/NeckPart1_M/NeckPart2_M/Head_M/Hair_M
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Neck_M/NeckPart1_M/NeckPart2_M/Head_M
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Neck_M/NeckPart1_M/NeckPart2_M/Head_M/Hair_M
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/Cup_L
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/MiddleFinger1_L
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/Cup_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/MiddleFinger1_L/MiddleFinger2_L
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/MiddleFinger1_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/MiddleFinger1_L/MiddleFinger2_L/MiddleFinger3_L
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/MiddleFinger1_L/MiddleFinger2_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/MiddleFinger1_L/MiddleFinger2_L/MiddleFinger3_L/MiddleFinger4_L
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/MiddleFinger1_L/MiddleFinger2_L/MiddleFinger3_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/ThumbFinger1_L
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/MiddleFinger1_L/MiddleFinger2_L/MiddleFinger3_L/MiddleFinger4_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/ThumbFinger1_L/ThumbFinger2_L
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/ThumbFinger1_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/ThumbFinger1_L/ThumbFinger2_L/ThumbFinger3_L
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/ThumbFinger1_L/ThumbFinger2_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/ThumbFinger1_L/ThumbFinger2_L/ThumbFinger3_L/ThumbFinger4_L
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/ThumbFinger1_L/ThumbFinger2_L/ThumbFinger3_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/ThumbFinger1_L/ThumbFinger2_L/ThumbFinger3_L/ThumbFinger4_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/Cup_R
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/MiddleFinger1_R
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/Cup_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/MiddleFinger1_R/MiddleFinger2_R
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/MiddleFinger1_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/MiddleFinger1_R/MiddleFinger2_R/MiddleFinger3_R
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/MiddleFinger1_R/MiddleFinger2_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/MiddleFinger1_R/MiddleFinger2_R/MiddleFinger3_R/MiddleFinger4_R
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/MiddleFinger1_R/MiddleFinger2_R/MiddleFinger3_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/ThumbFinger1_R
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/MiddleFinger1_R/MiddleFinger2_R/MiddleFinger3_R/MiddleFinger4_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/ThumbFinger1_R/ThumbFinger2_R
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/ThumbFinger1_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/ThumbFinger1_R/ThumbFinger2_R/ThumbFinger3_R
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/ThumbFinger1_R/ThumbFinger2_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/ThumbFinger1_R/ThumbFinger2_R/ThumbFinger3_R/ThumbFinger4_R
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/ThumbFinger1_R/ThumbFinger2_R/ThumbFinger3_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_L
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/ThumbFinger1_R/ThumbFinger2_R/ThumbFinger3_R/ThumbFinger4_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L
+      - path: Group/Main/DeformationSystem/Root_M/Hip_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L
+      - path: Group/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L/Knee_L
+      - path: Group/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L/Knee_L/Ankle_L
+      - path: Group/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L/Knee_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L/Knee_L/Ankle_L/MiddleToe1_L
+      - path: Group/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L/Knee_L/Ankle_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L/Knee_L/Ankle_L/MiddleToe1_L/BigToe_L
+      - path: Group/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L/Knee_L/Ankle_L/MiddleToe1_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L/Knee_L/Ankle_L/MiddleToe1_L/MiddleToe2_L
+      - path: Group/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L/Knee_L/Ankle_L/MiddleToe1_L/BigToe_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L/Knee_L/Ankle_L/MiddleToe1_L/PinkyToe_L
+      - path: Group/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L/Knee_L/Ankle_L/MiddleToe1_L/MiddleToe2_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_R
+      - path: Group/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L/Knee_L/Ankle_L/MiddleToe1_L/PinkyToe_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R
+      - path: Group/Main/DeformationSystem/Root_M/Hip_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R
+      - path: Group/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R/Knee_R
+      - path: Group/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R/Knee_R/Ankle_R
+      - path: Group/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R/Knee_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R/Knee_R/Ankle_R/MiddleToe1_R
+      - path: Group/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R/Knee_R/Ankle_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R/Knee_R/Ankle_R/MiddleToe1_R/BigToe_R
+      - path: Group/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R/Knee_R/Ankle_R/MiddleToe1_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R/Knee_R/Ankle_R/MiddleToe1_R/MiddleToe2_R
+      - path: Group/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R/Knee_R/Ankle_R/MiddleToe1_R/BigToe_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R/Knee_R/Ankle_R/MiddleToe1_R/PinkyToe_R
+      - path: Group/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R/Knee_R/Ankle_R/MiddleToe1_R/MiddleToe2_R
         weight: 1
-      - path: polySurface368
+      - path: Group/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R/Knee_R/Ankle_R/MiddleToe1_R/PinkyToe_R
+        weight: 1
+      - path: sheeda_28:Sheeda_Old
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
@@ -673,775 +679,137 @@ ModelImporter:
         weight: 1
       - path: Group
         weight: 1
-      - path: Group/group1
+      - path: Group/Geometry
         weight: 1
-      - path: Group/group1/Main
+      - path: Group/Geometry/Sheeda
         weight: 1
-      - path: Group/group1/Main/DeformationSystem
+      - path: Group/Main
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M
+      - path: Group/Main/DeformationSystem
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M
+      - path: Group/Main/DeformationSystem/Root_M
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Neck_M
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Neck_M/NeckPart1_M
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Neck_M
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Neck_M/NeckPart1_M/NeckPart2_M
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Neck_M/NeckPart1_M
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Neck_M/NeckPart1_M/NeckPart2_M/Head_M
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Neck_M/NeckPart1_M/NeckPart2_M
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Neck_M/NeckPart1_M/NeckPart2_M/Head_M/Hair_M
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Neck_M/NeckPart1_M/NeckPart2_M/Head_M
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Neck_M/NeckPart1_M/NeckPart2_M/Head_M/Hair_M
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/Cup_L
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/MiddleFinger1_L
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/Cup_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/MiddleFinger1_L/MiddleFinger2_L
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/MiddleFinger1_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/MiddleFinger1_L/MiddleFinger2_L/MiddleFinger3_L
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/MiddleFinger1_L/MiddleFinger2_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/MiddleFinger1_L/MiddleFinger2_L/MiddleFinger3_L/MiddleFinger4_L
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/MiddleFinger1_L/MiddleFinger2_L/MiddleFinger3_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/ThumbFinger1_L
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/MiddleFinger1_L/MiddleFinger2_L/MiddleFinger3_L/MiddleFinger4_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/ThumbFinger1_L/ThumbFinger2_L
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/ThumbFinger1_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/ThumbFinger1_L/ThumbFinger2_L/ThumbFinger3_L
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/ThumbFinger1_L/ThumbFinger2_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/ThumbFinger1_L/ThumbFinger2_L/ThumbFinger3_L/ThumbFinger4_L
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/ThumbFinger1_L/ThumbFinger2_L/ThumbFinger3_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/ThumbFinger1_L/ThumbFinger2_L/ThumbFinger3_L/ThumbFinger4_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/Cup_R
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/MiddleFinger1_R
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/Cup_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/MiddleFinger1_R/MiddleFinger2_R
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/MiddleFinger1_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/MiddleFinger1_R/MiddleFinger2_R/MiddleFinger3_R
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/MiddleFinger1_R/MiddleFinger2_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/MiddleFinger1_R/MiddleFinger2_R/MiddleFinger3_R/MiddleFinger4_R
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/MiddleFinger1_R/MiddleFinger2_R/MiddleFinger3_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/ThumbFinger1_R
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/MiddleFinger1_R/MiddleFinger2_R/MiddleFinger3_R/MiddleFinger4_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/ThumbFinger1_R/ThumbFinger2_R
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/ThumbFinger1_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/ThumbFinger1_R/ThumbFinger2_R/ThumbFinger3_R
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/ThumbFinger1_R/ThumbFinger2_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/ThumbFinger1_R/ThumbFinger2_R/ThumbFinger3_R/ThumbFinger4_R
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/ThumbFinger1_R/ThumbFinger2_R/ThumbFinger3_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_L
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/ThumbFinger1_R/ThumbFinger2_R/ThumbFinger3_R/ThumbFinger4_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L
+      - path: Group/Main/DeformationSystem/Root_M/Hip_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L
+      - path: Group/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L/Knee_L
+      - path: Group/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L/Knee_L/Ankle_L
+      - path: Group/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L/Knee_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L/Knee_L/Ankle_L/MiddleToe1_L
+      - path: Group/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L/Knee_L/Ankle_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L/Knee_L/Ankle_L/MiddleToe1_L/BigToe_L
+      - path: Group/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L/Knee_L/Ankle_L/MiddleToe1_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L/Knee_L/Ankle_L/MiddleToe1_L/MiddleToe2_L
+      - path: Group/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L/Knee_L/Ankle_L/MiddleToe1_L/BigToe_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L/Knee_L/Ankle_L/MiddleToe1_L/PinkyToe_L
+      - path: Group/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L/Knee_L/Ankle_L/MiddleToe1_L/MiddleToe2_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_R
+      - path: Group/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L/Knee_L/Ankle_L/MiddleToe1_L/PinkyToe_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R
+      - path: Group/Main/DeformationSystem/Root_M/Hip_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R
+      - path: Group/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R/Knee_R
+      - path: Group/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R/Knee_R/Ankle_R
+      - path: Group/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R/Knee_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R/Knee_R/Ankle_R/MiddleToe1_R
+      - path: Group/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R/Knee_R/Ankle_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R/Knee_R/Ankle_R/MiddleToe1_R/BigToe_R
+      - path: Group/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R/Knee_R/Ankle_R/MiddleToe1_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R/Knee_R/Ankle_R/MiddleToe1_R/MiddleToe2_R
+      - path: Group/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R/Knee_R/Ankle_R/MiddleToe1_R/BigToe_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R/Knee_R/Ankle_R/MiddleToe1_R/PinkyToe_R
+      - path: Group/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R/Knee_R/Ankle_R/MiddleToe1_R/MiddleToe2_R
         weight: 1
-      - path: polySurface368
+      - path: Group/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R/Knee_R/Ankle_R/MiddleToe1_R/PinkyToe_R
         weight: 1
-      maskType: 0
-      maskSource: {instanceID: 0}
-    - serializedVersion: 16
-      name: slide
-      takeName: Take 001
-      firstFrame: 65
-      lastFrame: 105
-      wrapMode: 1
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      loopTime: 0
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask:
-      - path: 
-        weight: 1
-      - path: Group
-        weight: 1
-      - path: Group/group1
-        weight: 1
-      - path: Group/group1/Main
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Neck_M
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Neck_M/NeckPart1_M
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Neck_M/NeckPart1_M/NeckPart2_M
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Neck_M/NeckPart1_M/NeckPart2_M/Head_M
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Neck_M/NeckPart1_M/NeckPart2_M/Head_M/Hair_M
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/Cup_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/MiddleFinger1_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/MiddleFinger1_L/MiddleFinger2_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/MiddleFinger1_L/MiddleFinger2_L/MiddleFinger3_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/MiddleFinger1_L/MiddleFinger2_L/MiddleFinger3_L/MiddleFinger4_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/ThumbFinger1_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/ThumbFinger1_L/ThumbFinger2_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/ThumbFinger1_L/ThumbFinger2_L/ThumbFinger3_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/ThumbFinger1_L/ThumbFinger2_L/ThumbFinger3_L/ThumbFinger4_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/Cup_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/MiddleFinger1_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/MiddleFinger1_R/MiddleFinger2_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/MiddleFinger1_R/MiddleFinger2_R/MiddleFinger3_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/MiddleFinger1_R/MiddleFinger2_R/MiddleFinger3_R/MiddleFinger4_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/ThumbFinger1_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/ThumbFinger1_R/ThumbFinger2_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/ThumbFinger1_R/ThumbFinger2_R/ThumbFinger3_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/ThumbFinger1_R/ThumbFinger2_R/ThumbFinger3_R/ThumbFinger4_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L/Knee_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L/Knee_L/Ankle_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L/Knee_L/Ankle_L/MiddleToe1_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L/Knee_L/Ankle_L/MiddleToe1_L/BigToe_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L/Knee_L/Ankle_L/MiddleToe1_L/MiddleToe2_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L/Knee_L/Ankle_L/MiddleToe1_L/PinkyToe_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R/Knee_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R/Knee_R/Ankle_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R/Knee_R/Ankle_R/MiddleToe1_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R/Knee_R/Ankle_R/MiddleToe1_R/BigToe_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R/Knee_R/Ankle_R/MiddleToe1_R/MiddleToe2_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R/Knee_R/Ankle_R/MiddleToe1_R/PinkyToe_R
-        weight: 1
-      - path: polySurface368
-        weight: 1
-      maskType: 0
-      maskSource: {instanceID: 0}
-    - serializedVersion: 16
-      name: roll
-      takeName: Take 001
-      firstFrame: 105
-      lastFrame: 126
-      wrapMode: 1
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      loopTime: 0
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask:
-      - path: 
-        weight: 1
-      - path: Group
-        weight: 1
-      - path: Group/group1
-        weight: 1
-      - path: Group/group1/Main
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Neck_M
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Neck_M/NeckPart1_M
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Neck_M/NeckPart1_M/NeckPart2_M
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Neck_M/NeckPart1_M/NeckPart2_M/Head_M
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Neck_M/NeckPart1_M/NeckPart2_M/Head_M/Hair_M
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/Cup_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/MiddleFinger1_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/MiddleFinger1_L/MiddleFinger2_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/MiddleFinger1_L/MiddleFinger2_L/MiddleFinger3_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/MiddleFinger1_L/MiddleFinger2_L/MiddleFinger3_L/MiddleFinger4_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/ThumbFinger1_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/ThumbFinger1_L/ThumbFinger2_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/ThumbFinger1_L/ThumbFinger2_L/ThumbFinger3_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/ThumbFinger1_L/ThumbFinger2_L/ThumbFinger3_L/ThumbFinger4_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/Cup_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/MiddleFinger1_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/MiddleFinger1_R/MiddleFinger2_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/MiddleFinger1_R/MiddleFinger2_R/MiddleFinger3_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/MiddleFinger1_R/MiddleFinger2_R/MiddleFinger3_R/MiddleFinger4_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/ThumbFinger1_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/ThumbFinger1_R/ThumbFinger2_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/ThumbFinger1_R/ThumbFinger2_R/ThumbFinger3_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/ThumbFinger1_R/ThumbFinger2_R/ThumbFinger3_R/ThumbFinger4_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L/Knee_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L/Knee_L/Ankle_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L/Knee_L/Ankle_L/MiddleToe1_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L/Knee_L/Ankle_L/MiddleToe1_L/BigToe_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L/Knee_L/Ankle_L/MiddleToe1_L/MiddleToe2_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L/Knee_L/Ankle_L/MiddleToe1_L/PinkyToe_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R/Knee_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R/Knee_R/Ankle_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R/Knee_R/Ankle_R/MiddleToe1_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R/Knee_R/Ankle_R/MiddleToe1_R/BigToe_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R/Knee_R/Ankle_R/MiddleToe1_R/MiddleToe2_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R/Knee_R/Ankle_R/MiddleToe1_R/PinkyToe_R
-        weight: 1
-      - path: polySurface368
-        weight: 1
-      maskType: 0
-      maskSource: {instanceID: 0}
-    - serializedVersion: 16
-      name: run_1
-      takeName: Take 001
-      firstFrame: 126
-      lastFrame: 135
-      wrapMode: 2
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 1
-      loopTime: 0
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask:
-      - path: 
-        weight: 1
-      - path: Group
-        weight: 1
-      - path: Group/group1
-        weight: 1
-      - path: Group/group1/Main
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Neck_M
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Neck_M/NeckPart1_M
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Neck_M/NeckPart1_M/NeckPart2_M
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Neck_M/NeckPart1_M/NeckPart2_M/Head_M
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Neck_M/NeckPart1_M/NeckPart2_M/Head_M/Hair_M
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/Cup_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/MiddleFinger1_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/MiddleFinger1_L/MiddleFinger2_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/MiddleFinger1_L/MiddleFinger2_L/MiddleFinger3_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/MiddleFinger1_L/MiddleFinger2_L/MiddleFinger3_L/MiddleFinger4_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/ThumbFinger1_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/ThumbFinger1_L/ThumbFinger2_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/ThumbFinger1_L/ThumbFinger2_L/ThumbFinger3_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/ThumbFinger1_L/ThumbFinger2_L/ThumbFinger3_L/ThumbFinger4_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/Cup_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/MiddleFinger1_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/MiddleFinger1_R/MiddleFinger2_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/MiddleFinger1_R/MiddleFinger2_R/MiddleFinger3_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/MiddleFinger1_R/MiddleFinger2_R/MiddleFinger3_R/MiddleFinger4_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/ThumbFinger1_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/ThumbFinger1_R/ThumbFinger2_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/ThumbFinger1_R/ThumbFinger2_R/ThumbFinger3_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/ThumbFinger1_R/ThumbFinger2_R/ThumbFinger3_R/ThumbFinger4_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L/Knee_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L/Knee_L/Ankle_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L/Knee_L/Ankle_L/MiddleToe1_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L/Knee_L/Ankle_L/MiddleToe1_L/BigToe_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L/Knee_L/Ankle_L/MiddleToe1_L/MiddleToe2_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L/Knee_L/Ankle_L/MiddleToe1_L/PinkyToe_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R/Knee_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R/Knee_R/Ankle_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R/Knee_R/Ankle_R/MiddleToe1_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R/Knee_R/Ankle_R/MiddleToe1_R/BigToe_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R/Knee_R/Ankle_R/MiddleToe1_R/MiddleToe2_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R/Knee_R/Ankle_R/MiddleToe1_R/PinkyToe_R
-        weight: 1
-      - path: polySurface368
-        weight: 1
-      maskType: 0
-      maskSource: {instanceID: 0}
-    - serializedVersion: 16
-      name: jump_1
-      takeName: Take 001
-      firstFrame: 135
-      lastFrame: 167
-      wrapMode: 1
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      loopTime: 0
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask:
-      - path: 
-        weight: 1
-      - path: Group
-        weight: 1
-      - path: Group/group1
-        weight: 1
-      - path: Group/group1/Main
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Neck_M
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Neck_M/NeckPart1_M
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Neck_M/NeckPart1_M/NeckPart2_M
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Neck_M/NeckPart1_M/NeckPart2_M/Head_M
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Neck_M/NeckPart1_M/NeckPart2_M/Head_M/Hair_M
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/Cup_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/MiddleFinger1_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/MiddleFinger1_L/MiddleFinger2_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/MiddleFinger1_L/MiddleFinger2_L/MiddleFinger3_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/MiddleFinger1_L/MiddleFinger2_L/MiddleFinger3_L/MiddleFinger4_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/ThumbFinger1_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/ThumbFinger1_L/ThumbFinger2_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/ThumbFinger1_L/ThumbFinger2_L/ThumbFinger3_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/ThumbFinger1_L/ThumbFinger2_L/ThumbFinger3_L/ThumbFinger4_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/Cup_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/MiddleFinger1_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/MiddleFinger1_R/MiddleFinger2_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/MiddleFinger1_R/MiddleFinger2_R/MiddleFinger3_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/MiddleFinger1_R/MiddleFinger2_R/MiddleFinger3_R/MiddleFinger4_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/ThumbFinger1_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/ThumbFinger1_R/ThumbFinger2_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/ThumbFinger1_R/ThumbFinger2_R/ThumbFinger3_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/ThumbFinger1_R/ThumbFinger2_R/ThumbFinger3_R/ThumbFinger4_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L/Knee_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L/Knee_L/Ankle_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L/Knee_L/Ankle_L/MiddleToe1_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L/Knee_L/Ankle_L/MiddleToe1_L/BigToe_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L/Knee_L/Ankle_L/MiddleToe1_L/MiddleToe2_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L/Knee_L/Ankle_L/MiddleToe1_L/PinkyToe_L
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R/Knee_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R/Knee_R/Ankle_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R/Knee_R/Ankle_R/MiddleToe1_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R/Knee_R/Ankle_R/MiddleToe1_R/BigToe_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R/Knee_R/Ankle_R/MiddleToe1_R/MiddleToe2_R
-        weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R/Knee_R/Ankle_R/MiddleToe1_R/PinkyToe_R
-        weight: 1
-      - path: polySurface368
+      - path: sheeda_28:Sheeda_Old
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
@@ -1473,135 +841,461 @@ ModelImporter:
         weight: 1
       - path: Group
         weight: 1
-      - path: Group/group1
+      - path: Group/Geometry
         weight: 1
-      - path: Group/group1/Main
+      - path: Group/Geometry/Sheeda
         weight: 1
-      - path: Group/group1/Main/DeformationSystem
+      - path: Group/Main
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M
+      - path: Group/Main/DeformationSystem
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M
+      - path: Group/Main/DeformationSystem/Root_M
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Neck_M
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Neck_M/NeckPart1_M
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Neck_M
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Neck_M/NeckPart1_M/NeckPart2_M
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Neck_M/NeckPart1_M
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Neck_M/NeckPart1_M/NeckPart2_M/Head_M
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Neck_M/NeckPart1_M/NeckPart2_M
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Neck_M/NeckPart1_M/NeckPart2_M/Head_M/Hair_M
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Neck_M/NeckPart1_M/NeckPart2_M/Head_M
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Neck_M/NeckPart1_M/NeckPart2_M/Head_M/Hair_M
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/Cup_L
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/MiddleFinger1_L
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/Cup_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/MiddleFinger1_L/MiddleFinger2_L
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/MiddleFinger1_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/MiddleFinger1_L/MiddleFinger2_L/MiddleFinger3_L
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/MiddleFinger1_L/MiddleFinger2_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/MiddleFinger1_L/MiddleFinger2_L/MiddleFinger3_L/MiddleFinger4_L
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/MiddleFinger1_L/MiddleFinger2_L/MiddleFinger3_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/ThumbFinger1_L
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/MiddleFinger1_L/MiddleFinger2_L/MiddleFinger3_L/MiddleFinger4_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/ThumbFinger1_L/ThumbFinger2_L
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/ThumbFinger1_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/ThumbFinger1_L/ThumbFinger2_L/ThumbFinger3_L
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/ThumbFinger1_L/ThumbFinger2_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/ThumbFinger1_L/ThumbFinger2_L/ThumbFinger3_L/ThumbFinger4_L
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/ThumbFinger1_L/ThumbFinger2_L/ThumbFinger3_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/ThumbFinger1_L/ThumbFinger2_L/ThumbFinger3_L/ThumbFinger4_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/Cup_R
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/MiddleFinger1_R
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/Cup_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/MiddleFinger1_R/MiddleFinger2_R
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/MiddleFinger1_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/MiddleFinger1_R/MiddleFinger2_R/MiddleFinger3_R
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/MiddleFinger1_R/MiddleFinger2_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/MiddleFinger1_R/MiddleFinger2_R/MiddleFinger3_R/MiddleFinger4_R
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/MiddleFinger1_R/MiddleFinger2_R/MiddleFinger3_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/ThumbFinger1_R
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/MiddleFinger1_R/MiddleFinger2_R/MiddleFinger3_R/MiddleFinger4_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/ThumbFinger1_R/ThumbFinger2_R
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/ThumbFinger1_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/ThumbFinger1_R/ThumbFinger2_R/ThumbFinger3_R
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/ThumbFinger1_R/ThumbFinger2_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/ThumbFinger1_R/ThumbFinger2_R/ThumbFinger3_R/ThumbFinger4_R
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/ThumbFinger1_R/ThumbFinger2_R/ThumbFinger3_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_L
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/ThumbFinger1_R/ThumbFinger2_R/ThumbFinger3_R/ThumbFinger4_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L
+      - path: Group/Main/DeformationSystem/Root_M/Hip_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L
+      - path: Group/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L/Knee_L
+      - path: Group/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L/Knee_L/Ankle_L
+      - path: Group/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L/Knee_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L/Knee_L/Ankle_L/MiddleToe1_L
+      - path: Group/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L/Knee_L/Ankle_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L/Knee_L/Ankle_L/MiddleToe1_L/BigToe_L
+      - path: Group/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L/Knee_L/Ankle_L/MiddleToe1_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L/Knee_L/Ankle_L/MiddleToe1_L/MiddleToe2_L
+      - path: Group/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L/Knee_L/Ankle_L/MiddleToe1_L/BigToe_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L/Knee_L/Ankle_L/MiddleToe1_L/PinkyToe_L
+      - path: Group/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L/Knee_L/Ankle_L/MiddleToe1_L/MiddleToe2_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_R
+      - path: Group/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L/Knee_L/Ankle_L/MiddleToe1_L/PinkyToe_L
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R
+      - path: Group/Main/DeformationSystem/Root_M/Hip_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R
+      - path: Group/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R/Knee_R
+      - path: Group/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R/Knee_R/Ankle_R
+      - path: Group/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R/Knee_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R/Knee_R/Ankle_R/MiddleToe1_R
+      - path: Group/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R/Knee_R/Ankle_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R/Knee_R/Ankle_R/MiddleToe1_R/BigToe_R
+      - path: Group/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R/Knee_R/Ankle_R/MiddleToe1_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R/Knee_R/Ankle_R/MiddleToe1_R/MiddleToe2_R
+      - path: Group/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R/Knee_R/Ankle_R/MiddleToe1_R/BigToe_R
         weight: 1
-      - path: Group/group1/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R/Knee_R/Ankle_R/MiddleToe1_R/PinkyToe_R
+      - path: Group/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R/Knee_R/Ankle_R/MiddleToe1_R/MiddleToe2_R
         weight: 1
-      - path: polySurface368
+      - path: Group/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R/Knee_R/Ankle_R/MiddleToe1_R/PinkyToe_R
+        weight: 1
+      - path: sheeda_28:Sheeda_Old
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: slide
+      takeName: Take 001
+      firstFrame: 65
+      lastFrame: 105
+      wrapMode: 1
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Group
+        weight: 1
+      - path: Group/Geometry
+        weight: 1
+      - path: Group/Geometry/Sheeda
+        weight: 1
+      - path: Group/Main
+        weight: 1
+      - path: Group/Main/DeformationSystem
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Neck_M
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Neck_M/NeckPart1_M
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Neck_M/NeckPart1_M/NeckPart2_M
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Neck_M/NeckPart1_M/NeckPart2_M/Head_M
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Neck_M/NeckPart1_M/NeckPart2_M/Head_M/Hair_M
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/Cup_L
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/MiddleFinger1_L
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/MiddleFinger1_L/MiddleFinger2_L
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/MiddleFinger1_L/MiddleFinger2_L/MiddleFinger3_L
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/MiddleFinger1_L/MiddleFinger2_L/MiddleFinger3_L/MiddleFinger4_L
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/ThumbFinger1_L
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/ThumbFinger1_L/ThumbFinger2_L
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/ThumbFinger1_L/ThumbFinger2_L/ThumbFinger3_L
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/ThumbFinger1_L/ThumbFinger2_L/ThumbFinger3_L/ThumbFinger4_L
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/Cup_R
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/MiddleFinger1_R
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/MiddleFinger1_R/MiddleFinger2_R
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/MiddleFinger1_R/MiddleFinger2_R/MiddleFinger3_R
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/MiddleFinger1_R/MiddleFinger2_R/MiddleFinger3_R/MiddleFinger4_R
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/ThumbFinger1_R
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/ThumbFinger1_R/ThumbFinger2_R
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/ThumbFinger1_R/ThumbFinger2_R/ThumbFinger3_R
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/ThumbFinger1_R/ThumbFinger2_R/ThumbFinger3_R/ThumbFinger4_R
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/Hip_L
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L/Knee_L
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L/Knee_L/Ankle_L
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L/Knee_L/Ankle_L/MiddleToe1_L
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L/Knee_L/Ankle_L/MiddleToe1_L/BigToe_L
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L/Knee_L/Ankle_L/MiddleToe1_L/MiddleToe2_L
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L/Knee_L/Ankle_L/MiddleToe1_L/PinkyToe_L
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/Hip_R
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R/Knee_R
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R/Knee_R/Ankle_R
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R/Knee_R/Ankle_R/MiddleToe1_R
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R/Knee_R/Ankle_R/MiddleToe1_R/BigToe_R
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R/Knee_R/Ankle_R/MiddleToe1_R/MiddleToe2_R
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R/Knee_R/Ankle_R/MiddleToe1_R/PinkyToe_R
+        weight: 1
+      - path: sheeda_28:Sheeda_Old
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: roll
+      takeName: Take 001
+      firstFrame: 105
+      lastFrame: 126
+      wrapMode: 1
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Group
+        weight: 1
+      - path: Group/Geometry
+        weight: 1
+      - path: Group/Geometry/Sheeda
+        weight: 1
+      - path: Group/Main
+        weight: 1
+      - path: Group/Main/DeformationSystem
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Neck_M
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Neck_M/NeckPart1_M
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Neck_M/NeckPart1_M/NeckPart2_M
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Neck_M/NeckPart1_M/NeckPart2_M/Head_M
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Neck_M/NeckPart1_M/NeckPart2_M/Head_M/Hair_M
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/Cup_L
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/MiddleFinger1_L
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/MiddleFinger1_L/MiddleFinger2_L
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/MiddleFinger1_L/MiddleFinger2_L/MiddleFinger3_L
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/MiddleFinger1_L/MiddleFinger2_L/MiddleFinger3_L/MiddleFinger4_L
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/ThumbFinger1_L
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/ThumbFinger1_L/ThumbFinger2_L
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/ThumbFinger1_L/ThumbFinger2_L/ThumbFinger3_L
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_L/Shoulder_L/ShoulderPart1_L/ShoulderPart2_L/Elbow_L/ElbowPart1_L/ElbowPart2_L/Wrist_L/ThumbFinger1_L/ThumbFinger2_L/ThumbFinger3_L/ThumbFinger4_L
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/Cup_R
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/MiddleFinger1_R
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/MiddleFinger1_R/MiddleFinger2_R
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/MiddleFinger1_R/MiddleFinger2_R/MiddleFinger3_R
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/MiddleFinger1_R/MiddleFinger2_R/MiddleFinger3_R/MiddleFinger4_R
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/ThumbFinger1_R
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/ThumbFinger1_R/ThumbFinger2_R
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/ThumbFinger1_R/ThumbFinger2_R/ThumbFinger3_R
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/BackA_M/BackB_M/Chest_M/Scapula_R/Shoulder_R/ShoulderPart1_R/ShoulderPart2_R/Elbow_R/ElbowPart1_R/ElbowPart2_R/Wrist_R/ThumbFinger1_R/ThumbFinger2_R/ThumbFinger3_R/ThumbFinger4_R
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/Hip_L
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L/Knee_L
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L/Knee_L/Ankle_L
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L/Knee_L/Ankle_L/MiddleToe1_L
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L/Knee_L/Ankle_L/MiddleToe1_L/BigToe_L
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L/Knee_L/Ankle_L/MiddleToe1_L/MiddleToe2_L
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/Hip_L/HipPart1_L/HipPart2_L/Knee_L/Ankle_L/MiddleToe1_L/PinkyToe_L
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/Hip_R
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R/Knee_R
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R/Knee_R/Ankle_R
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R/Knee_R/Ankle_R/MiddleToe1_R
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R/Knee_R/Ankle_R/MiddleToe1_R/BigToe_R
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R/Knee_R/Ankle_R/MiddleToe1_R/MiddleToe2_R
+        weight: 1
+      - path: Group/Main/DeformationSystem/Root_M/Hip_R/HipPart1_R/HipPart2_R/Knee_R/Ankle_R/MiddleToe1_R/PinkyToe_R
+        weight: 1
+      - path: sheeda_28:Sheeda_Old
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}

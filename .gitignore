@@ -1,2 +1,7 @@
-RSR/*
-!RSR/Assets/*
+Library/*
+Temp/*
+*.userprefs
+*.sln
+*.csproj
+*.unityproj
+*.pidb

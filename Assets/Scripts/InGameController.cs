@@ -11,18 +11,27 @@ public class InGameController : MonoBehaviour {
 		
 	private bool bGamePaused;
 	
-	//script references
+	#region Script References
 	private MenuScript hMenuScript;
 	private GameController hGameController;
-	private PlayerController hPlayerController;	
+	private PlayerController hPlayerController;
+	private EnemyController hEnemyController;
+	private PrimaryColliderController hPrimaryColliderController;
+	private SecondaryColliderController hSecondaryColliderController;
+	#endregion
 	
 	void Start ()
 	{
 		RenderSettings.fog = true;				//turn on fog on launch
 		
 		hMenuScript = (MenuScript)GameObject.Find("GUIGroup/MenuGroup").GetComponent(typeof(MenuScript));
-		hGameController = (GameController)this.GetComponent(typeof(GameController));
+		hGameController = (GameController)this.GetComponent(typeof(GameController));		
 		hPlayerController = (PlayerController)this.GetComponent(typeof(PlayerController));
+		hEnemyController = (EnemyController)GameObject.Find("Enemy").GetComponent(typeof(EnemyController));
+		hPrimaryColliderController = (PrimaryColliderController)GameObject
+			.Find("Player/CharacterGroup/Colliders/PrimaryCollider").GetComponent(typeof(PrimaryColliderController));
+		hSecondaryColliderController = (SecondaryColliderController)GameObject
+			.Find("Player/CharacterGroup/Colliders/SecondaryCollider").GetComponent(typeof(SecondaryColliderController));
 		
 		iPauseStatus = 0;
 		iGameOverState = 0;
@@ -69,6 +78,7 @@ public class InGameController : MonoBehaviour {
 		
 		hMenuScript.toggleMenuScriptStatus(false);
 		hPlayerController.launchGame();//tell the PlayerController to start game
+		hEnemyController.launchGame();//tell the EnemyController to start following the player
 	}
 	
 	/// <summary>
@@ -88,6 +98,9 @@ public class InGameController : MonoBehaviour {
 				bGamePaused = true;
 				hPlayerController.routineGameOver();
 				fGameOverSceneStart = Time.time;
+				
+				hPrimaryColliderController.togglePrimaryCollider(false);
+				hPrimaryColliderController.togglePrimaryCollider(false);
 				
 				iGameOverState = 1;
 			}
@@ -113,13 +126,15 @@ public class InGameController : MonoBehaviour {
 	*/
 	public void processClicksPauseMenu(PauseMenuEvents index)
 	{
-		if (index == PauseMenuEvents.MainMenu)
-			//hGameController.relaunchGame();
-			Application.LoadLevel("Game");
+		if (index == PauseMenuEvents.MainMenu)			
+		{
+			hGameController.relaunchGame();
+			hMenuScript.toggleMenuScriptStatus(true);
+			hMenuScript.ShowMenu((int)Menus.MainMenu);
+		}
 		else if (index == PauseMenuEvents.Resume)
 		{							
 			iPauseStatus = 3;
-						
 			hPlayerController.togglePlayerAnimation(true);//pause legacy animations
 		}
 	}//end of process click pause menu
@@ -131,17 +146,15 @@ public class InGameController : MonoBehaviour {
 	public void procesClicksDeathMenu(GameOverMenuEvents index)
 	{
 		if (index == GameOverMenuEvents.Play)
-		{
-			Application.LoadLevel("Game");
-			/*hGameController.relaunchGame();
-			launchGame();*/
+		{			
+			hGameController.relaunchGame();
+			launchGame();
 		}
 		else if (index == GameOverMenuEvents.Back)
-		{
-			Application.LoadLevel("Game");
-			//hGameController.relaunchGame();
-			/*hMenuScript.toggleMenuScriptStatus(true);
-			hMenuScript.ShowMenu((int)Menus.MainMenu);*/
+		{			
+			hGameController.relaunchGame();
+			hMenuScript.toggleMenuScriptStatus(true);
+			hMenuScript.ShowMenu((int)Menus.MainMenu);
 		}
 	}//end of DM_ProcessClicks
 	

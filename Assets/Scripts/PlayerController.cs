@@ -37,7 +37,10 @@ public class PlayerController : MonoBehaviour {
 	private Vector3 forwardUnitVector;//direction of player
 	
 	private int currentLane;// -1, 0 or 1
+	private int previousLane;//send back to previous lane in case of stumble
 	private float currentHorizontalPosition;//position when lanes are switched
+	private float previousHorizontalPosition;
+	private float deltaHorizontalPosition;
 	private float fVerticalPosition;
 	private float fRayContactPosition;
 	
@@ -50,16 +53,19 @@ public class PlayerController : MonoBehaviour {
 	private RaycastHit hitInfo;
 	#endregion
 	
-	//script references
+	#region Script References
 	private PatchController hPatchController;
 	private SwipeControls hSwipeControls;
 	private InGameController hInGameController;
+	private EnemyController hEnemyController;
+	#endregion
 	
 	void Start () 
 	{
 		hPatchController = (PatchController)GameObject.Find("Player").GetComponent(typeof(PatchController));
 		hSwipeControls = (SwipeControls)this.GetComponent(typeof(SwipeControls));
 		hInGameController = (InGameController)this.GetComponent(typeof(InGameController));
+		hEnemyController = (EnemyController)GameObject.Find("Enemy").GetComponent(typeof(EnemyController));
 		
 		tPlayer = this.transform;
 		aPlayer = (Animation)this.transform.Find("CharacterGroup/sheeda").GetComponent(typeof(Animation));
@@ -68,7 +74,8 @@ public class PlayerController : MonoBehaviour {
 		tPrimaryCollider = this.transform.Find("CharacterGroup/Colliders/PrimaryCollider");
 		tSecondaryCollider = this.transform.Find("CharacterGroup/Colliders/SecondaryCollider");
 				
-		currentLane = 0;		
+		currentLane = 0;
+		previousLane = 0;
 		fCurrentForwardSpeed = fStartForwardSpeed;
 		fRunAnimationSpeed = 1.0f;//run animation's speed
 		fVerticalPosition = 0;
@@ -92,8 +99,8 @@ public class PlayerController : MonoBehaviour {
 	}
 	
 	public void Restart()
-	{
-		currentLane = 0;		
+	{				
+		currentLane = 0;
 		fCurrentForwardSpeed = fStartForwardSpeed;
 		fRunAnimationSpeed = 1.0f;//run animation's speed
 		fVerticalPosition = 0;
@@ -108,6 +115,9 @@ public class PlayerController : MonoBehaviour {
 		nextPatch = hPatchController.getnextPatch();
 		currentMidNode = hPatchController.getCurrentPatchMidNode();		
 		nextMidNode = hPatchController.getNextPatchMidNode();//extract mid node position
+		
+		tPlayer.position = currentPatch.startNode.position;	//set player's start position
+		tCharacter.position = Vector3.zero;	//reset character group's position
 		
 		//calculate the direction in which the player has to move
 		forwardUnitVector = (nextMidNode.position- new Vector3(0,0,0))/
@@ -173,6 +183,12 @@ public class PlayerController : MonoBehaviour {
 		//togglePlayerAnimation(false);
 	}
 	
+	public void handleStumble()
+	{
+		if (isPlayerChangingLane())
+			currentLane = previousLane;
+	}
+	
 	/*
 	 * FUNCTION:	Control the user's forward movement.
 	 * */
@@ -227,9 +243,15 @@ public class PlayerController : MonoBehaviour {
 		forwardUnitVector = (nextMidNode.position-currentMidNode.position)/
 			MathCustom.VectorDistanceXZ(nextMidNode.position,currentMidNode.position);
 	}
-		
+	
+	/// <summary>
+	/// Sets the horizontal position of the character in a lane.
+	/// </summary>
 	private void setHorizontalPosition()
 	{
+		previousHorizontalPosition = currentHorizontalPosition;
+		deltaHorizontalPosition = previousHorizontalPosition-currentHorizontalPosition;
+		
 		if (currentLane == 0)//mid lane
 		{
 			tCharacter.localPosition = new Vector3(currentHorizontalPosition, tCharacter.localPosition.y, tCharacter.localPosition.z);
@@ -247,15 +269,22 @@ public class PlayerController : MonoBehaviour {
 			currentHorizontalPosition = MathCustom.LerpLinear(currentHorizontalPosition, +fLanePositionThreshold,
 				Time.deltaTime*fLaneSwitchSpeed);
 		}
-		
 	}//end of set Horizontal Position
+	
+	private bool isPlayerChangingLane()
+	{
+		if (deltaHorizontalPosition == 0)
+			return false;
+		else
+			return true;
+	}
 		
 	/// <summary>
 	/// Handlers the swipes.
 	/// </summary>
 	SwipeDirection swipeDirection;
 	private void handlerSwipes()
-	{//print(MathCustom.VectorDistanceXZ(tPlayer.position, nextMidNode.position));		
+	{
 		swipeDirection = hSwipeControls.getSwipeDirection();
 		
 		//handle strafes or turns
@@ -355,6 +384,7 @@ public class PlayerController : MonoBehaviour {
 		aPlayer["run"].speed = fRunAnimationSpeed;
 		aPlayer.CrossFadeQueued("run", 0.5f, QueueMode.CompleteOthers);		
 		
+		previousLane = currentLane;//keep record of previous lane in case of stumble
 		if (direction == SwipeDirection.Right && currentLane != 1)
 			currentLane ++;
 		else if (direction == SwipeDirection.Left && currentLane != -1)
@@ -367,8 +397,6 @@ public class PlayerController : MonoBehaviour {
 		
 		hPatchController.updatePatch();
 		updateNextMidNode();
-		
-		//float turnState = MathCustom.AngleDir(currentMidNode.forward, nextMidNode.position, currentMidNode.up);
 		
 		if (nextPatch.patchType == PatchTypes.straight)//if the next patch is straight
 		{
@@ -411,9 +439,7 @@ public class PlayerController : MonoBehaviour {
 	}//end of turn player on next mid node coroutine
 	
 	private void turnPlayerOnCurrentMidNode(SwipeDirection direction)
-	{
-		//float turnState = MathCustom.AngleDir(currentMidNode.forward, nextMidNode.position, currentMidNode.up);
-		
+	{		
 		if (nextPatch.patchType == PatchTypes.straight)//if the next patch is straight		
 			changeLane(direction);		
 		else
@@ -423,7 +449,7 @@ public class PlayerController : MonoBehaviour {
 				changeLane(direction);			
 			else//turn the character
 			{
-				//TODO: decition PatchController
+				//TODO: decision PatchController
 				//TODO: get Next Mid Node again
 				StartCoroutine(rotatePlayer(direction));//make the player face towards the new horizon
 				updateForwardUnitVector();	//update direction
@@ -471,6 +497,7 @@ public class PlayerController : MonoBehaviour {
 		}//end of while
 		
 		StopCoroutine("rotatePlayer");
+		StartCoroutine(hEnemyController.rotateEnemy(direction));
 	}
 	
 	/*

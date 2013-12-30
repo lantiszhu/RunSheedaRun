@@ -6,7 +6,10 @@ public class GameController : MonoBehaviour {
 	private MenuScript hMenuScript;
 	private PatchController hPatchController;
 	private InGameController hInGameController;
-	private PlayerController hPlayerController;	
+	private PlayerController hPlayerController;
+	private EnemyController hEnemyController;
+	private PrimaryColliderController hPrimaryColliderController;
+	private SecondaryColliderController hSecondaryColliderController;
 		
 	void Start () 
 	{
@@ -14,16 +17,25 @@ public class GameController : MonoBehaviour {
 		
 		hMenuScript = (MenuScript)GameObject.Find("GUIGroup/MenuGroup").GetComponent(typeof(MenuScript));
 		hPatchController = (PatchController)this.GetComponent(typeof(PatchController));
+		hEnemyController = (EnemyController)GameObject.Find("Enemy").GetComponent(typeof(EnemyController));
 		hInGameController = (InGameController)this.GetComponent(typeof(InGameController));
 		hPlayerController = (PlayerController)this.GetComponent(typeof(PlayerController));
+		hPrimaryColliderController = (PrimaryColliderController)GameObject
+			.Find("Player/CharacterGroup/Colliders/PrimaryCollider").GetComponent(typeof(PrimaryColliderController));
+		hSecondaryColliderController = (SecondaryColliderController)GameObject
+			.Find("Player/CharacterGroup/Colliders/SecondaryCollider").GetComponent(typeof(SecondaryColliderController));
 	}
 		
 	public void relaunchGame()
-	{		
+	{	
+		StopAllCoroutines();
+		
 		hPatchController.Restart();
 		hInGameController.Restart();
 		hPlayerController.Restart();
+		hEnemyController.Restart();
 		hMenuScript.Restart();
+		hPrimaryColliderController.Restart();
 		
 		System.GC.Collect();
 	}

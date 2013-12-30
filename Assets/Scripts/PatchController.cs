@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -72,6 +72,10 @@ public class PatchController : MonoBehaviour {
 	
 	public void Restart()
 	{
+		Destroy(currentPatch);
+		currentPatch = null;
+		foreach (Patch patch in patchesList)
+			Destroy(patch.patchTransform.gameObject);
 		patchesList.Clear();
 		
 		if (!currentPatch)

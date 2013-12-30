@@ -225,7 +225,7 @@ public class MenuScript : MonoBehaviour {
 	
 	public void Restart()
 	{
-		ShowMenu((int)Menus.MainMenu);	//show Main Menu on game launch
+		//ShowMenu((int)Menus.MainMenu);	//show Main Menu on game launch
 	}
 	
 	/*
@@ -431,11 +431,9 @@ public class MenuScript : MonoBehaviour {
 	{
 		if (tPauseButtons[0] == buttonTransform)//back button handler
 		{
-			toggleLoadSplash(true);
+			//toggleLoadSplash(true);
+			CloseMenu((int)Menus.PauseMenu);
 			hInGameController.processClicksPauseMenu(PauseMenuEvents.MainMenu);
-			
-			CloseMenu((int)Menus.PauseMenu);		
-			ShowMenu((int)Menus.MainMenu);
 		}
 		else if (tPauseButtons[1] == buttonTransform)//resume button handler
 		{
@@ -449,18 +447,18 @@ public class MenuScript : MonoBehaviour {
 	*/
 	private void handlerGameOverMenu(Transform buttonTransform)
 	{
-		if (tGameOverButtons[0] == buttonTransform)//main menu button
+		if (tGameOverButtons[0] == buttonTransform)//back button
 		{
-			toggleLoadSplash(true);
-			hInGameController.procesClicksDeathMenu(GameOverMenuEvents.Back);
+			//toggleLoadSplash(true);			
 			CloseMenu((int)Menus.GameOverMenu);
-			ShowMenu((int)Menus.MainMenu);		
+			hInGameController.procesClicksDeathMenu(GameOverMenuEvents.Back);
+			//ShowMenu((int)Menus.MainMenu);
 		}
 		else if (tGameOverButtons[1] == buttonTransform)//play button
 		{
-			toggleLoadSplash(true);
-			hInGameController.procesClicksDeathMenu(GameOverMenuEvents.Play);		
-			CloseMenu(CurrentMenu);
+			//toggleLoadSplash(true);
+			CloseMenu((int)Menus.GameOverMenu);
+			hInGameController.procesClicksDeathMenu(GameOverMenuEvents.Play);			
 		}	
 	}
 	

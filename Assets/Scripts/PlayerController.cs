@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class PlayerController : MonoBehaviour {
@@ -14,7 +14,8 @@ public class PlayerController : MonoBehaviour {
 	private const float fDuckDuration = 0.8f;
 	private const float fDuckColliderScaleDownFactor = 2;
 	private const float fDuckColliderTranslationFactor = 0.1f;
-		
+	
+	private const float fSwitchMidNodeThreshold = 1;
 	private const float fTurnSwipeThreshold = 4.5f;//how close to the mid node the player should turn
 	private const float fTurnRotateThreshold = 0.1f;//when on rotate on axis
 	#endregion
@@ -29,8 +30,10 @@ public class PlayerController : MonoBehaviour {
 	
 	private PatchController.Patch currentPatch;//informaiton of the current patch
 	private PatchController.Patch nextPatch;	//information of the next patch
+	private PatchController.Patch turnPatch;
 	private Transform currentMidNode;	//transform of the current mid node
 	private Transform nextMidNode;		//transform of the next mid node
+	private Transform turnPatchMidNode;	//transform of the node on which to turn
 		
 	private float fCurrentForwardSpeed;
 	private float fRunAnimationSpeed;
@@ -47,8 +50,7 @@ public class PlayerController : MonoBehaviour {
 	private int JumpState;
 	private int DuckState;
 	private float fDuckStartTime;
-	
-	private int PatchProgressionState;//when to get the next mid node	
+		
 	private bool bGroundHit;//if there is terrain under the player
 	private RaycastHit hitInfo;
 	#endregion
@@ -80,15 +82,15 @@ public class PlayerController : MonoBehaviour {
 		fRunAnimationSpeed = 1.0f;//run animation's speed
 		fVerticalPosition = 0;
 		fRayContactPosition = 0;
-		
-		PatchProgressionState = 0;
+		turnPatchMidNode = null;
+				
 		JumpState = 0;
 		DuckState = 0;
 		
 		//get patch information
 		currentPatch = hPatchController.getCurrentPatch();
 		nextPatch = hPatchController.getnextPatch();
-		currentMidNode = hPatchController.getCurrentPatchMidNode();		
+		currentMidNode = hPatchController.getCurrentPatchMidNode();
 		nextMidNode = hPatchController.getNextPatchMidNode();//extract mid node position
 		
 		//calculate the direction in which the player has to move
@@ -105,8 +107,8 @@ public class PlayerController : MonoBehaviour {
 		fRunAnimationSpeed = 1.0f;//run animation's speed
 		fVerticalPosition = 0;
 		fRayContactPosition = 0;
-		
-		PatchProgressionState = 0;
+		turnPatchMidNode = null;
+				
 		JumpState = 0;
 		DuckState = 0;
 		
@@ -117,6 +119,7 @@ public class PlayerController : MonoBehaviour {
 		nextMidNode = hPatchController.getNextPatchMidNode();//extract mid node position
 		
 		tPlayer.position = currentPatch.startNode.position;	//set player's start position
+		tPlayer.rotation = Quaternion.identity;
 		tCharacter.position = Vector3.zero;	//reset character group's position
 		
 		//calculate the direction in which the player has to move
@@ -136,6 +139,14 @@ public class PlayerController : MonoBehaviour {
 		aPlayer.Play("run");	//play run animation
 	}
 	
+	/*void Update()
+	{
+		if (hInGameController.isGamePaused())
+			return;
+		
+		
+	}*/
+	
 	void FixedUpdate () 
 	{
 		if (hInGameController.isGamePaused())
@@ -148,32 +159,32 @@ public class PlayerController : MonoBehaviour {
 		handlerSwipes();
 		
 		//get next patch's mid node when user reaches a mid node
-		if (PatchProgressionState == 0)//regular case
+		if (MathCustom.VectorDistanceXZ(tPlayer.position,nextMidNode.position) 
+			<= fSwitchMidNodeThreshold)
 		{
-			if (MathCustom.VectorDistanceXZ(tPlayer.position,nextMidNode.position) <= 1)
-			{
-				hPatchController.updatePatch();
-				updateNextMidNode();
-			}
-		}
-		else if (PatchProgressionState == 1)//if user attempts to turn
-		{
-			
-		}
+			hPatchController.updatePatch();//tell patch controller to switch to next mid node
+			updateNextMidNode();//get the detail of the next mid node
+		}//end of if
 		
 	}//end of fixed update
 	
 	private void updateNextMidNode()
 	{
-		currentPatch = nextPatch;
-		nextPatch = hPatchController.getnextPatch();
+		currentPatch = nextPatch;	//record the next patch information
+		nextPatch = hPatchController.getnextPatch();//get the next patch info
 		
 		currentMidNode = nextMidNode;//make record of previous mid node		
 		nextMidNode = hPatchController.getNextPatchMidNode();//get next patch info
+		//print(nextPatch.patchType+" "+nextMidNode.position);
+		if (nextPatch.patchType != PatchTypes.straight)
+		{
+			turnPatchMidNode = nextMidNode;
+			turnPatch = nextPatch;
+		}
 		
 		//update direction if the next patch is straight ahead
 		// the turnPlayer functions call this function manually on turns
-		if (MathCustom.AngleDir(currentMidNode.forward, nextMidNode.position, currentMidNode.up) == 0)
+		if (MathCustom.AngleDir(currentMidNode.forward, nextMidNode.position, currentMidNode.up) == 0)		
 			updateForwardUnitVector();
 	}
 	
@@ -200,10 +211,10 @@ public class PlayerController : MonoBehaviour {
 		{
 			fRayContactPosition = hitInfo.transform.position.y  + 0.02f;
 			//set the position of a shadow
-			tShadow.position = new Vector3(tCharacter.position.x, hitInfo.point.y + 0.01f, tCharacter.position.z);
+			tShadow.position = new Vector3(tCharacter.position.x, hitInfo.transform.position.y + 0.01f, tCharacter.position.z);
 		}
 		else
-			fRayContactPosition -= (fGravity*Time.deltaTime);
+			fRayContactPosition -= (fGravity*Time.deltaTime);//make the character fall if there is no terrain under player
 		
 		if (JumpState == 0)//on ground
 			fVerticalPosition = fRayContactPosition;
@@ -290,10 +301,9 @@ public class PlayerController : MonoBehaviour {
 		//handle strafes or turns
 		if (swipeDirection == SwipeDirection.Right || swipeDirection == SwipeDirection.Left)
 		{	
-			if (MathCustom.VectorDistanceXZ(tPlayer.position, nextMidNode.position) <= fTurnSwipeThreshold)
-				StartCoroutine(turnPlayerOnNextMidNode(swipeDirection));
-			else if (MathCustom.VectorDistanceXZ(tPlayer.position, currentMidNode.position) <= fTurnSwipeThreshold)
-				turnPlayerOnCurrentMidNode(swipeDirection);
+			if (turnPatchMidNode != null
+				&& MathCustom.VectorDistanceXZ(tPlayer.position, turnPatchMidNode.position) <= fTurnSwipeThreshold)
+				StartCoroutine(turnPlayerOnNextMidNode(swipeDirection));			
 			else
 				changeLane(swipeDirection);
 		}		
@@ -393,52 +403,31 @@ public class PlayerController : MonoBehaviour {
 	
 	private IEnumerator turnPlayerOnNextMidNode(SwipeDirection direction)
 	{
-		PatchProgressionState = 1;//stop the default patch update sequence
-		
-		hPatchController.updatePatch();
-		updateNextMidNode();
-		
-		if (nextPatch.patchType == PatchTypes.straight)//if the next patch is straight
-		{
+		if ( (direction == SwipeDirection.Right && turnPatch.patchType == PatchTypes.left)//right swipe on a right turn?
+			|| (direction == SwipeDirection.Left && turnPatch.patchType == PatchTypes.right) )//left swipe on a left turn?
 			changeLane(direction);
-			
+		else
+		{
 			while (true)
 			{
 				yield return new WaitForFixedUpdate();
-				
-				if (MathCustom.VectorDistanceXZ(tPlayer.position, currentMidNode.position) <= fTurnRotateThreshold)
-					break;				
+									
+				if (MathCustom.VectorDistanceXZ(tPlayer.position, turnPatchMidNode.position) <= fTurnRotateThreshold )//in range?
+				{
+					StartCoroutine(rotatePlayer(direction));//make the player face towards the new horizon
+					updateForwardUnitVector();	//update direction
+					currentLane = 0;	//switch to mid lane on rotation
+					
+					break;
+				}
 			}//end of while
 		}
-		else //if the next patch is a turn
-		{
-			if ( (direction == SwipeDirection.Right && nextPatch.patchType != PatchTypes.right)//right swipe on a right turn?
-				|| (direction == SwipeDirection.Left && nextPatch.patchType != PatchTypes.left) )//left swipe on a left turn?			
-				changeLane(direction);			
-			else
-			{
-				while (true)
-				{
-					yield return new WaitForFixedUpdate();
-										
-					if (MathCustom.VectorDistanceXZ(tPlayer.position, currentMidNode.position) <= fTurnRotateThreshold )//in range?
-					{
-						StartCoroutine(rotatePlayer(direction));//make the player face towards the new horizon
-						updateForwardUnitVector();	//update direction
-						currentLane = 0;	//switch to mid lane on rotation
-						
-						break;
-					}
-				}//end of while
-			}//end of else	
-			
-		}//end of outer else
 		
-		PatchProgressionState = 0;//set the patch update squence to default
-		StopCoroutine("turnPlayer");//stop current routine
+		turnPatchMidNode = null;
+		StopCoroutine("turnPlayer");//stop current routine*/
 	}//end of turn player on next mid node coroutine
 	
-	private void turnPlayerOnCurrentMidNode(SwipeDirection direction)
+	/*private void turnPlayerOnCurrentMidNode(SwipeDirection direction)
 	{		
 		if (nextPatch.patchType == PatchTypes.straight)//if the next patch is straight		
 			changeLane(direction);		
@@ -446,7 +435,7 @@ public class PlayerController : MonoBehaviour {
 		{
 			if ( (direction == SwipeDirection.Right && nextPatch.patchType != PatchTypes.right)//right swipe on a right turn?
 				|| (direction == SwipeDirection.Left && nextPatch.patchType != PatchTypes.left) )//left swipe on a left turn?			
-				changeLane(direction);			
+				changeLane(direction);
 			else//turn the character
 			{
 				//TODO: decision PatchController
@@ -457,7 +446,7 @@ public class PlayerController : MonoBehaviour {
 			}
 			
 		}//end of outer else
-	}//end of turn player on current mid node function
+	}//end of turn player on current mid node function*/
 	
 	private IEnumerator rotatePlayer(SwipeDirection direction)
 	{	

@@ -31,11 +31,12 @@ public class EnemyController : MonoBehaviour {
 	}
 	
 	public void Restart()
-	{
-		//tEnemy.position = Vector3.zero;
+	{		
 		tEnemy.position = new Vector3(tPlayerCharacter.position.x, tPlayerCharacter.position.y,
-			tPlayerCharacter.position.z-fPlayerEnemyDistance);
-		fAccleration = fInactiveAccleration;
+			tPlayerCharacter.position.z-fPlayerEnemyDistance);//reset enemy position
+		tEnemy.rotation = Quaternion.identity;//reset enemy location
+		
+		fAccleration = fInactiveAccleration;//reset enemy accleration
 		EnemyState = 0;
 	}
 	

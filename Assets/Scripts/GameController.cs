@@ -3,6 +3,9 @@ using System.Collections;
 
 public class GameController : MonoBehaviour {
 	
+	private int userCurrency;
+	
+	#region Script References
 	private MenuScript hMenuScript;
 	private PatchController hPatchController;
 	private InGameController hInGameController;
@@ -10,10 +13,12 @@ public class GameController : MonoBehaviour {
 	private EnemyController hEnemyController;
 	private PrimaryColliderController hPrimaryColliderController;
 	private SecondaryColliderController hSecondaryColliderController;
-		
+	#endregion
+	
 	void Start () 
 	{
 		Application.targetFrameRate = 60;		//ceiling the frame rate on 60 (debug only)
+		//PlayerPrefs.DeleteAll();
 		
 		hMenuScript = (MenuScript)GameObject.Find("GUIGroup/MenuGroup").GetComponent(typeof(MenuScript));
 		hPatchController = (PatchController)this.GetComponent(typeof(PatchController));
@@ -40,5 +45,19 @@ public class GameController : MonoBehaviour {
 		System.GC.Collect();
 	}
 	
+	public int getUserCurrency()
+	{
+		return userCurrency;
+	}
 	
+	public bool updateUserCurrency(int updateAmount)
+	{
+		if (updateAmount < 0 
+			&& userCurrency < Mathf.Abs(updateAmount) )
+			return false;
+		
+		userCurrency += updateAmount;
+		PlayerPrefs.SetInt("UserCurrency",userCurrency);
+		return true;
+	}
 }

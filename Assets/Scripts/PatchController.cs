@@ -31,9 +31,9 @@ public class PatchController : MonoBehaviour {
 				endNode = patchTransform.Find("Nodes/EndNode");
 			else
 			{
-				endNode = patchTransform.Find("Nodes/EndNode_1");
-				endNode2 = patchTransform.Find("Nodes/EndNode_2");
-	
+				endNode = patchT.Find("Nodes/EndNode_1");
+				endNode2 = patchT.Find("Nodes/EndNode_2");
+				print (endNode.name +""+ type);
 			}
 			patchType = type;
 		}
@@ -47,14 +47,12 @@ public class PatchController : MonoBehaviour {
 	GameObject currentPatch;
 	PatchTypes currentpatchType;
 
-	LinkedList<Patch> patchesList;
-	const int queueCapacity = 5;
+	LinkedList<Patch> patchesList = new LinkedList<Patch>();
+	int queueCapacity = 5;
 	int straightPatchCount = 2;
 
 	void Start () 
 	{	
-		patchesList = new LinkedList<Patch>();
-			
 		if (!currentPatch)
 		{
 			//currentPatch = GameObject.Instantiate(straightPatchList[0],Vector3.zero,Quaternion.identity) as Transform;
@@ -62,7 +60,7 @@ public class PatchController : MonoBehaviour {
 			patchesList.AddFirst(new Patch(currentPatch.transform,PatchTypes.straight));
 			currentpatchType = PatchTypes.straight;
 		}
-		
+		//tickTime = 0;
 		straightPatchCount = Random.Range(2,4);
 		for (int i = 0; i < queueCapacity-1; i++)
 		{
@@ -79,13 +77,12 @@ public class PatchController : MonoBehaviour {
 		patchesList.Clear();
 		
 		if (!currentPatch)
-		{
-			//currentPatch = GameObject.Instantiate(straightPatchList[0],Vector3.zero,Quaternion.identity) as Transform;
+		{			
 			currentPatch = (GameObject)Instantiate(straightPatchList[0]);
 			patchesList.AddFirst(new Patch(currentPatch.transform,PatchTypes.straight));
 			currentpatchType = PatchTypes.straight;
 		}
-		//tickTime = 0;
+		
 		straightPatchCount = Random.Range(2,4);
 		for (int i = 0; i < queueCapacity-1; i++)
 		{
@@ -178,17 +175,32 @@ public class PatchController : MonoBehaviour {
 		else
 			return null;
 	}
-
+	LinkedListNode<Patch> lastTeeNode;
 	/// <summary>
 	/// Updates the patch.
 	/// </summary>
 	/// <returns>The patch.</returns>
 	/// <param name="decission">Directions decission</param>
 	/// 
-	public Transform updatePatch(int decission = 2)
+	public Transform updatePatch(int decission = 1)
 	{
+		if (decission == 2 && lastTeeNode != null)
+		{
+			if(lastTeeNode.Next !=null )
+			{
+				lastTeeNode.Previous.Value.patchTransform.position = lastTeeNode.Value.endNode2.position;
+				lastTeeNode.Previous.Value.patchTransform.rotation = lastTeeNode.Value.endNode2.rotation;
+				reconnectPatches(lastTeeNode);
+			}
+			lastTeeNode = null;
+		}
+
 		PatchTypes nextPatchType = selectNextpatchType();
-		PatchTypes secondPatchType = PatchTypes.straight;
+		if (lastTeeNode != null && nextPatchType == PatchTypes.tee)
+		{
+			nextPatchType = PatchTypes.left;
+		}
+
 		GameObject nextPatch = getNextPatch(nextPatchType);
 		//Transform tempT = GameObject.Instantiate(nextPatch,Vector3.zero,Quaternion.identity) as Transform;
 		Transform tempT = ((GameObject)Instantiate(nextPatch, Vector3.zero, Quaternion.identity)).transform;
@@ -205,26 +217,61 @@ public class PatchController : MonoBehaviour {
 				tempT.position = currentPatch.transform.Find("Nodes/EndNode_1").position;
 				tempT.rotation = currentPatch.transform.Find("Nodes/EndNode_1").rotation;
 			}
-			else if (decission == 2 && currentpatchType == PatchTypes.tee)
-			{
-				tempT.position = currentPatch.transform.Find("Nodes/EndNode_2").position;
-				tempT.rotation = currentPatch.transform.Find("Nodes/EndNode_2").rotation;
-			}
-		}
 
-		patchesList.AddFirst(new Patch(tempT,currentpatchType));
+		}
+		patchesList.AddFirst(new Patch(tempT,nextPatchType));
+		if (nextPatchType == PatchTypes.tee)
+		{
+			lastTeeNode = patchesList.First;
+		}
 		currentPatch = tempT.gameObject;
 		currentpatchType = nextPatchType;
 
 		if(patchesList.Count>queueCapacity)
 		{
 			Transform T = patchesList.Last.Value.patchTransform;
+			if (patchesList.Last.Value.patchType == PatchTypes.tee)
+			{lastTeeNode = null;}
 			//print (T.name);
 			GameObject.Destroy(T.gameObject);
 			patchesList.RemoveLast();
 		}
-
+	
 		return getNextPatchMidNode();
 
 	}
+	void reconnectPatches(LinkedListNode<Patch> p)
+	{
+		LinkedListNode<Patch> point = p.Previous;
+		//if(point != null && point == patchesList.Last)
+		int count=0;
+		print (point != patchesList.Last);
+		while(point.Previous != null)
+		{
+			count++;
+			print (count);
+			point.Previous.Value.patchTransform.position = point.Value.endNode.position;
+			point.Previous.Value.patchTransform.rotation = point.Value.endNode.rotation;
+			//print (point.Next.Value.patchTransform.name +""+ point.Value.patchTransform.name);
+			point = point.Previous;
+		}
+	}
+	/*float tick = 0;
+	void Update()
+	{
+		if (tick>1)
+		{
+			tick = 0;
+			//updatePatch();
+		}
+		tick += Time.deltaTime;
+		if (Input.GetKeyUp(KeyCode.D))
+		{
+			updatePatch(2);
+		}
+		if (Input.GetKeyUp(KeyCode.A))
+		{
+			updatePatch();
+		}
+	}*/
 }

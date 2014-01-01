@@ -147,7 +147,7 @@ public class PatchController : MonoBehaviour {
 		else
 		{
 			straightPatchCount = Random.Range(2,4);
-			patchType = (PatchTypes)Random.Range(1,3);
+			patchType = (PatchTypes)Random.Range(1,4);
 		}
 
 		//Debug.Log("==>"+patchType.ToString());

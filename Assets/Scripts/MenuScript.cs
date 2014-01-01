@@ -60,6 +60,7 @@ public class MenuScript : MonoBehaviour {
 	private Transform tMenuGroup;//get the menu group parent
 	private int CurrentMenu = -1;	//current menu index
 	//private int PreviousMenu = -1;
+	private bool bHUDState;
 	private int iTapState = 0;//state of tap on screen
 	private int iAndroidBackTapState = 0;//state of tap on back button on android devices
 	
@@ -118,12 +119,13 @@ public class MenuScript : MonoBehaviour {
 	//shop menu
 	private ShopScriptCS hShopScriptCS;*/
 	
+	private Transform tHUDGroup;
+		
 	//resume game countdown
 	private int iResumeGameState = 0;
-	private int iResumeGameStartTime = 0;
+	private float iResumeGameStartTime = 0;
 	private TextMesh tmPauseCountdown;	//count down numbers after resume
-	
-	
+		
 	void Start ()
 	{
 		HUDCamera = (Camera)GameObject.Find("GUIGroup/Camera").GetComponent(typeof(Camera));
@@ -133,10 +135,11 @@ public class MenuScript : MonoBehaviour {
 		hMissionsControllerCS = (MissionsControllerCS)GameObject.Find("Player").GetComponent(typeof(MissionsControllerCS));*/
 		hInGameController = (InGameController)GameObject.Find("Player").GetComponent(typeof(InGameController));
 		
+		bHUDState = false;
 		//the fResolutionFactor can be used to adjust components according to screen size
-		aspectRatio = ( (Screen.height * 1.0f)/(Screen.width * 1.0f) - 1.77f);	
+		aspectRatio = ( (Screen.height * 1.0f)/(Screen.width * 1.0f) - 1.77f);
 		fResolutionFactor = (43.0f * (aspectRatio));
-			
+		
 		tMenuGroup = GameObject.Find("MenuGroup").transform;
 		tMenuTransforms = new Transform[(int)Menus.GetValues(typeof(Menus)).Length];
 		
@@ -209,7 +212,9 @@ public class MenuScript : MonoBehaviour {
 		tAdButtons[1] = (Transform)tMenuTransforms[(int)Menus.Ad].Find("Button_Close").GetComponent(typeof(Transform));*/
 		
 		tLoadScreen = (Transform)tMenuGroup.Find("LoadingSplashScreen").GetComponent(typeof(Transform));//the loading splash screen
-		
+		tHUDGroup = (Transform)GameObject.Find("GUIGroup/HUDGroup").GetComponent(typeof(Transform));
+		tmPauseCountdown = GameObject.Find("GUIGroup/HUDGroup/HUDPauseCounter").GetComponent(typeof(TextMesh)) as TextMesh;
+		tmPauseCountdown.text = string.Empty;
 		/*///////HUD//////
 		((MeshRenderer)GameObject.Find("HUDMainGroup/HUDPauseCounter").GetComponent(typeof(MeshRenderer))).enabled = false;
 		
@@ -253,6 +258,13 @@ public class MenuScript : MonoBehaviour {
 			tLoadScreen.localPosition = new Vector3(tLoadScreen.localPosition.x, 1000, tLoadScreen.localPosition.z);
 	}
 	
+	public void pauseGame()
+	{
+		tmPauseCountdown.text = string.Empty;
+		iResumeGameState = 0;
+		ShowMenu((int)Menus.PauseMenu);
+	}
+	
 	/*
 	*	FUNCTION: Show the pause menu
 	*	CALLED BY:	InGameController.Update()
@@ -275,22 +287,19 @@ public class MenuScript : MonoBehaviour {
 	{		
 		//display countdown timer on Resume
 		if (iResumeGameState == 1)//display the counter
-		{
-			tmPauseCountdown = GameObject.Find("HUDMainGroup/HUDPauseCounter").GetComponent(typeof(TextMesh)) as TextMesh;
-			((MeshRenderer)GameObject.Find("HUDMainGroup/HUDPauseCounter").GetComponent(typeof(MeshRenderer))).enabled = true;
-			
-			iResumeGameStartTime = (int)Time.time;		
+		{	
+			toggleHUDState(true);
+			iResumeGameStartTime = Time.time;		
 			iResumeGameState = 2;
 		}
 		else if (iResumeGameState == 2)//count down
 		{
-			tmPauseCountdown.text = Mathf.Round(4 - (Time.time - iResumeGameStartTime)).ToString();
+			tmPauseCountdown.text = Mathf.RoundToInt(4 - (Time.time - iResumeGameStartTime)).ToString();
 			
 			if ( (Time.time - iResumeGameStartTime) >= 3)//resume the game when time expires
 			{
 				tmPauseCountdown.text = string.Empty;
-				hInGameController.processClicksPauseMenu(PauseMenuEvents.Resume);
-				iResumeGameStartTime = 0;			
+				hInGameController.processClicksPauseMenu(PauseMenuEvents.Resume);				
 				iResumeGameState = 0;
 			}
 		}	
@@ -638,7 +647,7 @@ public class MenuScript : MonoBehaviour {
 			0, tMenuTransforms[index].localPosition.z);//move the menu in front of the HUD Camera
 		
 		CurrentMenu = index;//set the current menu
-		//hideHUDElements();	//hide the HUD
+		toggleHUDState(false);	//hide the HUD
 		//hSoundManagerScriptCS.playSound(SoundManagerCS.MenuSounds.ButtonTap);
 	}
 	
@@ -678,23 +687,23 @@ public class MenuScript : MonoBehaviour {
 		tmAchievementsMenuDescription.text = description;
 	}*/
 	
-	/*
-	 * FUNCITON:	Remove the HUD from the camera
-	 * */
-	/*public void hideHUDElements()
+	public void toggleHUDState(bool state)
 	{
-		Transform tHUDPosition = (Transform)GameObject.Find("HUDMainGroup/HUDGroup").GetComponent(typeof(Transform));
-		tHUDPosition.position = new Vector3(tHUDPosition.position.x, 1000, tHUDPosition.position.z);
-	}*/
+		if (state == bHUDState)//if state has not changed
+			return;
+		
+		if (state)
+			tHUDGroup.localPosition = new Vector3(0, 0, 0);//show HUD
+		else
+			tHUDGroup.localPosition = new Vector3(0, 1000, 0);//hide HUD
+		
+		bHUDState = state;//update HUD status
+	}
 	
-	/*
-	 * FUNCTION:	Display the HUD in front of the HUD Camera
-	 * */
-	/*public void showHUDElements()
-	{	
-		Transform tHUDPosition = (Transform)GameObject.Find("HUDMainGroup/HUDGroup").GetComponent(typeof(Transform));		
-		tHUDPosition.position = new Vector3(tHUDPosition.position.x, 0, tHUDPosition.position.z);
-	}*/
+	public bool isHUDEnabled()
+	{
+		return bHUDState;
+	}
 	
 	/*
 	*	FUNCTION: Enable/ disable MenuScript.

@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour {
 	
 	private const float fSwitchMidNodeThreshold = 1;
 	private const float fTurnSwipeThreshold = 4.5f;//how close to the mid node the player should turn
-	private const float fTurnRotateThreshold = 0.1f;//when on rotate on axis
+	private const float fTurnRotateThreshold = 0.5f;//when to rotate on axis
 	#endregion
 	
 	#region Global Variables
@@ -222,6 +222,7 @@ public class PlayerController : MonoBehaviour {
 		{
 			aPlayer["jump"].speed = 1.5f;
 			aPlayer.Play("jump");
+			hEnemyController.playEnemyAnimation(EnemyAnimation.jump);
 			
 			fVerticalPosition += fJumpForce;			
 			JumpState = 2;
@@ -234,6 +235,8 @@ public class PlayerController : MonoBehaviour {
 			{
 				aPlayer["run"].speed = fRunAnimationSpeed;
 				aPlayer.CrossFadeQueued("run", 0.5f, QueueMode.CompleteOthers);
+				hEnemyController.playEnemyAnimation(EnemyAnimation.run);
+				
 				JumpState = 0;
 			}
 		}
@@ -342,6 +345,7 @@ public class PlayerController : MonoBehaviour {
 					aPlayer.Play("slide");
 				else
 					aPlayer.Play("roll");
+				hEnemyController.playEnemyAnimation(EnemyAnimation.slide);
 				
 				fDuckStartTime = Time.time;//check when the duck started
 				DuckState = 1;
@@ -365,6 +369,8 @@ public class PlayerController : MonoBehaviour {
 				
 				aPlayer["run"].speed = fRunAnimationSpeed;
 				aPlayer.CrossFadeQueued("run", 0.5f, QueueMode.CompleteOthers);//play run animation
+				hEnemyController.playEnemyAnimation(EnemyAnimation.run);
+				
 				DuckState = 0;
 				break;
 			}
@@ -385,14 +391,17 @@ public class PlayerController : MonoBehaviour {
 		{
 			aPlayer["strafe_right"].speed = 1;
 			aPlayer.Play("strafe_right");
+			hEnemyController.playEnemyAnimation(EnemyAnimation.strafe_right);
 		}
 		else if (swipeDirection == SwipeDirection.Left)
 		{
 			aPlayer["strafe_left"].speed = 1;
 			aPlayer.Play("strafe_left");
+			hEnemyController.playEnemyAnimation(EnemyAnimation.strafe_left);
 		}
 		aPlayer["run"].speed = fRunAnimationSpeed;
-		aPlayer.CrossFadeQueued("run", 0.5f, QueueMode.CompleteOthers);		
+		aPlayer.CrossFadeQueued("run", 0.5f, QueueMode.CompleteOthers);
+		hEnemyController.playEnemyAnimation(EnemyAnimation.run);
 		
 		previousLane = currentLane;//keep record of previous lane in case of stumble
 		if (direction == SwipeDirection.Right && currentLane != 1)
@@ -408,10 +417,16 @@ public class PlayerController : MonoBehaviour {
 			changeLane(direction);
 		else
 		{
+			if (turnPatch.patchType == PatchTypes.tee)
+			{
+				//tell patch controller about user decision
+				//updateNextMidNode();
+			}
+			
 			while (true)
 			{
 				yield return new WaitForFixedUpdate();
-									
+								
 				if (MathCustom.VectorDistanceXZ(tPlayer.position, turnPatchMidNode.position) <= fTurnRotateThreshold )//in range?
 				{
 					StartCoroutine(rotatePlayer(direction));//make the player face towards the new horizon

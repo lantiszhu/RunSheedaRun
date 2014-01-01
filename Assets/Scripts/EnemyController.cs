@@ -1,16 +1,22 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class EnemyController : MonoBehaviour {
+public enum EnemyAnimation
+{ run, jump, strafe_right, strafe_left, slide }
 
-	private Transform tPlayerCharacter;
-	private Transform tEnemy;
+public class EnemyController : MonoBehaviour {
 	
+	#region Constants
 	private const float fPlayerEnemyDistance = 0.6f;
 	private const float fActiveAcclearation = 10;
 	private const float fInactiveAccleration = 4;
 	private const float fFollowDuration = 5;//time in seconds till when to follow player
+	#endregion
 	
+	private Transform tPlayerCharacter;
+	private Transform tEnemy;
+	private Animation aEnemy;
+		
 	private float fAccleration;
 	private int EnemyState;
 	private float fCurrentFollowTime;
@@ -23,11 +29,14 @@ public class EnemyController : MonoBehaviour {
 		
 		tPlayerCharacter = GameObject.Find("Player/CharacterGroup").transform;
 		tEnemy = this.transform;
+		aEnemy = (Animation)this.transform.Find("Qassai").GetComponent(typeof(Animation));
 		
 		tEnemy.position = new Vector3(tPlayerCharacter.position.x, tPlayerCharacter.position.y,
 			tPlayerCharacter.position.z-fPlayerEnemyDistance);
 		fAccleration = fInactiveAccleration;
 		EnemyState = 0;
+		
+		toggleEnemyAnimation(false);
 	}
 	
 	public void Restart()
@@ -38,10 +47,14 @@ public class EnemyController : MonoBehaviour {
 		
 		fAccleration = fInactiveAccleration;//reset enemy accleration
 		EnemyState = 0;
+		
+		toggleEnemyAnimation(false);
 	}
 	
 	public void launchGame()
 	{
+		toggleEnemyAnimation(true);
+		aEnemy.Play("run");
 		StartCoroutine(followPlayer());
 	}
 	
@@ -101,18 +114,18 @@ public class EnemyController : MonoBehaviour {
 			newRoation = Quaternion.Euler(0, -90, 0) * tEnemy.rotation;//left turn
 		
 		//play turn animation
-		/*if (direction == SwipeDirection.Right)
+		if (direction == SwipeDirection.Right)
 		{
-			aPlayer["strafe_right"].speed = 0.5f;
-			aPlayer.Play("strafe_right");
+			aEnemy["strafe_right"].speed = 0.5f;
+			aEnemy.Play("strafe_right");
 		}
 		else if (direction == SwipeDirection.Left)
 		{
-			aPlayer["strafe_left"].speed = 0.5f;
-			aPlayer.Play("strafe_left");
+			aEnemy["strafe_left"].speed = 0.5f;
+			aEnemy.Play("strafe_left");
 		}
-		aPlayer["run"].speed = fRunAnimationSpeed;
-		aPlayer.CrossFadeQueued("run", 0.5f, QueueMode.CompleteOthers);*/
+		//aEnemy["run"].speed = fRunAnimationSpeed;
+		aEnemy.CrossFadeQueued("run", 0.5f, QueueMode.CompleteOthers);
 		
 		while (true)
 		{
@@ -128,5 +141,24 @@ public class EnemyController : MonoBehaviour {
 		}//end of while
 		
 		StopCoroutine("rotatePlayer");
+	}
+	
+	public void playEnemyAnimation(EnemyAnimation anim)
+	{
+		if (anim == EnemyAnimation.run)
+			aEnemy.CrossFadeQueued("run", 0.5f, QueueMode.CompleteOthers);
+		else if (anim == EnemyAnimation.jump)
+			aEnemy.CrossFade("jump", 0.5f);
+		else if (anim == EnemyAnimation.slide)
+			aEnemy.CrossFade("slide", 0.5f);
+		else if (anim == EnemyAnimation.strafe_left)
+			aEnemy.Play("strafe_left");
+		else if (anim == EnemyAnimation.strafe_right)
+			aEnemy.Play("strafe_right");
+	}
+	
+	public void toggleEnemyAnimation(bool state)
+	{
+		aEnemy.enabled = state;
 	}
 }

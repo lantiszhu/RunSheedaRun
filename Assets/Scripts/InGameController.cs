@@ -3,13 +3,17 @@ using System.Collections;
 
 public class InGameController : MonoBehaviour {
 	
-	private int iPauseStatus;
+	#region Constants
+	private const float fGameOverSceneDuration = 1;
+	#endregion
 	
 	private int iGameOverState;	
-	private const float fGameOverSceneDuration = 1;
 	private float fGameOverSceneStart;
 		
 	private bool bGamePaused;
+	
+	private Transform tPauseButton;
+	private Camera HUDCamera;
 	
 	#region Script References
 	private MenuScript hMenuScript;
@@ -33,7 +37,9 @@ public class InGameController : MonoBehaviour {
 		hSecondaryColliderController = (SecondaryColliderController)GameObject
 			.Find("Player/CharacterGroup/Colliders/SecondaryCollider").GetComponent(typeof(SecondaryColliderController));
 		
-		iPauseStatus = 0;
+		tPauseButton = (Transform)GameObject.Find("GUIGroup/HUDGroup/HUDPause").GetComponent(typeof(Transform));
+		HUDCamera = (Camera)GameObject.Find("GUIGroup/Camera").camera;
+		
 		iGameOverState = 0;
 		bGamePaused = true;
 	}
@@ -42,7 +48,7 @@ public class InGameController : MonoBehaviour {
 	{
 		RenderSettings.fog = true;				//turn on fog on launch
 		
-		iPauseStatus = 0;
+		//iPauseStatus = 0;
 		iGameOverState = 0;
 		bGamePaused = true;
 	}
@@ -50,7 +56,7 @@ public class InGameController : MonoBehaviour {
 	void FixedUpdate ()
 	{
 		//Pause GamePlay
-		if(iPauseStatus == 1)//pause game
+		/*if(iPauseStatus == 1)//pause game
 		{	
 			hMenuScript.toggleMenuScriptStatus(true);
 			//hMenuScript.displayPauseMenu();
@@ -64,7 +70,9 @@ public class InGameController : MonoBehaviour {
 			
 			bGamePaused = false;
 			iPauseStatus = 0;
-		}		
+		}*/
+		
+		getClicks();//check if pause button is clicked
 	}//end of fixed update
 	
 	/*
@@ -76,9 +84,30 @@ public class InGameController : MonoBehaviour {
 	{			
 		bGamePaused = false;//tell all scripts to resume
 		
+		hMenuScript.toggleHUDState(true);
 		hMenuScript.toggleMenuScriptStatus(false);
 		hPlayerController.launchGame();//tell the PlayerController to start game
 		hEnemyController.launchGame();//tell the EnemyController to start following the player
+	}
+	
+	public void pauseGame()
+	{
+		bGamePaused = true;
+		hMenuScript.toggleMenuScriptStatus(true);
+		hMenuScript.pauseGame();
+		
+		hPlayerController.togglePlayerAnimation(false);
+		hEnemyController.toggleEnemyAnimation(false);
+	}
+	
+	public void resumeGame()
+	{
+		bGamePaused = false;
+		hMenuScript.toggleHUDState(true);
+		hMenuScript.toggleMenuScriptStatus(false);
+		
+		hPlayerController.togglePlayerAnimation(true);
+		hEnemyController.toggleEnemyAnimation(true);
 	}
 	
 	/// <summary>
@@ -96,11 +125,14 @@ public class InGameController : MonoBehaviour {
 			if (iGameOverState == 0)
 			{
 				bGamePaused = true;
-				hPlayerController.routineGameOver();
+				hPlayerController.routineGameOver();//signal player controller
 				fGameOverSceneStart = Time.time;
 				
+				//turn off colliders
 				hPrimaryColliderController.togglePrimaryCollider(false);
 				hPrimaryColliderController.togglePrimaryCollider(false);
+				
+				hEnemyController.toggleEnemyAnimation(false);//stop enemy animation
 				
 				iGameOverState = 1;
 			}
@@ -121,6 +153,32 @@ public class InGameController : MonoBehaviour {
 	}//end of routine Game Over function
 	
 	/*
+	*	FUNCTION: Check if pause button is tapped in-game
+	*	CALLED BY:	Update()
+	*/
+	private void getClicks()
+	{
+		if(Input.GetMouseButtonUp(0))
+		{
+			Vector3 screenPoint;
+			Vector2 buttonSize;
+			Rect Orb_Rect;
+			
+			if (hMenuScript.isHUDEnabled())
+			{
+				buttonSize = new Vector2(Screen.width/6,Screen.width/6);
+				screenPoint = HUDCamera.WorldToScreenPoint( tPauseButton.position );
+				
+				Orb_Rect = new Rect (screenPoint.x - ( buttonSize.x * 0.5f ), screenPoint.y - ( buttonSize.y * 0.5f ), buttonSize.x, buttonSize.y);
+				if(Orb_Rect.Contains(Input.mousePosition))
+				{				
+					pauseGame();
+				}
+			}
+		}//end of mouserelease == true if			
+	}//end of get clicks function
+	
+	/*
 	*	FUNCTION: Execute a function based on button press in Pause Menu
 	*	CALLED BY: MenuScript.PauseMenu()
 	*/
@@ -132,11 +190,8 @@ public class InGameController : MonoBehaviour {
 			hMenuScript.toggleMenuScriptStatus(true);
 			hMenuScript.ShowMenu((int)Menus.MainMenu);
 		}
-		else if (index == PauseMenuEvents.Resume)
-		{							
-			iPauseStatus = 3;
-			hPlayerController.togglePlayerAnimation(true);//pause legacy animations
-		}
+		else if (index == PauseMenuEvents.Resume)		
+			resumeGame();		
 	}//end of process click pause menu
 	
 	/*

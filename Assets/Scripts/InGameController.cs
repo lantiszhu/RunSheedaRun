@@ -26,7 +26,7 @@ public class InGameController : MonoBehaviour {
 	
 	void Start ()
 	{
-		RenderSettings.fog = true;				//turn on fog on launch
+		//RenderSettings.fog = true;				//turn on fog on launch
 		
 		hMenuScript = (MenuScript)GameObject.Find("GUIGroup/MenuGroup").GetComponent(typeof(MenuScript));
 		hGameController = (GameController)this.GetComponent(typeof(GameController));		

@@ -6,7 +6,7 @@ public class MathCustom
 	public static float LerpLinear(float start, float end, float factor)
 	{
 		if (Mathf.Abs(start-end) <= factor)
-			return start;
+			return end;
 		else if ( start-end < 0 )
 			start += factor;
 		else if (start-end > 0)

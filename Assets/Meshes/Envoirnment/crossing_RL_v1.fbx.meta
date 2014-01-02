@@ -9,30 +9,53 @@ ModelImporter:
     100006: pSphere1
     100008: pSphere2
     100010: pSphere3
+    100012: Enviroment
+    100014: midPoint
+    100016: midPoint2
+    100018: Nodes
+    100020: Path
+    100022: StartNode
+    100024: End1
+    100026: End2
+    100028: ENO
+    100030: Start
     400000: //RootNode
     400002: polySurface366
     400004: Shda_RN_T
     400006: pSphere1
     400008: pSphere2
     400010: pSphere3
+    400012: Enviroment
+    400014: midPoint
+    400016: midPoint2
+    400018: Nodes
+    400020: Path
+    400022: StartNode
+    400024: End1
+    400026: End2
+    400028: ENO
+    400030: Start
     2300000: polySurface366
     2300002: Shda_RN_T
     2300004: pSphere1
     2300006: pSphere2
     2300008: pSphere3
+    2300010: Path
     3300000: polySurface366
     3300002: Shda_RN_T
     3300004: pSphere1
     3300006: pSphere2
     3300008: pSphere3
+    3300010: Path
     4300000: polySurface366
     4300002: Shda_RN_T
     4300004: pSphere1
     4300006: pSphere2
     4300008: pSphere3
+    4300010: Path
     9500000: //RootNode
   materials:
-    importMaterials: 1
+    importMaterials: 0
     materialName: 0
     materialSearch: 1
   animations:

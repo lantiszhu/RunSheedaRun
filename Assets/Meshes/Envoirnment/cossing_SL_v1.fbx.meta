@@ -6,18 +6,47 @@ ModelImporter:
     100000: //RootNode
     100002: polySurface366
     100004: Shda_RN_T
+    100006: EndNode_2
+    100008: EndPoint_1
+    100010: Environment
+    100012: Nodes
+    100014: StartPoint
+    100016: Path
+    100018: EndNode_1
+    100020: MidPoint
+    100022: StartNode
+    100024: End1
+    100026: End2
+    100028: ENO
+    100030: Start
     400000: //RootNode
     400002: polySurface366
     400004: Shda_RN_T
+    400006: EndNode_2
+    400008: EndPoint_1
+    400010: Environment
+    400012: Nodes
+    400014: StartPoint
+    400016: Path
+    400018: EndNode_1
+    400020: MidPoint
+    400022: StartNode
+    400024: End1
+    400026: End2
+    400028: ENO
+    400030: Start
     2300000: polySurface366
     2300002: Shda_RN_T
+    2300004: Path
     3300000: polySurface366
     3300002: Shda_RN_T
+    3300004: Path
     4300000: polySurface366
     4300002: Shda_RN_T
+    4300004: Path
     9500000: //RootNode
   materials:
-    importMaterials: 1
+    importMaterials: 0
     materialName: 0
     materialSearch: 1
   animations:

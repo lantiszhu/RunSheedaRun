@@ -7,7 +7,7 @@ public enum EnemyAnimation
 public class EnemyController : MonoBehaviour {
 	
 	#region Constants
-	private const float fPlayerEnemyDistance = 0.6f;
+	private const float fPlayerEnemyDistance = 160.0f;
 	private const float fActiveAcclearation = 10;
 	private const float fInactiveAccleration = 4;
 	private const float fFollowDuration = 5;//time in seconds till when to follow player

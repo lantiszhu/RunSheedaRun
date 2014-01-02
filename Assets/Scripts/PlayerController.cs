@@ -4,8 +4,8 @@ using System.Collections;
 public class PlayerController : MonoBehaviour {
 	
 	#region Constants	
-	private const float fStartForwardSpeed = 5.0f;	//player's speed when game starts
-	private const float fLanePositionThreshold = 0.5f;//distance from the center
+	private const float fStartForwardSpeed = 15.0f;	//player's speed when game starts
+	private const float fLanePositionThreshold = 1.5f;//distance from the center
 	private const float fLaneSwitchSpeed = 5.0f;//how fast to strafe
 	
 	private const float fGravity = 100.0f;	//the value with which to pull down the player
@@ -15,9 +15,9 @@ public class PlayerController : MonoBehaviour {
 	private const float fDuckColliderScaleDownFactor = 2;
 	private const float fDuckColliderTranslationFactor = 0.1f;
 	
-	private const float fSwitchMidNodeThreshold = 1;
-	private const float fTurnSwipeThreshold = 4.5f;//how close to the mid node the player should turn
-	private const float fTurnRotateThreshold = 0.5f;//when to rotate on axis
+	private const float fSwitchMidNodeThreshold = 3;
+	private const float fTurnSwipeThreshold = 10.0f;//how close to the mid node the player should turn
+	private const float fTurnRotateThreshold = 2f;//when to rotate on axis
 	#endregion
 	
 	#region Global Variables
@@ -60,6 +60,7 @@ public class PlayerController : MonoBehaviour {
 	private SwipeControls hSwipeControls;
 	private InGameController hInGameController;
 	private EnemyController hEnemyController;
+	private CameraController hCameraController;
 	#endregion
 	
 	void Start () 
@@ -68,6 +69,7 @@ public class PlayerController : MonoBehaviour {
 		hSwipeControls = (SwipeControls)this.GetComponent(typeof(SwipeControls));
 		hInGameController = (InGameController)this.GetComponent(typeof(InGameController));
 		hEnemyController = (EnemyController)GameObject.Find("Enemy").GetComponent(typeof(EnemyController));
+		hCameraController = GameObject.Find("Main Camera").GetComponent<CameraController>();
 		
 		tPlayer = this.transform;
 		aPlayer = (Animation)this.transform.Find("CharacterGroup/sheeda").GetComponent(typeof(Animation));
@@ -175,7 +177,7 @@ public class PlayerController : MonoBehaviour {
 		
 		currentMidNode = nextMidNode;//make record of previous mid node		
 		nextMidNode = hPatchController.getNextPatchMidNode();//get next patch info
-		//print(nextPatch.patchType+" "+nextMidNode.position);
+		//print(nextMidNode.position);
 		if (nextPatch.patchType != PatchTypes.straight)
 		{
 			turnPatchMidNode = nextMidNode;
@@ -292,7 +294,7 @@ public class PlayerController : MonoBehaviour {
 		else
 			return true;
 	}
-		
+	
 	/// <summary>
 	/// Handlers the swipes.
 	/// </summary>
@@ -303,12 +305,16 @@ public class PlayerController : MonoBehaviour {
 		
 		//handle strafes or turns
 		if (swipeDirection == SwipeDirection.Right || swipeDirection == SwipeDirection.Left)
-		{	
+		{
 			if (turnPatchMidNode != null
 				&& MathCustom.VectorDistanceXZ(tPlayer.position, turnPatchMidNode.position) <= fTurnSwipeThreshold)
-				StartCoroutine(turnPlayerOnNextMidNode(swipeDirection));			
+			{
+				StartCoroutine(turnPlayerOnNextMidNode(swipeDirection));
+			}
 			else
+			{
 				changeLane(swipeDirection);
+			}
 		}		
 		else if (swipeDirection == SwipeDirection.Jump)
 		{
@@ -408,30 +414,38 @@ public class PlayerController : MonoBehaviour {
 			currentLane ++;
 		else if (direction == SwipeDirection.Left && currentLane != -1)
 			currentLane --;
+		
+		hCameraController.changeLane(currentLane);
 	}
 	
 	private IEnumerator turnPlayerOnNextMidNode(SwipeDirection direction)
-	{
+	{		
 		if ( (direction == SwipeDirection.Right && turnPatch.patchType == PatchTypes.left)//right swipe on a right turn?
 			|| (direction == SwipeDirection.Left && turnPatch.patchType == PatchTypes.right) )//left swipe on a left turn?
+		{
 			changeLane(direction);
+		}
 		else
 		{
 			if (turnPatch.patchType == PatchTypes.tee)
 			{
 				//tell patch controller about user decision
-				//updateNextMidNode();
+				if (direction == SwipeDirection.Left)
+				{
+					hPatchController.makeDecision(2);
+					updateNextMidNode();
+				}
 			}
 			
 			while (true)
-			{
+			{//print(MathCustom.VectorDistanceXZ(tPlayer.position, turnPatchMidNode.position));
 				yield return new WaitForFixedUpdate();
 								
 				if (MathCustom.VectorDistanceXZ(tPlayer.position, turnPatchMidNode.position) <= fTurnRotateThreshold )//in range?
 				{
 					StartCoroutine(rotatePlayer(direction));//make the player face towards the new horizon
 					updateForwardUnitVector();	//update direction
-					currentLane = 0;	//switch to mid lane on rotation
+					//currentLane = 0;	//switch to mid lane on rotation
 					
 					break;
 				}

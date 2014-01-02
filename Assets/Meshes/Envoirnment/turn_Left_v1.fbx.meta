@@ -6,9 +6,17 @@ ModelImporter:
     100000: polySurface377
     100002: Shda_RN_T
     100004: //RootNode
+    100006: End
+    100008: ENO
+    100010: Nodes
+    100012: Start
     400000: polySurface377
     400002: Shda_RN_T
     400004: //RootNode
+    400006: End
+    400008: ENO
+    400010: Nodes
+    400012: Start
     2300000: polySurface377
     2300002: Shda_RN_T
     3300000: polySurface377
@@ -17,7 +25,7 @@ ModelImporter:
     4300002: polySurface377
     9500000: //RootNode
   materials:
-    importMaterials: 1
+    importMaterials: 0
     materialName: 0
     materialSearch: 1
   animations:

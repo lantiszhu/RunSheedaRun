@@ -134,8 +134,7 @@ public class MenuScript : MonoBehaviour {
 		hInGameControllerCS = (InGameControllerCS)GameObject.Find("Player").GetComponent(typeof(InGameControllerCS));
 		hMissionsControllerCS = (MissionsControllerCS)GameObject.Find("Player").GetComponent(typeof(MissionsControllerCS));*/
 		hInGameController = (InGameController)GameObject.Find("Player").GetComponent(typeof(InGameController));
-		
-		bHUDState = false;
+				
 		//the fResolutionFactor can be used to adjust components according to screen size
 		aspectRatio = ( (Screen.height * 1.0f)/(Screen.width * 1.0f) - 1.77f);
 		fResolutionFactor = (43.0f * (aspectRatio));
@@ -222,14 +221,22 @@ public class MenuScript : MonoBehaviour {
 		((Transform)GameObject.Find("HUDMainGroup/HUDGroup/HUDCurrencyGroup").GetComponent(typeof(Transform))).transform.Translate(-fResolutionFactor,0,0);
 		(GameObject.Find("HUDMainGroup/HUDGroup/HUDScoreGroup").GetComponent(typeof(Transform)) as Transform).transform.Translate(-fResolutionFactor,0,0);
 		(GameObject.Find("HUDMainGroup/HUDGroup/HUDPause").GetComponent(typeof(Transform)) as Transform).transform.Translate(fResolutionFactor,0,0);*/
+		
+		Init();
 			
 		ShowMenu((int)Menus.MainMenu);	//show Main Menu on game launch
 		
 		//StartCoroutine(popUpAd());//start the coroutine to show that ad after unit time
 	}
 	
+	private void Init()
+	{
+		bHUDState = true;
+	}
+	
 	public void Restart()
 	{
+		Init();
 		//ShowMenu((int)Menus.MainMenu);	//show Main Menu on game launch
 	}
 	

@@ -17,9 +17,14 @@ public class CameraController : MonoBehaviour {
 		cameraNode = GameObject.Find("Player/CameraNode").transform;
 		camPoint = GameObject.Find("CamPoint").transform;
 		camPointRot = cameraNode.rotation.eulerAngles;
-		print (cameraNode.name);
+		//print (cameraNode.name);
 	}	
-
+	
+	public void Restart()
+	{
+		
+	}
+	
 	float sineAngleVal = 0;
 	float sineLerpVal = 0;
 	Vector3 camPointRot ;

@@ -4,16 +4,17 @@ using System.Collections;
 public class PlayerController : MonoBehaviour {
 	
 	#region Constants	
-	private const float fStartForwardSpeed = 15.0f;	//player's speed when game starts
+	private const float fStartForwardSpeed = 12.0f;	//player's speed when game starts
 	private const float fLanePositionThreshold = 1.5f;//distance from the center
 	private const float fLaneSwitchSpeed = 5.0f;//how fast to strafe
 	
-	private const float fGravity = 100.0f;	//the value with which to pull down the player
-	private const float fJumpForce = 40;
-	private const float fVerticalAccleration = 2;
-	private const float fDuckDuration = 0.8f;
-	private const float fDuckColliderScaleDownFactor = 2;
-	private const float fDuckColliderTranslationFactor = 0.1f;
+	private const float fGravity = 270.0f;	//the value with which to pull down the player
+	private const float fJumpForce = 120;
+	private const float fVerticalAccleration = 5;
+	
+	private const float fDuckDuration = 1.0f;
+	private const float fDuckColliderScaleDownFactor = 3;
+	private const float fDuckColliderTranslationFactor = 0.5f;
 	
 	private const float fSwitchMidNodeThreshold = 3;
 	private const float fTurnSwipeThreshold = 10.0f;//how close to the mid node the player should turn
@@ -38,12 +39,18 @@ public class PlayerController : MonoBehaviour {
 	private float fCurrentForwardSpeed;
 	private float fRunAnimationSpeed;
 	private Vector3 forwardUnitVector;//direction of player
+	private Vector2 initialScorePosition;
+	private Vector2 finalScorePosition;
+	private float deltaScorePosition;	//score earned during movement in delta time
 	
+	//horizontal position data
 	private int currentLane;// -1, 0 or 1
 	private int previousLane;//send back to previous lane in case of stumble
 	private float currentHorizontalPosition;//position when lanes are switched
 	private float previousHorizontalPosition;
 	private float deltaHorizontalPosition;
+	
+	//vertical position data
 	private float fVerticalPosition;
 	private float fRayContactPosition;
 	
@@ -77,33 +84,12 @@ public class PlayerController : MonoBehaviour {
 		tShadow = this.transform.Find("CharacterGroup/Shadow");
 		tPrimaryCollider = this.transform.Find("CharacterGroup/Colliders/PrimaryCollider");
 		tSecondaryCollider = this.transform.Find("CharacterGroup/Colliders/SecondaryCollider");
-				
-		currentLane = 0;
-		previousLane = 0;
-		fCurrentForwardSpeed = fStartForwardSpeed;
-		fRunAnimationSpeed = 1.0f;//run animation's speed
-		fVerticalPosition = 0;
-		fRayContactPosition = 0;
-		turnPatchMidNode = null;
-				
-		JumpState = 0;
-		DuckState = 0;
 		
-		//get patch information
-		currentPatch = hPatchController.getCurrentPatch();
-		nextPatch = hPatchController.getnextPatch();
-		currentMidNode = hPatchController.getCurrentPatchMidNode();
-		nextMidNode = hPatchController.getNextPatchMidNode();//extract mid node position
-		
-		//calculate the direction in which the player has to move
-		forwardUnitVector = (nextMidNode.position- new Vector3(0,0,0))/
-			MathCustom.VectorDistanceXZ(nextMidNode.position,new Vector3(0,0,0));
-		
-		togglePlayerAnimation(false);//disable animation
+		Init();
 	}
 	
-	public void Restart()
-	{				
+	private void Init()
+	{
 		currentLane = 0;
 		fCurrentForwardSpeed = fStartForwardSpeed;
 		fRunAnimationSpeed = 1.0f;//run animation's speed
@@ -122,13 +108,18 @@ public class PlayerController : MonoBehaviour {
 		
 		tPlayer.position = currentPatch.startNode.position;	//set player's start position
 		tPlayer.rotation = Quaternion.identity;
-		tCharacter.position = Vector3.zero;	//reset character group's position
+		tCharacter.localPosition = Vector3.zero;	//reset character group's position
 		
 		//calculate the direction in which the player has to move
 		forwardUnitVector = (nextMidNode.position- new Vector3(0,0,0))/
 			MathCustom.VectorDistanceXZ(nextMidNode.position,new Vector3(0,0,0));
 		
 		togglePlayerAnimation(false);//disable animation
+	}
+	
+	public void Restart()
+	{				
+		Init();
 	}
 	
 	/*
@@ -177,7 +168,7 @@ public class PlayerController : MonoBehaviour {
 		
 		currentMidNode = nextMidNode;//make record of previous mid node		
 		nextMidNode = hPatchController.getNextPatchMidNode();//get next patch info
-		//print(nextMidNode.position);
+		
 		if (nextPatch.patchType != PatchTypes.straight)
 		{
 			turnPatchMidNode = nextMidNode;
@@ -211,9 +202,9 @@ public class PlayerController : MonoBehaviour {
 				
 		if (bGroundHit)
 		{
-			fRayContactPosition = hitInfo.transform.position.y  + 0.02f;
+			fRayContactPosition = hitInfo.transform.position.y  + 0.1f;
 			//set the position of a shadow
-			tShadow.position = new Vector3(tCharacter.position.x, hitInfo.transform.position.y + 0.01f, tCharacter.position.z);
+			tShadow.position = new Vector3(tCharacter.position.x, hitInfo.transform.position.y + 0.1f, tCharacter.position.z);
 		}
 		else
 			fRayContactPosition -= (fGravity*Time.deltaTime);//make the character fall if there is no terrain under player
@@ -222,7 +213,7 @@ public class PlayerController : MonoBehaviour {
 			fVerticalPosition = fRayContactPosition;
 		else if (JumpState == 1)//jump triggered
 		{
-			aPlayer["jump"].speed = 1.5f;
+			aPlayer["jump"].speed = 1f;
 			aPlayer.Play("jump");
 			hEnemyController.playEnemyAnimation(EnemyAnimation.jump);
 			
@@ -249,12 +240,18 @@ public class PlayerController : MonoBehaviour {
 	}//end of set Vertical Position function
 		
 	private void setForwardPosition()
-	{		
-		tPlayer.position += forwardUnitVector * Time.deltaTime * fCurrentForwardSpeed;		
-	}//end of set Forward Position function
-		
-	private void updateForwardUnitVector()
 	{
+		initialScorePosition = finalScorePosition;//keep record of previous position
+		tPlayer.position += forwardUnitVector * Time.deltaTime * fCurrentForwardSpeed;
+		
+		finalScorePosition = new Vector2(tPlayer.position.x, tPlayer.position.z);//get next position
+		deltaScorePosition = Vector2.Distance(finalScorePosition,initialScorePosition);//calculate distance
+	}//end of set Forward Position function
+	
+	public float getDistanceCoveredInDeltaTime() { return deltaScorePosition; }
+	
+	private void updateForwardUnitVector()
+	{		
 		tPlayer.position = currentMidNode.position;
 		forwardUnitVector = (nextMidNode.position-currentMidNode.position)/
 			MathCustom.VectorDistanceXZ(nextMidNode.position,currentMidNode.position);
@@ -266,8 +263,7 @@ public class PlayerController : MonoBehaviour {
 	private void setHorizontalPosition()
 	{
 		previousHorizontalPosition = currentHorizontalPosition;
-		deltaHorizontalPosition = previousHorizontalPosition-currentHorizontalPosition;
-		
+				
 		if (currentLane == 0)//mid lane
 		{
 			tCharacter.localPosition = new Vector3(currentHorizontalPosition, tCharacter.localPosition.y, tCharacter.localPosition.z);
@@ -285,6 +281,9 @@ public class PlayerController : MonoBehaviour {
 			currentHorizontalPosition = MathCustom.LerpLinear(currentHorizontalPosition, +fLanePositionThreshold,
 				Time.deltaTime*fLaneSwitchSpeed);
 		}
+		
+		//check if character is moving horizontally
+		deltaHorizontalPosition = previousHorizontalPosition-currentHorizontalPosition;
 	}//end of set Horizontal Position
 	
 	private bool isPlayerChangingLane()

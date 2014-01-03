@@ -148,11 +148,11 @@ public class PatchController : MonoBehaviour {
 		}
 		else if (patchType == PatchTypes.left)
 		{
-			return leftTurnPatch;
+			return leftTurnPatch;			
 		}
 		else if (patchType == PatchTypes.right)
 		{
-			return rightTurnPatch;
+			return rightTurnPatch;			
 		}
 		else if (patchType == PatchTypes.tee)
 		{
@@ -242,7 +242,7 @@ public class PatchController : MonoBehaviour {
 			point = point.Previous;
 		}
 	}
-	float tick = 0;
+	/*float tick = 0;
 	void Update()
 	{
 		if (tick>1)
@@ -259,5 +259,5 @@ public class PatchController : MonoBehaviour {
 		{
 			updatePatch();
 		}
-	}
+	}*/
 }

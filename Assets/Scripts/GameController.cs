@@ -4,6 +4,7 @@ using System.Collections;
 public class GameController : MonoBehaviour {
 	
 	private int userCurrency;
+	private int scoreMultiplier;
 	
 	#region Script References
 	private MenuScript hMenuScript;
@@ -29,6 +30,29 @@ public class GameController : MonoBehaviour {
 			.Find("Player/CharacterGroup/Colliders/PrimaryCollider").GetComponent(typeof(PrimaryColliderController));
 		hSecondaryColliderController = (SecondaryColliderController)GameObject
 			.Find("Player/CharacterGroup/Colliders/SecondaryCollider").GetComponent(typeof(SecondaryColliderController));
+		
+		getUserData();
+	}
+	
+	void getUserData()
+	{
+		if (PlayerPrefs.HasKey("UserCurrency"))
+			userCurrency = PlayerPrefs.GetInt("UserCurrency");
+		else
+		{
+			PlayerPrefs.SetInt("UserCurrency", 0);
+			userCurrency = 0;
+		}
+		
+		if (PlayerPrefs.HasKey("ScoreMultiplier"))
+			scoreMultiplier = PlayerPrefs.GetInt("ScoreMultiplier");
+		else
+		{
+			PlayerPrefs.SetInt("ScoreMultiplier", 1);
+			scoreMultiplier = 1;
+		}
+		
+		PlayerPrefs.Save();
 	}
 		
 	public void relaunchGame()
@@ -45,9 +69,13 @@ public class GameController : MonoBehaviour {
 		System.GC.Collect();
 	}
 	
-	public int getUserCurrency()
+	public int getUserCurrency() { return userCurrency; }
+	public int getScoreMultiplier() { return scoreMultiplier; }
+	
+	public void updateScoreMultiplier()
 	{
-		return userCurrency;
+		scoreMultiplier += 1;
+		PlayerPrefs.SetInt("ScoreMultiplier", scoreMultiplier);
 	}
 	
 	public bool updateUserCurrency(int updateAmount)

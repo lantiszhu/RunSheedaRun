@@ -11,18 +11,27 @@ public class CameraController : MonoBehaviour {
 	private Transform cameraNode;
 	private int currentLane = 0;
 	private float globleLerp = 1f;
+
+	private Vector3 cameraNodeStartPos;
+	private Quaternion cameraNodeStartRot;
 	
 	void Start () 
 	{
 		cameraNode = GameObject.Find("Player/CameraNode").transform;
 		camPoint = GameObject.Find("CamPoint").transform;
 		camPointRot = cameraNode.rotation.eulerAngles;
+		cameraNodeStartPos = cameraNode.localPosition;
+		cameraNodeStartRot = cameraNode.rotation;
 		//print (cameraNode.name);
 	}	
 	
 	public void Restart()
 	{
-		
+		cameraNode.localPosition = cameraNodeStartPos;
+		cameraNode.localRotation = cameraNodeStartRot;
+
+		transform.position = camPoint.position;
+		transform.rotation = camPoint.rotation;
 	}
 	
 	float sineAngleVal = 0;
@@ -31,7 +40,6 @@ public class CameraController : MonoBehaviour {
 
 	void LateUpdate () 
 	{
-
 		transform.position = camPoint.position;
 		transform.rotation = camPoint.rotation;
 
@@ -50,13 +58,18 @@ public class CameraController : MonoBehaviour {
 
 	public void changeLane(int newLane)
 	{
+		
+		StopCoroutine("laneSwitched");
+		//print(currentLane);
 		currentLane = newLane;
+		globleLerp = 0;
 		StartCoroutine("laneSwitched");
 	}
 
 	IEnumerator laneSwitched()
 	{
 		//print(cameraNode);
+		//print ("start");
 		cameraNode = GameObject.Find("Player/CameraNode").transform;
 		int lane = currentLane;
 		Vector3 v1 = cameraNode.localPosition;
@@ -66,7 +79,7 @@ public class CameraController : MonoBehaviour {
 
 		v1.x = lane*laneWidth;
 		v2.y = lane*laneSwitchAngle;
-		globleLerp = 0;
+		//globleLerp = 0;
 
 		while(true)
 		{
@@ -84,6 +97,7 @@ public class CameraController : MonoBehaviour {
 				break;
 			}
 		}
+		//print ("stop");
 		StopCoroutine("laneSwitched");
 	}
 

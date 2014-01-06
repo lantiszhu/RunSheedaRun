@@ -255,6 +255,7 @@ public class PlayerController : MonoBehaviour {
 		tPlayer.position = currentMidNode.position;
 		forwardUnitVector = (nextMidNode.position-currentMidNode.position)/
 			MathCustom.VectorDistanceXZ(nextMidNode.position,currentMidNode.position);
+		print (MathCustom.VectorDistanceXZ(nextMidNode.position,currentMidNode.position));
 	}
 	
 	/// <summary>
@@ -410,11 +411,15 @@ public class PlayerController : MonoBehaviour {
 		
 		previousLane = currentLane;//keep record of previous lane in case of stumble
 		if (direction == SwipeDirection.Right && currentLane != 1)
+		{
 			currentLane ++;
+			hCameraController.changeLane(currentLane);
+		}
 		else if (direction == SwipeDirection.Left && currentLane != -1)
+		{
 			currentLane --;
-		
-		hCameraController.changeLane(currentLane);
+			hCameraController.changeLane(currentLane);
+		}
 	}
 	
 	private IEnumerator turnPlayerOnNextMidNode(SwipeDirection direction)

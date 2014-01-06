@@ -51,11 +51,14 @@ public class PatchController : MonoBehaviour {
 	LinkedList<Patch> patchesList = new LinkedList<Patch>();
 	int queueCapacity = 5;
 	int straightPatchCount = 2;
+	Transform startPatch;
 
 	void Start () 
 	{	
 		PatchGroup = new GameObject();
 		PatchGroup.transform.name = "PatchGroup";
+
+
 		if (!currentPatch)
 		{
 			//currentPatch = GameObject.Instantiate(straightPatchList[0],Vector3.zero,Quaternion.identity) as Transform;
@@ -64,6 +67,8 @@ public class PatchController : MonoBehaviour {
 			patchesList.AddFirst(new Patch(currentPatch.transform,PatchTypes.straight));
 			currentpatchType = PatchTypes.straight;
 		}
+
+
 		//tickTime = 0;
 		straightPatchCount = Random.Range(2,4);
 		for (int i = 0; i < queueCapacity-1; i++)
@@ -167,7 +172,7 @@ public class PatchController : MonoBehaviour {
 	{
 		if (decision == 2 && lastTeeNode != null)
 		{
-			if(lastTeeNode.Next !=null )
+			if(lastTeeNode.Previous !=null )
 			{
 				lastTeeNode.Previous.Value.patchTransform.position = lastTeeNode.Value.endNode2.position;
 				lastTeeNode.Previous.Value.patchTransform.rotation = lastTeeNode.Value.endNode2.rotation;

@@ -1,15 +1,37 @@
-﻿using UnityEngine;
+﻿/// <summary>
+/// Missions controller.
+/// </summary>
+using UnityEngine;
 using System.Collections;
 
-public class MissionsController : MonoBehaviour {
+//the different types of missions
+public enum MissionTypes
+{
+	Score,		
+	Powerups,
+	Jump,
+	Duck,
+	StandardCurrency,
+	StartGame
+}
 
-	// Use this for initialization
-	void Start () {
+public class MissionsController : MonoBehaviour {
 	
+	//detail of a particular mission
+	public class MissionDetail
+	{
+		public string missionDescription;
+		public int missionCount;
+		public MissionTypes missionType;
 	}
 	
-	// Update is called once per frame
-	void Update () {
-	
+	void Start () 
+	{
+		
+	}
+		
+	void Update () 
+	{
+		
 	}
 }

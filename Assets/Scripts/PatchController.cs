@@ -76,6 +76,12 @@ public class PatchController : MonoBehaviour {
 			updatePatch();
 		}
 	}
+	
+	public void Restart()
+	{
+
+	}
+	
 	public Patch getCurrentPatch()
 	{
 		return patchesList.Last.Value;		
@@ -122,11 +128,7 @@ public class PatchController : MonoBehaviour {
 	/// </summary>
 	/// <returns>The nextpathc type.</returns>
 	/// 
-
-	public void Restart()
-	{
-
-	}
+	
 	PatchTypes selectNextpatchType()
 	{
 		PatchTypes patchType;

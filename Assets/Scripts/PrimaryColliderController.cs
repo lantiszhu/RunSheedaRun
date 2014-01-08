@@ -7,16 +7,16 @@ public class PrimaryColliderController : MonoBehaviour {
 	
 	private PlayerController hPlayerController;
 	private InGameController hInGameController;	
-	//private EnemyController hEnemyController;
-	private SecondaryColliderController hSecondaryColliderController;
+	private EnemyController hEnemyController;
+	//private SecondaryColliderController hSecondaryColliderController;
 	
 	void Start () 
 	{
-		//hEnemyController = (EnemyController)GameObject.Find("Enemy").GetComponent(typeof(EnemyController));
+		hEnemyController = (EnemyController)GameObject.Find("Enemy").GetComponent(typeof(EnemyController));
 		hInGameController = (InGameController)GameObject.Find("Player").GetComponent(typeof(InGameController));
 		hPlayerController = (PlayerController)GameObject.Find("Player").GetComponent(typeof(PlayerController));
-		hSecondaryColliderController = (SecondaryColliderController)GameObject
-			.Find("Player/CharacterGroup/Colliders/SecondaryCollider").GetComponent(typeof(SecondaryColliderController));
+		/*hSecondaryColliderController = (SecondaryColliderController)GameObject
+			.Find("Player/CharacterGroup/Colliders/SecondaryCollider").GetComponent(typeof(SecondaryColliderController));*/
 		
 		primaryCollider = this.collider;
 	}
@@ -28,14 +28,10 @@ public class PrimaryColliderController : MonoBehaviour {
 	
 	void OnCollisionEnter(Collision collision)
 	{
-		if (hPlayerController.isInJump()//if the player was in air
-			|| collision.collider.gameObject.layer 
-			== LayerMask.NameToLayer("Obstacle_Minor"))//ignore smaller obstacles
+		if (hPlayerController.isInJump())//if the player was in air
 		{
-			/*hInGameController.handleStumble();//call stumble instead of game over
+			hEnemyController.handleStumble();//call stumble instead of game over
 			togglePrimaryCollider(false);
-			hSecondaryColliderController.toggleSecondaryCollider(false);*/
-			return;
 		}
 		else//regular case
 		{
@@ -43,11 +39,11 @@ public class PrimaryColliderController : MonoBehaviour {
 		}
 	}
 	
-	/*void OnCollisionExit(Collision collision)
+	void OnCollisionExit(Collision collision)
 	{
 		if (!isPrimaryColliderEnabled())//if a forced stumble was called
 			togglePrimaryCollider(true);
-	}*/
+	}
 	
 	public void togglePrimaryCollider(bool state)
 	{

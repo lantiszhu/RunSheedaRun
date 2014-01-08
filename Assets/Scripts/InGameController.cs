@@ -110,15 +110,6 @@ public class InGameController : MonoBehaviour {
 		hEnemyController.toggleEnemyAnimation(true);
 	}
 	
-	public void handleStumble()
-	{
-		hPlayerController.handleStumble();
-		hEnemyController.handleStumble();
-		
-		hPrimaryColliderController.togglePrimaryCollider(true);
-		hSecondaryColliderController.toggleSecondaryCollider(true);
-	}
-	
 	/// <summary>
 	/// Routines the game over.
 	/// </summary>

@@ -4,17 +4,13 @@ using System.Collections;
 public class SecondaryColliderController : MonoBehaviour {
 	
 	private Collider secondaryCollider;
-		
-	/*private EnemyController hEnemyController;
-	private PlayerController hPlayerController;*/
-	private InGameController hInGameController;
+	
+	private EnemyController hEnemyController;
 	private PrimaryColliderController hPrimaryColliderController;
 	
 	void Start()
 	{
-		/*hEnemyController = (EnemyController)GameObject.Find("Enemy").GetComponent(typeof(EnemyController));
-		hPlayerController = (PlayerController)GameObject.Find("Player").GetComponent(typeof(PlayerController));*/
-		hInGameController = (InGameController)GameObject.Find("Player").GetComponent(typeof(InGameController));
+		hEnemyController = (EnemyController)GameObject.Find("Enemy").GetComponent(typeof(EnemyController));
 		hPrimaryColliderController = (PrimaryColliderController)GameObject
 			.Find("Player/CharacterGroup/Colliders/PrimaryCollider").GetComponent(typeof(PrimaryColliderController));
 		
@@ -28,16 +24,16 @@ public class SecondaryColliderController : MonoBehaviour {
 	
 	void OnCollisionEnter(Collision collision)
 	{
-		hInGameController.handleStumble();
-		hPrimaryColliderController.togglePrimaryCollider(true);
-		toggleSecondaryCollider(true);
+		hEnemyController.handleStumble();
+		hPrimaryColliderController.togglePrimaryCollider(false);
+		toggleSecondaryCollider(false);
 	}
 	
-	/*void OnCollisionExit(Collision collision)
+	void OnCollisionExit(Collision collision)
 	{
 		toggleSecondaryCollider(true);
 		hPrimaryColliderController.togglePrimaryCollider(true);
-	}*/
+	}
 	
 	public void toggleSecondaryCollider(bool state)
 	{

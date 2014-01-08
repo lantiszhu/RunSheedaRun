@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour {
 	
 	private const float fDuckDuration = 1.0f;
 	private const float fDuckColliderScaleDownFactor = 3;
-	private const float fDuckColliderTranslationFactor = 0.8f;
+	private const float fDuckColliderTranslationFactor = 0.5f;
 	
 	private const float fSwitchMidNodeThreshold = 3;
 	private const float fTurnSwipeThreshold = 10.0f;//how close to the mid node the player should turn
@@ -54,7 +54,6 @@ public class PlayerController : MonoBehaviour {
 	private float fVerticalPosition;
 	private float fRayContactPosition;
 	
-	private bool ControlsEnabled;
 	private int JumpState;
 	private int DuckState;
 	private float fDuckStartTime;
@@ -73,7 +72,7 @@ public class PlayerController : MonoBehaviour {
 	
 	void Start () 
 	{
-		hPatchController = (PatchController)this.GetComponent(typeof(PatchController));
+		hPatchController = (PatchController)GameObject.Find("Player").GetComponent(typeof(PatchController));
 		hSwipeControls = (SwipeControls)this.GetComponent(typeof(SwipeControls));
 		hInGameController = (InGameController)this.GetComponent(typeof(InGameController));
 		hEnemyController = (EnemyController)GameObject.Find("Enemy").GetComponent(typeof(EnemyController));
@@ -98,7 +97,6 @@ public class PlayerController : MonoBehaviour {
 		fRayContactPosition = 0;
 		turnPatchMidNode = null;
 				
-		ControlsEnabled = false;
 		JumpState = 0;
 		DuckState = 0;
 		
@@ -132,8 +130,6 @@ public class PlayerController : MonoBehaviour {
 		togglePlayerAnimation(true);//enable animations
 		aPlayer["run"].speed = fRunAnimationSpeed;
 		aPlayer.Play("run");	//play run animation
-		
-		ControlsEnabled = true;
 	}
 	
 	/*void Update()
@@ -149,13 +145,11 @@ public class PlayerController : MonoBehaviour {
 		if (hInGameController.isGamePaused())
 			return;
 		
-		setVerticalPosition();//set the position in y-axis
-		setForwardPosition();//set the position in which player is running
+		setVerticalPosition();
+		setForwardPosition();
 				
-		setHorizontalPosition();//set lane position
-		
-		if (ControlsEnabled)
-			handlerSwipes();//handle user commands
+		setHorizontalPosition();
+		handlerSwipes();
 		
 		//get next patch's mid node when user reaches a mid node
 		if (MathCustom.VectorDistanceXZ(tPlayer.position,nextMidNode.position) 
@@ -195,15 +189,9 @@ public class PlayerController : MonoBehaviour {
 	
 	public void handleStumble()
 	{
-		aPlayer.Play("stumble");
-		
-		//revert back to previous lane if the user was changing lanes
 		if (isPlayerChangingLane())
-		{
 			currentLane = previousLane;
-			hCameraController.changeLane(currentLane);
-		}
-	}//end of handle sumble function
+	}
 	
 	/*
 	 * FUNCTION:	Control the user's forward movement.
@@ -267,7 +255,7 @@ public class PlayerController : MonoBehaviour {
 		tPlayer.position = currentMidNode.position;
 		forwardUnitVector = (nextMidNode.position-currentMidNode.position)/
 			MathCustom.VectorDistanceXZ(nextMidNode.position,currentMidNode.position);
-		print(forwardUnitVector);
+		print (MathCustom.VectorDistanceXZ(nextMidNode.position,currentMidNode.position));
 	}
 	
 	/// <summary>
@@ -436,27 +424,22 @@ public class PlayerController : MonoBehaviour {
 	
 	private IEnumerator turnPlayerOnNextMidNode(SwipeDirection direction)
 	{		
-		ControlsEnabled = false;
 		if ( (direction == SwipeDirection.Right && turnPatch.patchType == PatchTypes.left)//right swipe on a right turn?
 			|| (direction == SwipeDirection.Left && turnPatch.patchType == PatchTypes.right) )//left swipe on a left turn?
 		{
 			changeLane(direction);
 		}
-		else//make the player turn
-		{			
-			if (turnPatch.patchType == PatchTypes.tee)//option of straight and turn
+		else
+		{
+			if (turnPatch.patchType == PatchTypes.tee)
 			{
 				//tell patch controller about user decision
-				if (direction == SwipeDirection.Left || direction == SwipeDirection.Right)
+				if (direction == SwipeDirection.Left)
 				{
 					hPatchController.makeDecision(2);
-					nextMidNode = hPatchController.getnextPatch().midNode;//get the updated mid node
+					updateNextMidNode();
 				}
 			}
-			/*else if (turnPatch.patchType == PatchTypes.tee)//if regular T
-			{
-				
-			}*/
 			
 			while (true)
 			{//print(MathCustom.VectorDistanceXZ(tPlayer.position, turnPatchMidNode.position));
@@ -474,10 +457,30 @@ public class PlayerController : MonoBehaviour {
 		}
 		
 		turnPatchMidNode = null;
-		ControlsEnabled = true;
 		StopCoroutine("turnPlayer");//stop current routine*/
 	}//end of turn player on next mid node coroutine
+	
+	/*private void turnPlayerOnCurrentMidNode(SwipeDirection direction)
+	{		
+		if (nextPatch.patchType == PatchTypes.straight)//if the next patch is straight		
+			changeLane(direction);		
+		else
+		{
+			if ( (direction == SwipeDirection.Right && nextPatch.patchType != PatchTypes.right)//right swipe on a right turn?
+				|| (direction == SwipeDirection.Left && nextPatch.patchType != PatchTypes.left) )//left swipe on a left turn?			
+				changeLane(direction);
+			else//turn the character
+			{
+				//TODO: decision PatchController
+				//TODO: get Next Mid Node again
+				StartCoroutine(rotatePlayer(direction));//make the player face towards the new horizon
+				updateForwardUnitVector();	//update direction
+				currentLane = 0;	//switch to mid lane on rotation
+			}
 			
+		}//end of outer else
+	}//end of turn player on current mid node function*/
+	
 	private IEnumerator rotatePlayer(SwipeDirection direction)
 	{	
 		Quaternion newRoation = Quaternion.identity;

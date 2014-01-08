@@ -72,7 +72,8 @@ public class MenuScript : MonoBehaviour {
 	
 	//script references
 	/*private ControllerScriptCS hControllerScriptCS;
-	private SoundManagerCS hSoundManagerScriptCS;	
+	private SoundManagerCS hSoundManagerScriptCS;
+	private InGameControllerCS hInGameControllerCS;
 	private MissionsControllerCS hMissionsControllerCS;*/
 	private InGameController hInGameController;
 	
@@ -129,10 +130,10 @@ public class MenuScript : MonoBehaviour {
 	{
 		HUDCamera = (Camera)GameObject.Find("GUIGroup/Camera").GetComponent(typeof(Camera));
 		/*hControllerScriptCS = (ControllerScriptCS)GameObject.Find("Player").GetComponent(typeof(ControllerScriptCS));
-		hSoundManagerScriptCS = (SoundManagerCS)GameObject.Find("SoundManager").GetComponent(typeof(SoundManagerCS));		
+		hSoundManagerScriptCS = (SoundManagerCS)GameObject.Find("SoundManager").GetComponent(typeof(SoundManagerCS));
+		hInGameControllerCS = (InGameControllerCS)GameObject.Find("Player").GetComponent(typeof(InGameControllerCS));
 		hMissionsControllerCS = (MissionsControllerCS)GameObject.Find("Player").GetComponent(typeof(MissionsControllerCS));*/
 		hInGameController = (InGameController)GameObject.Find("Player").GetComponent(typeof(InGameController));
-		//hInGameController = GameObject.Find("GameObject").GetComponent<InGameController>();
 				
 		//the fResolutionFactor can be used to adjust components according to screen size
 		aspectRatio = ( (Screen.height * 1.0f)/(Screen.width * 1.0f) - 1.77f);
@@ -407,7 +408,7 @@ public class MenuScript : MonoBehaviour {
 		if (tMainMenuButtons[0] == buttonTransform)//Tap to Play button
 		{
 			CloseMenu((int)Menus.MainMenu);			
-			hInGameController.launchGame();	//start the gameplay
+			hInGameController.launchGame();	//start the gameplay			
 		}
 		/*else if (tMainMenuButtons[1] == buttonTransform)//information button
 		{

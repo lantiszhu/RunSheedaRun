@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour {
 	
 	private const float fDuckDuration = 1.0f;
 	private const float fDuckColliderScaleDownFactor = 3;
-	private const float fDuckColliderTranslationFactor = 0.5f;
+	private const float fDuckColliderTranslationFactor = 0.8f;
 	
 	private const float fSwitchMidNodeThreshold = 3;
 	private const float fTurnSwipeThreshold = 10.0f;//how close to the mid node the player should turn

@@ -25,7 +25,8 @@ public class EnemyController : MonoBehaviour {
 	
 	void Start () 
 	{
-		hInGameController = (InGameController)GameObject.Find("Player").GetComponent(typeof(InGameController));
+		//hInGameController = (InGameController)GameObject.Find("Player").GetComponent(typeof(InGameController));
+		hInGameController = GameObject.Find("Player").GetComponent<InGameController>();
 		
 		tPlayerCharacter = GameObject.Find("Player/CharacterGroup").transform;
 		tEnemy = this.transform;
@@ -62,7 +63,7 @@ public class EnemyController : MonoBehaviour {
 	{
 		if (hInGameController.isGamePaused())
 			return;
-		
+		 
 		tEnemy.position = Vector3.Lerp(tEnemy.position, tPlayerCharacter.position, Time.deltaTime*fAccleration);
 	}
 	

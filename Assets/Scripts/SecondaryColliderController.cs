@@ -27,7 +27,7 @@ public class SecondaryColliderController : MonoBehaviour {
 	}
 	
 	void OnCollisionEnter(Collision collision)
-	{print("secondary collider executed");
+	{
 		hInGameController.handleStumble();
 		hPrimaryColliderController.togglePrimaryCollider(true);
 		toggleSecondaryCollider(true);

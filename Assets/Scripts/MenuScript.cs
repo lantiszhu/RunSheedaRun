@@ -132,6 +132,7 @@ public class MenuScript : MonoBehaviour {
 		hSoundManagerScriptCS = (SoundManagerCS)GameObject.Find("SoundManager").GetComponent(typeof(SoundManagerCS));		
 		hMissionsControllerCS = (MissionsControllerCS)GameObject.Find("Player").GetComponent(typeof(MissionsControllerCS));*/
 		hInGameController = (InGameController)GameObject.Find("Player").GetComponent(typeof(InGameController));
+		//hInGameController = GameObject.Find("GameObject").GetComponent<InGameController>();
 				
 		//the fResolutionFactor can be used to adjust components according to screen size
 		aspectRatio = ( (Screen.height * 1.0f)/(Screen.width * 1.0f) - 1.77f);

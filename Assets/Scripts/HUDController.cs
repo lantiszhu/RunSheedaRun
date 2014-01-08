@@ -27,12 +27,15 @@ public class HUDController : MonoBehaviour {
 	private GameController hGameController;
 	private PlayerController hPlayerController;
 	#endregion
-	
+	GameObject player;
 	void Start () 
 	{
+		player = GameObject.Find("GameObject");
+		
+		//hGameController = player.GetComponent<GameController>();print(hGameController.transform.name);
 		hGameController = (GameController)GameObject.Find("Player").GetComponent(typeof(GameController));
 		hPlayerController = (PlayerController)GameObject.Find("Player").GetComponent(typeof(PlayerController));
-			
+		
 		tmScore = this.transform.Find("HUDScoreGroup/HUD_Score_Text").GetComponent("TextMesh") as TextMesh;
 		tmHUDCurrencyText = this.transform.Find("HUDCurrencyGroup/HUD_Currency_Text").GetComponent("TextMesh") as TextMesh;
 		tmHUDScoreText = this.transform.Find("HUDScoreGroup/HUD_Score_Text").GetComponent("TextMesh") as TextMesh;
@@ -59,9 +62,9 @@ public class HUDController : MonoBehaviour {
 	
 	void LateUpdate () 
 	{
-		accumulatedScore += hPlayerController.getDistanceCoveredInDeltaTime() 
+		/*accumulatedScore += hPlayerController.getDistanceCoveredInDeltaTime() 
 			* scoreCoreMultiplier * hGameController.getScoreMultiplier();
-		tmScore.text =  Mathf.RoundToInt(accumulatedScore).ToString();
+		tmScore.text =  Mathf.RoundToInt(accumulatedScore).ToString();*/
 	}
 	
 	//FUNCTION: Resize HUD Score and Currency containers according to digit count

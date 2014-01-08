@@ -38,7 +38,8 @@ public enum Menus
 	SettingsMenu = 4,
 	Shop = 5,
 	MissionsMenu = 6,
-	AchievementsMenu = 7
+	AchievementsMenu = 7,
+	Revive = 8
 }
 
 //events/ buttons on the pause menu
@@ -53,6 +54,11 @@ public enum GameOverMenuEvents
 {
 	Back = 0,
 	Play = 1
+}
+
+public enum ReviveMenuEvents
+{
+	Revive = 0
 }
 
 public class MenuScript : MonoBehaviour {
@@ -88,6 +94,9 @@ public class MenuScript : MonoBehaviour {
 	//Game Over Menu
 	private Transform[] tGameOverButtons;
 	private int iGameOverButtonsCount = 2;
+	//revive menu
+	private Transform[] tReviveButtons;
+	private const int iReviveCuttonsCount = 1;
 	//instructions menu
 	/*private Transform[] tInstructionsButtons;
 	private int iInstructionsButtonsCount = 1;
@@ -164,6 +173,11 @@ public class MenuScript : MonoBehaviour {
 		tGameOverButtons = new Transform[iGameOverButtonsCount];
 		tGameOverButtons[0] = tMenuTransforms[(int)Menus.GameOverMenu].Find("Buttons/Button_Back");
 		tGameOverButtons[1] = tMenuTransforms[(int)Menus.GameOverMenu].Find("Buttons/Button_Play");
+		
+		//revive menu initialization
+		tMenuTransforms[(int)Menus.Revive] = tMenuGroup.Find("Revive").transform;
+		tReviveButtons = new Transform[iReviveCuttonsCount];
+		tReviveButtons[0] = tMenuTransforms[(int)Menus.Revive].Find("Buttons/Revive").transform;
 		
 		/*//instructions menu initialization
 		tMenuTransforms[(int)Menus.InstructionsMenu] = (Transform)tMenuGroup.Find("Instructions").GetComponent(typeof(Transform));
@@ -347,6 +361,8 @@ public class MenuScript : MonoBehaviour {
 					handlerPauseMenu(hit.transform);
 				else if (CurrentMenu == (int)Menus.GameOverMenu)
 					handlerGameOverMenu(hit.transform);
+				else if (CurrentMenu == (int)Menus.Revive)
+					handlerReviveMenu(hit.transform);
 				/*else if (CurrentMenu == (int)Menus.InstructionsMenu)
 					handlerInstructionsMenu(hit.transform);
 				else if (CurrentMenu == (int)Menus.SettingsMenu)
@@ -475,7 +491,17 @@ public class MenuScript : MonoBehaviour {
 			//toggleLoadSplash(true);
 			CloseMenu((int)Menus.GameOverMenu);
 			hInGameController.procesClicksDeathMenu(GameOverMenuEvents.Play);			
-		}	
+		}
+	}
+	
+	private void handlerReviveMenu(Transform buttonTransform)
+	{
+		if (tReviveButtons[0] == buttonTransform)
+		{
+			hInGameController.processClicksReviveMenu(ReviveMenuEvents.Revive);
+			CloseMenu((int)Menus.Revive);
+			toggleHUDState(true);
+		}
 	}
 	
 	/*
@@ -606,6 +632,10 @@ public class MenuScript : MonoBehaviour {
 	*/
 	public void ShowMenu(int index)
 	{		
+		if ((int)Menus.GameOverMenu == index)
+		{
+			CloseMenu((int)Menus.Revive);
+		}
 		/*if ((int)Menus.SettingsMenu == index)
 		{
 			//check which type of controls are active and 

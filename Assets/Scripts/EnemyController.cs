@@ -7,10 +7,12 @@ public enum EnemyAnimation
 public class EnemyController : MonoBehaviour {
 	
 	#region Constants
-	private const float fPlayerEnemyDistance = 160.0f;
+	private const float fPlayerEnemyDistance = 180.0f;
 	private const float fActiveAcclearation = 10;
 	private const float fInactiveAccleration = 4;
 	private const float fFollowDuration = 5;//time in seconds till when to follow player
+	
+	private const float fRunAnimationSpeed = 0.75f;
 	#endregion
 	
 	private Transform tPlayerCharacter;
@@ -25,7 +27,8 @@ public class EnemyController : MonoBehaviour {
 	
 	void Start () 
 	{
-		hInGameController = (InGameController)GameObject.Find("Player").GetComponent(typeof(InGameController));
+		//hInGameController = (InGameController)GameObject.Find("Player").GetComponent(typeof(InGameController));
+		hInGameController = GameObject.Find("Player").GetComponent<InGameController>();
 		
 		tPlayerCharacter = GameObject.Find("Player/CharacterGroup").transform;
 		tEnemy = this.transform;
@@ -54,6 +57,7 @@ public class EnemyController : MonoBehaviour {
 	public void launchGame()
 	{
 		toggleEnemyAnimation(true);
+		aEnemy["run"].speed = fRunAnimationSpeed;
 		aEnemy.Play("run");
 		StartCoroutine(followPlayer());
 	}
@@ -62,7 +66,7 @@ public class EnemyController : MonoBehaviour {
 	{
 		if (hInGameController.isGamePaused())
 			return;
-		
+		 
 		tEnemy.position = Vector3.Lerp(tEnemy.position, tPlayerCharacter.position, Time.deltaTime*fAccleration);
 	}
 	
@@ -72,6 +76,16 @@ public class EnemyController : MonoBehaviour {
 			StartCoroutine(followPlayer());
 		else
 			StartCoroutine(hInGameController.routineGameOver());
+	}
+	
+	public void revivePlayer()
+	{
+		EnemyState = 0;
+		StopCoroutine("followPlayer");
+		StartCoroutine(followPlayer());
+		
+		toggleEnemyAnimation(true);
+		playEnemyAnimation(EnemyAnimation.run);
 	}
 	
 	private IEnumerator followPlayer()
@@ -124,8 +138,9 @@ public class EnemyController : MonoBehaviour {
 			aEnemy["strafe_left"].speed = 0.5f;
 			aEnemy.Play("strafe_left");
 		}
-		//aEnemy["run"].speed = fRunAnimationSpeed;
-		aEnemy.CrossFadeQueued("run", 0.5f, QueueMode.CompleteOthers);
+		
+		(aEnemy.CrossFadeQueued("run", 0.5f, QueueMode.CompleteOthers) )
+			.speed = fRunAnimationSpeed;
 		
 		while (true)
 		{
@@ -146,7 +161,10 @@ public class EnemyController : MonoBehaviour {
 	public void playEnemyAnimation(EnemyAnimation anim)
 	{
 		if (anim == EnemyAnimation.run)
-			aEnemy.CrossFadeQueued("run", 0.5f, QueueMode.CompleteOthers);
+		{			
+			(aEnemy.CrossFadeQueued("run", 0.5f, QueueMode.CompleteOthers) )
+				.speed = fRunAnimationSpeed;			
+		}
 		else if (anim == EnemyAnimation.jump)
 			aEnemy.CrossFade("jump", 0.5f);
 		else if (anim == EnemyAnimation.slide)
@@ -159,6 +177,7 @@ public class EnemyController : MonoBehaviour {
 	
 	public void toggleEnemyAnimation(bool state)
 	{
-		aEnemy.enabled = state;
+		if (aEnemy.enabled != state)
+			aEnemy.enabled = state;
 	}
 }

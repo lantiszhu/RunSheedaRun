@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour {
 	
 	private const float fDuckDuration = 1.0f;
 	private const float fDuckColliderScaleDownFactor = 3;
-	private const float fDuckColliderTranslationFactor = 0.5f;
+	private const float fDuckColliderTranslationFactor = 0.8f;
 	
 	private const float fSwitchMidNodeThreshold = 3;
 	private const float fTurnSwipeThreshold = 10.0f;//how close to the mid node the player should turn
@@ -31,10 +31,10 @@ public class PlayerController : MonoBehaviour {
 	
 	private PatchController.Patch currentPatch;//informaiton of the current patch
 	private PatchController.Patch nextPatch;	//information of the next patch
-	private PatchController.Patch turnPatch;
-	private Transform currentMidNode;	//transform of the current mid node
+	private PatchController.Patch turnPatch;	//transform of the node on which to turn
+	/*private Transform currentMidNode;	//transform of the current mid node
 	private Transform nextMidNode;		//transform of the next mid node
-	private Transform turnPatchMidNode;	//transform of the node on which to turn
+	private Transform turnPatchMidNode;	*/
 		
 	private float fCurrentForwardSpeed;
 	private float fRunAnimationSpeed;
@@ -54,6 +54,7 @@ public class PlayerController : MonoBehaviour {
 	private float fVerticalPosition;
 	private float fRayContactPosition;
 	
+	private bool ControlsEnabled;
 	private int JumpState;
 	private int DuckState;
 	private float fDuckStartTime;
@@ -72,14 +73,14 @@ public class PlayerController : MonoBehaviour {
 	
 	void Start () 
 	{
-		hPatchController = (PatchController)GameObject.Find("Player").GetComponent(typeof(PatchController));
+		hPatchController = (PatchController)this.GetComponent(typeof(PatchController));
 		hSwipeControls = (SwipeControls)this.GetComponent(typeof(SwipeControls));
 		hInGameController = (InGameController)this.GetComponent(typeof(InGameController));
 		hEnemyController = (EnemyController)GameObject.Find("Enemy").GetComponent(typeof(EnemyController));
 		hCameraController = GameObject.Find("Main Camera").GetComponent<CameraController>();
 		
 		tPlayer = this.transform;
-		aPlayer = (Animation)this.transform.Find("CharacterGroup/sheeda").GetComponent(typeof(Animation));
+		aPlayer = (Animation)this.transform.Find("CharacterGroup/Sheeda").GetComponent(typeof(Animation));
 		tCharacter = this.transform.Find("CharacterGroup").transform;
 		tShadow = this.transform.Find("CharacterGroup/Shadow");
 		tPrimaryCollider = this.transform.Find("CharacterGroup/Colliders/PrimaryCollider");
@@ -92,27 +93,26 @@ public class PlayerController : MonoBehaviour {
 	{
 		currentLane = 0;
 		fCurrentForwardSpeed = fStartForwardSpeed;
-		fRunAnimationSpeed = 1.0f;//run animation's speed
+		fRunAnimationSpeed = 0.8f;//run animation's speed
 		fVerticalPosition = 0;
 		fRayContactPosition = 0;
-		turnPatchMidNode = null;
+		turnPatch = null;
 				
+		ControlsEnabled = false;
 		JumpState = 0;
 		DuckState = 0;
 		
 		//get patch information
 		currentPatch = hPatchController.getCurrentPatch();
 		nextPatch = hPatchController.getnextPatch();
-		currentMidNode = hPatchController.getCurrentPatchMidNode();		
-		nextMidNode = hPatchController.getNextPatchMidNode();//extract mid node position
 		
 		tPlayer.position = currentPatch.startNode.position;	//set player's start position
 		tPlayer.rotation = Quaternion.identity;
 		tCharacter.localPosition = Vector3.zero;	//reset character group's position
 		
 		//calculate the direction in which the player has to move
-		forwardUnitVector = (nextMidNode.position- new Vector3(0,0,0))/
-			MathCustom.VectorDistanceXZ(nextMidNode.position,new Vector3(0,0,0));
+		forwardUnitVector = (nextPatch.midNode.position - tPlayer.position)/
+			MathCustom.VectorDistanceXZ(nextPatch.midNode.position, tPlayer.position);
 		
 		togglePlayerAnimation(false);//disable animation
 	}
@@ -130,6 +130,8 @@ public class PlayerController : MonoBehaviour {
 		togglePlayerAnimation(true);//enable animations
 		aPlayer["run"].speed = fRunAnimationSpeed;
 		aPlayer.Play("run");	//play run animation
+		
+		ControlsEnabled = true;
 	}
 	
 	/*void Update()
@@ -145,14 +147,16 @@ public class PlayerController : MonoBehaviour {
 		if (hInGameController.isGamePaused())
 			return;
 		
-		setVerticalPosition();
-		setForwardPosition();
+		setVerticalPosition();//set the position in y-axis
+		setForwardPosition();//set the position in which player is running
 				
-		setHorizontalPosition();
-		handlerSwipes();
+		setHorizontalPosition();//set lane position
+		
+		if (ControlsEnabled)
+			handlerSwipes();//handle user commands
 		
 		//get next patch's mid node when user reaches a mid node
-		if (MathCustom.VectorDistanceXZ(tPlayer.position,nextMidNode.position) 
+		if (MathCustom.VectorDistanceXZ(tPlayer.position, nextPatch.midNode.position) 
 			<= fSwitchMidNodeThreshold)
 		{
 			hPatchController.updatePatch();//tell patch controller to switch to next mid node
@@ -166,18 +170,18 @@ public class PlayerController : MonoBehaviour {
 		currentPatch = nextPatch;	//record the next patch information
 		nextPatch = hPatchController.getnextPatch();//get the next patch info
 		
-		currentMidNode = nextMidNode;//make record of previous mid node		
-		nextMidNode = hPatchController.getNextPatchMidNode();//get next patch info
+		/*currentMidNode = nextMidNode;//make record of previous mid node		
+		nextMidNode = hPatchController.getNextPatchMidNode();//get next patch info*/
 		
 		if (nextPatch.patchType != PatchTypes.straight)
 		{
-			turnPatchMidNode = nextMidNode;
+			//turnPatchMidNode = nextMidNode;
 			turnPatch = nextPatch;
 		}
 		
 		//update direction if the next patch is straight ahead
 		// the turnPlayer functions call this function manually on turns
-		if (MathCustom.AngleDir(currentMidNode.forward, nextMidNode.position, currentMidNode.up) == 0)		
+		if (MathCustom.AngleDir(currentPatch.midNode.forward, nextPatch.midNode.position, currentPatch.midNode.up) == 0)		
 			updateForwardUnitVector();
 	}
 	
@@ -187,11 +191,25 @@ public class PlayerController : MonoBehaviour {
 		//togglePlayerAnimation(false);
 	}
 	
+	public void revivePlayer()
+	{
+		togglePlayerAnimation(true);
+		aPlayer["run"].speed = fRunAnimationSpeed;
+		aPlayer.Play("run");
+	}
+	
 	public void handleStumble()
 	{
+		aPlayer.Play("stumble");
+		aPlayer.PlayQueued("run", QueueMode.CompleteOthers);
+		
+		//revert back to previous lane if the user was changing lanes
 		if (isPlayerChangingLane())
+		{
 			currentLane = previousLane;
-	}
+			hCameraController.changeLane(currentLane);
+		}
+	}//end of handle sumble function
 	
 	/*
 	 * FUNCTION:	Control the user's forward movement.
@@ -225,9 +243,9 @@ public class PlayerController : MonoBehaviour {
 			fVerticalPosition -= (fGravity*Time.deltaTime);
 			
 			if (fVerticalPosition <= fRayContactPosition)//reached the ground
-			{
-				aPlayer["run"].speed = fRunAnimationSpeed;
-				aPlayer.CrossFadeQueued("run", 0.5f, QueueMode.CompleteOthers);
+			{				
+				(aPlayer.CrossFadeQueued("run", 0.5f, QueueMode.CompleteOthers) )
+					.speed = fRunAnimationSpeed;
 				hEnemyController.playEnemyAnimation(EnemyAnimation.run);
 				
 				JumpState = 0;
@@ -252,10 +270,10 @@ public class PlayerController : MonoBehaviour {
 	
 	private void updateForwardUnitVector()
 	{		
-		tPlayer.position = currentMidNode.position;
-		forwardUnitVector = (nextMidNode.position-currentMidNode.position)/
-			MathCustom.VectorDistanceXZ(nextMidNode.position,currentMidNode.position);
-		print (MathCustom.VectorDistanceXZ(nextMidNode.position,currentMidNode.position));
+		tPlayer.position = currentPatch.midNode.position;
+		forwardUnitVector = (nextPatch.midNode.position-currentPatch.midNode.position)/
+			MathCustom.VectorDistanceXZ(nextPatch.midNode.position, currentPatch.midNode.position);
+		//print(forwardUnitVector);
 	}
 	
 	/// <summary>
@@ -306,15 +324,15 @@ public class PlayerController : MonoBehaviour {
 		//handle strafes or turns
 		if (swipeDirection == SwipeDirection.Right || swipeDirection == SwipeDirection.Left)
 		{
-			if (turnPatchMidNode != null
-				&& MathCustom.VectorDistanceXZ(tPlayer.position, turnPatchMidNode.position) <= fTurnSwipeThreshold)
+			try
 			{
-				StartCoroutine(turnPlayerOnNextMidNode(swipeDirection));
-			}
-			else
-			{
-				changeLane(swipeDirection);
-			}
+				if (turnPatch != null
+					&& MathCustom.VectorDistanceXZ(tPlayer.position, turnPatch.midNode.position) <= fTurnSwipeThreshold)
+					StartCoroutine(turnPlayerOnNextMidNode(swipeDirection));
+				else
+					changeLane(swipeDirection);
+			}//end of try
+			catch (System.Exception e) { changeLane(swipeDirection); }
 		}		
 		else if (swipeDirection == SwipeDirection.Jump)
 		{
@@ -350,7 +368,10 @@ public class PlayerController : MonoBehaviour {
 				if (UnityEngine.Random.Range(0,2) == 0)
 					aPlayer.Play("slide");
 				else
+				{
+					aPlayer["roll"].speed = 1.5f;
 					aPlayer.Play("roll");
+				}
 				hEnemyController.playEnemyAnimation(EnemyAnimation.slide);
 				
 				fDuckStartTime = Time.time;//check when the duck started
@@ -374,7 +395,7 @@ public class PlayerController : MonoBehaviour {
 					tSecondaryCollider.localPosition.z);
 				
 				aPlayer["run"].speed = fRunAnimationSpeed;
-				aPlayer.CrossFadeQueued("run", 0.5f, QueueMode.CompleteOthers);//play run animation
+				aPlayer.CrossFade("run", 0.5f);//play run animation
 				hEnemyController.playEnemyAnimation(EnemyAnimation.run);
 				
 				DuckState = 0;
@@ -405,8 +426,9 @@ public class PlayerController : MonoBehaviour {
 			aPlayer.Play("strafe_left");
 			hEnemyController.playEnemyAnimation(EnemyAnimation.strafe_left);
 		}
-		aPlayer["run"].speed = fRunAnimationSpeed;
-		aPlayer.CrossFadeQueued("run", 0.5f, QueueMode.CompleteOthers);
+		
+		(aPlayer.CrossFadeQueued("run", 0.5f, QueueMode.CompleteOthers) )
+			.speed = fRunAnimationSpeed;
 		hEnemyController.playEnemyAnimation(EnemyAnimation.run);
 		
 		previousLane = currentLane;//keep record of previous lane in case of stumble
@@ -424,63 +446,55 @@ public class PlayerController : MonoBehaviour {
 	
 	private IEnumerator turnPlayerOnNextMidNode(SwipeDirection direction)
 	{		
-		if ( (direction == SwipeDirection.Right && turnPatch.patchType == PatchTypes.left)//right swipe on a right turn?
-			|| (direction == SwipeDirection.Left && turnPatch.patchType == PatchTypes.right) )//left swipe on a left turn?
+		ControlsEnabled = false;
+		if ( 
+			(direction == SwipeDirection.Right && turnPatch.patchType == PatchTypes.left)//right swipe on a right turn?
+			|| (direction == SwipeDirection.Left && turnPatch.patchType == PatchTypes.right) //left swipe on a left turn?
+			|| (direction == SwipeDirection.Left && turnPatch.patchType == PatchTypes.TRight)
+			|| (direction == SwipeDirection.Right && turnPatch.patchType == PatchTypes.TLeft)
+			)
 		{
 			changeLane(direction);
 		}
-		else
-		{
-			if (turnPatch.patchType == PatchTypes.tee)
+		else//make the player turn
+		{			
+			if (turnPatch.patchType == PatchTypes.tee)//option of straight and turn
 			{
 				//tell patch controller about user decision
-				if (direction == SwipeDirection.Left)
-				{
+				if (direction == SwipeDirection.Right)
+					hPatchController.makeDecision(1);
+				else if (direction == SwipeDirection.Left)				
 					hPatchController.makeDecision(2);
-					updateNextMidNode();
-				}
 			}
+			else if (turnPatch.patchType == PatchTypes.TLeft)//if left branch
+			{				
+				hPatchController.makeDecision(2);
+			}
+			else if (turnPatch.patchType == PatchTypes.TRight)//if right branch
+			{
+				hPatchController.makeDecision(2);
+			}
+			nextPatch.midNode = hPatchController.getnextPatch().midNode;//get the updated mid node
 			
 			while (true)
 			{//print(MathCustom.VectorDistanceXZ(tPlayer.position, turnPatchMidNode.position));
 				yield return new WaitForFixedUpdate();
 								
-				if (MathCustom.VectorDistanceXZ(tPlayer.position, turnPatchMidNode.position) <= fTurnRotateThreshold )//in range?
+				if (MathCustom.VectorDistanceXZ(tPlayer.position, turnPatch.midNode.position) <= fTurnRotateThreshold )//in range?
 				{
 					StartCoroutine(rotatePlayer(direction));//make the player face towards the new horizon
 					updateForwardUnitVector();	//update direction
-					//currentLane = 0;	//switch to mid lane on rotation
-					
+										
 					break;
 				}
 			}//end of while
 		}
 		
-		turnPatchMidNode = null;
+		turnPatch = null;
+		ControlsEnabled = true;
 		StopCoroutine("turnPlayer");//stop current routine*/
 	}//end of turn player on next mid node coroutine
-	
-	/*private void turnPlayerOnCurrentMidNode(SwipeDirection direction)
-	{		
-		if (nextPatch.patchType == PatchTypes.straight)//if the next patch is straight		
-			changeLane(direction);		
-		else
-		{
-			if ( (direction == SwipeDirection.Right && nextPatch.patchType != PatchTypes.right)//right swipe on a right turn?
-				|| (direction == SwipeDirection.Left && nextPatch.patchType != PatchTypes.left) )//left swipe on a left turn?			
-				changeLane(direction);
-			else//turn the character
-			{
-				//TODO: decision PatchController
-				//TODO: get Next Mid Node again
-				StartCoroutine(rotatePlayer(direction));//make the player face towards the new horizon
-				updateForwardUnitVector();	//update direction
-				currentLane = 0;	//switch to mid lane on rotation
-			}
 			
-		}//end of outer else
-	}//end of turn player on current mid node function*/
-	
 	private IEnumerator rotatePlayer(SwipeDirection direction)
 	{	
 		Quaternion newRoation = Quaternion.identity;
@@ -501,8 +515,9 @@ public class PlayerController : MonoBehaviour {
 			aPlayer["strafe_left"].speed = 0.5f;
 			aPlayer.Play("strafe_left");
 		}
-		aPlayer["run"].speed = fRunAnimationSpeed;
-		aPlayer.CrossFadeQueued("run", 0.5f, QueueMode.CompleteOthers);
+		
+		(aPlayer.CrossFadeQueued("run", 0.5f, QueueMode.CompleteOthers) )
+			.speed = fRunAnimationSpeed;
 		
 		while (true)
 		{
@@ -525,7 +540,11 @@ public class PlayerController : MonoBehaviour {
 	/*
 	*	FUNCTION: Turn player animations On or Off
 	*/
-	public void togglePlayerAnimation(bool bValue) { aPlayer.enabled = bValue; }
+	public void togglePlayerAnimation(bool bValue) 
+	{ 
+		if (aPlayer.enabled != bValue)
+			aPlayer.enabled = bValue;
+	}
 	
 	/// <summary>
 	/// Checks if the player is in jump state.

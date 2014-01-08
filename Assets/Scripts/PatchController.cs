@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public enum PatchTypes{ straight , left , right , tee};
+public enum PatchTypes{ straight , left , right , tee , TLeft , TRight};
 public class PatchController : MonoBehaviour {
 	
 	public class Patch
@@ -30,7 +30,7 @@ public class PatchController : MonoBehaviour {
 			midNode = patchTransform.Find("Nodes/Mid");
 			endNode = patchTransform.Find("Nodes/End_1");
 
-			if(type==PatchTypes.tee)
+			if(type==PatchTypes.tee || type==PatchTypes.TLeft || type==PatchTypes.TRight)
 			{
 				endNode2 = patchT.Find("Nodes/End_2");
 			}
@@ -39,11 +39,12 @@ public class PatchController : MonoBehaviour {
 		}
 	}
 
-	public GameObject[]  straightPatchList;
-	public GameObject 	leftTurnPatch;
-	public GameObject 	rightTurnPatch;
-	public GameObject[]  teePatchList;
-
+	public List<GameObject> straightPatchList;
+	public List<GameObject> leftTurnPatch;
+	public List<GameObject>	rightTurnPatch;
+	public List<GameObject> teePatchList;
+	public List<GameObject> TLeftPatchList;
+	public List<GameObject> TRightPatchList;
 	GameObject currentPatch;
 	PatchTypes currentpatchType;
 	GameObject PatchGroup;
@@ -58,17 +59,22 @@ public class PatchController : MonoBehaviour {
 		PatchGroup = new GameObject();
 		PatchGroup.transform.name = "PatchGroup";
 
-
+		Init();
+	}
+	
+	private void Init()
+	{
 		if (!currentPatch)
 		{
 			//currentPatch = GameObject.Instantiate(straightPatchList[0],Vector3.zero,Quaternion.identity) as Transform;
 			currentPatch = (GameObject)Instantiate(straightPatchList[0]);
 			currentPatch.transform.parent = PatchGroup.transform;
+			currentPatch.transform.position = new Vector3(0,0,-10);
+			GameObject.Destroy(currentPatch.transform.Find("Obstacles").gameObject);
 			patchesList.AddFirst(new Patch(currentPatch.transform,PatchTypes.straight));
 			currentpatchType = PatchTypes.straight;
 		}
-
-
+		
 		//tickTime = 0;
 		straightPatchCount = Random.Range(2,4);
 		for (int i = 0; i < queueCapacity-1; i++)
@@ -76,9 +82,28 @@ public class PatchController : MonoBehaviour {
 			updatePatch();
 		}
 	}
+	
+	public void Restart()
+	{
+		clearAll();
+		Init();
+	}
+	
+	private void clearAll()
+	{
+		do
+		{
+			Transform T = patchesList.Last.Value.patchTransform;
+			lastTeeNode = null;
+			GameObject.Destroy(T.gameObject);
+			patchesList.RemoveLast();
+		}while(patchesList.First!=patchesList.Last);
+		currentPatch = null;
+	}
+	
 	public Patch getCurrentPatch()
 	{
-		return patchesList.Last.Value;		
+		return patchesList.Last.Value;
 	}
 	public Patch getnextPatch()
 	{
@@ -122,13 +147,10 @@ public class PatchController : MonoBehaviour {
 	/// </summary>
 	/// <returns>The nextpathc type.</returns>
 	/// 
-
-	public void Restart()
-	{
-
-	}
+	
 	PatchTypes selectNextpatchType()
 	{
+		//return PatchTypes.straight; Un-comment to just have straight patches.
 		PatchTypes patchType;
 		if (straightPatchCount>0)
 		{
@@ -138,7 +160,7 @@ public class PatchController : MonoBehaviour {
 		else
 		{
 			straightPatchCount = Random.Range(2,4);
-			patchType = (PatchTypes)Random.Range(1,4);
+			patchType = (PatchTypes)Random.Range(1,6);
 		}
 
 		//Debug.Log("==>"+patchType.ToString());
@@ -147,21 +169,30 @@ public class PatchController : MonoBehaviour {
 
 	GameObject getNextPatch(PatchTypes patchType)
 	{
+
 		if (patchType == PatchTypes.straight)
 		{
-			return straightPatchList[Random.Range(0,straightPatchList.Length)];
+			return straightPatchList[Random.Range(0,straightPatchList.Count)];
 		}
 		else if (patchType == PatchTypes.left)
 		{
-			return leftTurnPatch;			
+			return leftTurnPatch[Random.Range(0,leftTurnPatch.Count)];			
 		}
 		else if (patchType == PatchTypes.right)
 		{
-			return rightTurnPatch;			
+			return rightTurnPatch[Random.Range(0,rightTurnPatch.Count)];				
 		}
 		else if (patchType == PatchTypes.tee)
 		{
-			return teePatchList[Random.Range(0,teePatchList.Length)];
+			return teePatchList[Random.Range(0,teePatchList.Count)];
+		}
+		else if (patchType == PatchTypes.TLeft)
+		{
+			return TLeftPatchList[Random.Range(0,TLeftPatchList.Count)];
+		}
+		else if (patchType == PatchTypes.TRight)
+		{
+			return TRightPatchList[Random.Range(0,TRightPatchList.Count)];
 		}
 		else
 			return null;
@@ -207,7 +238,7 @@ public class PatchController : MonoBehaviour {
 
 		patchesList.AddFirst(newPatch);
 
-		if (nextPatchType == PatchTypes.tee)
+		if (nextPatchType == PatchTypes.tee || nextPatchType==PatchTypes.TLeft || nextPatchType==PatchTypes.TRight)
 		{
 			lastTeeNode = patchesList.First;
 		}
@@ -219,7 +250,7 @@ public class PatchController : MonoBehaviour {
 		{
 			Transform T = patchesList.Last.Value.patchTransform;
 
-			if (patchesList.Last.Value.patchType == PatchTypes.tee)
+			if (patchesList.Last.Value.patchType == PatchTypes.tee || patchesList.Last.Value.patchType==PatchTypes.TLeft || patchesList.Last.Value.patchType==PatchTypes.TRight)
 			{
 				lastTeeNode = null;
 			}

@@ -5,11 +5,15 @@ public class InGameController : MonoBehaviour {
 	
 	#region Constants
 	private const float fGameOverSceneDuration = 1;
+	private const float fReviveCountdownDuration = 3;
+	private const float fReviveInvincibleDuration = 2;
 	#endregion
 	
-	private int iGameOverState;	
+	public int iGameOverState;
 	private float fGameOverSceneStart;
-		
+	private float fReviveCountdownStart;
+	private float fReviveInvincibleStart;
+	
 	private bool bGamePaused;
 	
 	private Transform tPauseButton;
@@ -25,9 +29,7 @@ public class InGameController : MonoBehaviour {
 	#endregion
 	
 	void Start ()
-	{
-		RenderSettings.fog = true;				//turn on fog on launch
-		
+	{		
 		hMenuScript = (MenuScript)GameObject.Find("GUIGroup/MenuGroup").GetComponent(typeof(MenuScript));
 		hGameController = (GameController)this.GetComponent(typeof(GameController));		
 		hPlayerController = (PlayerController)this.GetComponent(typeof(PlayerController));
@@ -40,17 +42,21 @@ public class InGameController : MonoBehaviour {
 		tPauseButton = (Transform)GameObject.Find("GUIGroup/HUDGroup/HUDPause").GetComponent(typeof(Transform));
 		HUDCamera = (Camera)GameObject.Find("GUIGroup/Camera").camera;
 		
+		Init();
+	}
+	
+	void Init()
+	{
+		RenderSettings.fog = true;				//turn on fog on launch
+		
+		fReviveCountdownStart = 0;
 		iGameOverState = 0;
 		bGamePaused = true;
 	}
 	
 	public void Restart()
 	{
-		RenderSettings.fog = true;				//turn on fog on launch
-		
-		//iPauseStatus = 0;
-		iGameOverState = 0;
-		bGamePaused = true;
+		Init();		
 	}
 		
 	void FixedUpdate ()
@@ -110,6 +116,15 @@ public class InGameController : MonoBehaviour {
 		hEnemyController.toggleEnemyAnimation(true);
 	}
 	
+	public void handleStumble()
+	{
+		hPlayerController.handleStumble();
+		hEnemyController.handleStumble();
+		
+		hPrimaryColliderController.togglePrimaryCollider(true);
+		hSecondaryColliderController.toggleSecondaryCollider(true);
+	}
+	
 	/// <summary>
 	/// Routines the game over.
 	/// </summary>
@@ -122,33 +137,67 @@ public class InGameController : MonoBehaviour {
 		{
 			yield return new WaitForFixedUpdate();
 			
-			if (iGameOverState == 0)
+			if (iGameOverState == 0)//display and countdown revive menu
 			{
-				bGamePaused = true;
-				hPlayerController.routineGameOver();//signal player controller
-				fGameOverSceneStart = Time.time;
-				
+				bGamePaused = true;							
 				//turn off colliders
 				hPrimaryColliderController.togglePrimaryCollider(false);
 				hPrimaryColliderController.togglePrimaryCollider(false);
 				
 				hEnemyController.toggleEnemyAnimation(false);//stop enemy animation
+								
+				hMenuScript.toggleMenuScriptStatus(true);//enable menu script
+				hMenuScript.ShowMenu((int)Menus.Revive);
+				
+				fReviveCountdownStart = Time.time;
 				
 				iGameOverState = 1;
 			}
-			else if (iGameOverState == 1)
+			else if (iGameOverState == 1)//wait for user to revive
+			{
+				if ( (Time.time-fReviveCountdownStart) 
+					>= fReviveCountdownDuration )//if user didnt revive
+				{
+					hPlayerController.routineGameOver();//signal player controller
+					fGameOverSceneStart = Time.time;
+					iGameOverState = 2;
+				}				
+			}
+			else if (iGameOverState == 2)//wait for the death scene
 			{
 				if ( (Time.time-fGameOverSceneStart) >= fGameOverSceneDuration)
-					iGameOverState = 2;
+					iGameOverState = 3;
 			}
-			else if (iGameOverState == 2)
-			{		
-				hMenuScript.toggleMenuScriptStatus(true);//enable menu script
+			else if (iGameOverState == 3)//display the game over menu
+			{					
 				hMenuScript.ShowMenu((int)Menus.GameOverMenu);//show game over menu
 				break;
 			}
+			
+			else if (iGameOverState == 51)//revive button pressed
+			{				
+				hMenuScript.toggleMenuScriptStatus(false);//enable menu script
+				bGamePaused = false;
+				fReviveInvincibleStart = Time.time;
+				
+				hPlayerController.revivePlayer();
+				hEnemyController.revivePlayer();
+				
+				iGameOverState = 52;
+			}
+			else if (iGameOverState == 52)
+			{
+				if ( (Time.time - fReviveInvincibleStart) >= fReviveInvincibleDuration)
+				{
+					hPrimaryColliderController.togglePrimaryCollider(true);
+					hPrimaryColliderController.togglePrimaryCollider(true);
+					
+					break;
+				}
+			}
 		}//end of while
 		
+		iGameOverState = 0;
 		StopCoroutine("routineGameOver");
 	}//end of routine Game Over function
 	
@@ -177,6 +226,14 @@ public class InGameController : MonoBehaviour {
 			}
 		}//end of mouserelease == true if			
 	}//end of get clicks function
+	
+	public void processClicksReviveMenu(ReviveMenuEvents action)
+	{
+		if (action == ReviveMenuEvents.Revive)
+		{
+			iGameOverState = 51;
+		}
+	}
 	
 	/*
 	*	FUNCTION: Execute a function based on button press in Pause Menu

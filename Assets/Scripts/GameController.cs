@@ -48,8 +48,8 @@ public class GameController : MonoBehaviour {
 			scoreMultiplier = PlayerPrefs.GetInt("ScoreMultiplier");
 		else
 		{
-			PlayerPrefs.SetInt("ScoreMultiplier", 1);
 			scoreMultiplier = 1;
+			PlayerPrefs.SetInt("ScoreMultiplier", scoreMultiplier);
 		}
 		
 		PlayerPrefs.Save();

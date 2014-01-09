@@ -7,36 +7,52 @@ public enum EnemyAnimation
 public class EnemyController : MonoBehaviour {
 	
 	#region Constants
-	private const float fPlayerEnemyDistance = 180.0f;
-	private const float fActiveAcclearation = 10;
-	private const float fInactiveAccleration = 4;
+	//private const float fPlayerEnemyDisplacement = 8.0f;
+	private const float fPlayerEnemyDistanceActive = 1.2f;
+	private const float fPlayerEnemyDistanceInactive = 2;
+	private const float fActiveAcclearation = 25;
+	private const float fInactiveAccleration = 25;
 	private const float fFollowDuration = 5;//time in seconds till when to follow player
 	
 	private const float fRunAnimationSpeed = 0.75f;
 	#endregion
 	
+	private Transform tPlayer;
 	private Transform tPlayerCharacter;
 	private Transform tEnemy;
 	private Animation aEnemy;
 		
 	private float fAccleration;
+	private float fPlayerEnemyDistance = 5;
 	private int EnemyState;
 	private float fCurrentFollowTime;
+	private Vector3 previousForwardUnitVector;
+	private Vector3 currentForwardUnitVector;
 	
 	private InGameController hInGameController;
+	private PlayerController hPlayerController;
 	
 	void Start () 
-	{
-		//hInGameController = (InGameController)GameObject.Find("Player").GetComponent(typeof(InGameController));
+	{	
 		hInGameController = GameObject.Find("Player").GetComponent<InGameController>();
+		hPlayerController = GameObject.Find("Player").GetComponent<PlayerController>();
 		
+		tPlayer = GameObject.Find("Player").transform;
 		tPlayerCharacter = GameObject.Find("Player/CharacterGroup").transform;
 		tEnemy = this.transform;
 		aEnemy = (Animation)this.transform.Find("Qassai").GetComponent(typeof(Animation));
 		
+		Init();
+	}
+	
+	void Init()
+	{
 		tEnemy.position = new Vector3(tPlayerCharacter.position.x, tPlayerCharacter.position.y,
-			tPlayerCharacter.position.z-fPlayerEnemyDistance);
-		fAccleration = fInactiveAccleration;
+			tPlayerCharacter.position.z-fPlayerEnemyDistance);//reset enemy position
+		tEnemy.rotation = Quaternion.identity;//reset enemy location
+		
+		fPlayerEnemyDistance = fPlayerEnemyDistanceActive;
+		fAccleration = fInactiveAccleration;//reset enemy accleration
 		EnemyState = 0;
 		
 		toggleEnemyAnimation(false);
@@ -44,14 +60,7 @@ public class EnemyController : MonoBehaviour {
 	
 	public void Restart()
 	{		
-		tEnemy.position = new Vector3(tPlayerCharacter.position.x, tPlayerCharacter.position.y,
-			tPlayerCharacter.position.z-fPlayerEnemyDistance);//reset enemy position
-		tEnemy.rotation = Quaternion.identity;//reset enemy location
-		
-		fAccleration = fInactiveAccleration;//reset enemy accleration
-		EnemyState = 0;
-		
-		toggleEnemyAnimation(false);
+		Init();
 	}
 	
 	public void launchGame()
@@ -62,12 +71,37 @@ public class EnemyController : MonoBehaviour {
 		StartCoroutine(followPlayer());
 	}
 	
-	void FixedUpdate () 
+	void FixedUpdate ()
 	{
 		if (hInGameController.isGamePaused())
 			return;
-		 
-		tEnemy.position = Vector3.Lerp(tEnemy.position, tPlayerCharacter.position, Time.deltaTime*fAccleration);
+		
+		previousForwardUnitVector = currentForwardUnitVector;
+		currentForwardUnitVector = hPlayerController.getCurrentForwardUnitVector();
+		/*if (currentForwardUnitVector != previousForwardUnitVector)
+		{
+			if (currentForwardUnitVector.x < currentForwardUnitVector.z)
+				tEnemy.position = new Vector3(tPlayerCharacter.position.x, tEnemy.position.y,
+					tPlayer.position.z-fPlayerEnemyDistance);
+			else
+				tEnemy.position = new Vector3(tPlayer.position.x-fPlayerEnemyDistance,
+					tEnemy.position.y, tPlayerCharacter.position.z);
+		}*/
+		
+		if (Mathf.Abs(currentForwardUnitVector.x) < Mathf.Abs(currentForwardUnitVector.z) )
+		{
+			tEnemy.position = Vector3.Lerp(tEnemy.position, 
+				new Vector3(tPlayerCharacter.position.x, tPlayerCharacter.position.y,
+				tPlayer.position.z- (fPlayerEnemyDistance*currentForwardUnitVector.z) ),
+				Time.deltaTime*fAccleration);
+		}
+		else
+		{
+			tEnemy.position = Vector3.Lerp(tEnemy.position, 
+				new Vector3(tPlayer.position.x- (fPlayerEnemyDistance*currentForwardUnitVector.x),
+				tPlayerCharacter.position.y, tPlayerCharacter.position.z),
+				Time.deltaTime*fAccleration);
+		}
 	}
 	
 	public void handleStumble()
@@ -98,6 +132,7 @@ public class EnemyController : MonoBehaviour {
 			{
 				fCurrentFollowTime = Time.time;
 				fAccleration = fActiveAcclearation;
+				fPlayerEnemyDistance = fPlayerEnemyDistanceActive;
 				
 				EnemyState = 1;
 			}
@@ -109,6 +144,7 @@ public class EnemyController : MonoBehaviour {
 			else if (EnemyState == 2)
 			{
 				fAccleration = fInactiveAccleration;
+				fPlayerEnemyDistance = fPlayerEnemyDistanceInactive;
 				EnemyState = 0;
 				
 				break;
@@ -173,6 +209,14 @@ public class EnemyController : MonoBehaviour {
 			aEnemy.Play("strafe_left");
 		else if (anim == EnemyAnimation.strafe_right)
 			aEnemy.Play("strafe_right");
+	}
+	
+	public bool isEnemyActive() 
+	{
+		if (EnemyState > 0)
+			return true;
+		else
+			return false;
 	}
 	
 	public void toggleEnemyAnimation(bool state)

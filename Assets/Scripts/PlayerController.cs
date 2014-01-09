@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour {
 	private const float fDuckColliderScaleDownFactor = 3;
 	private const float fDuckColliderTranslationFactor = 0.8f;
 	
-	private const float fSwitchMidNodeThreshold = 3;
+	private const float fSwitchMidNodeThreshold = 3;//when to switch to the next mid node
 	private const float fTurnSwipeThreshold = 10.0f;//how close to the mid node the player should turn
 	private const float fTurnRotateThreshold = 2f;//when to rotate on axis
 	#endregion
@@ -54,6 +54,7 @@ public class PlayerController : MonoBehaviour {
 	private float fVerticalPosition;
 	private float fRayContactPosition;
 	
+	private bool enteredTurnRadius;
 	private bool ControlsEnabled;
 	private int JumpState;
 	private int DuckState;
@@ -97,7 +98,8 @@ public class PlayerController : MonoBehaviour {
 		fVerticalPosition = 0;
 		fRayContactPosition = 0;
 		turnPatch = null;
-				
+		
+		enteredTurnRadius = false;
 		ControlsEnabled = false;
 		JumpState = 0;
 		DuckState = 0;
@@ -157,11 +159,30 @@ public class PlayerController : MonoBehaviour {
 		
 		//get next patch's mid node when user reaches a mid node
 		if (MathCustom.VectorDistanceXZ(tPlayer.position, nextPatch.midNode.position) 
-			<= fSwitchMidNodeThreshold)
-		{
+			<= fSwitchMidNodeThreshold 
+			 /*&& enteredTurnRadius == false*/)
+		{print("regular switch condition executed");
 			hPatchController.updatePatch();//tell patch controller to switch to next mid node
 			updateNextMidNode();//get the detail of the next mid node
 		}//end of if
+		
+		/*if (turnPatch != null && enteredTurnRadius == false
+			&& MathCustom.VectorDistanceXZ(tPlayer.position, turnPatch.midNode.position) <= fTurnSwipeThreshold)
+		{print("condition 2 executed");
+			enteredTurnRadius = true;
+		}
+		else if (enteredTurnRadius == true && turnPatch == null)//user made the turn
+		{print("condition 3 executed");
+			//updateNextMidNode();
+			
+			enteredTurnRadius = false;
+		}
+		else if (enteredTurnRadius == true
+			&& MathCustom.VectorDistanceXZ(tPlayer.position, turnPatch.midNode.position) > fTurnSwipeThreshold)//user did not make the turn
+		{print("condition 4 executed");
+			updateNextMidNode();
+			enteredTurnRadius = false;
+		}*/
 		
 	}//end of fixed update
 	
@@ -170,15 +191,9 @@ public class PlayerController : MonoBehaviour {
 		currentPatch = nextPatch;	//record the next patch information
 		nextPatch = hPatchController.getnextPatch();//get the next patch info
 		
-		/*currentMidNode = nextMidNode;//make record of previous mid node		
-		nextMidNode = hPatchController.getNextPatchMidNode();//get next patch info*/
-		
 		if (nextPatch.patchType != PatchTypes.straight)
-		{
-			//turnPatchMidNode = nextMidNode;
 			turnPatch = nextPatch;
-		}
-		
+				
 		//update direction if the next patch is straight ahead
 		// the turnPlayer functions call this function manually on turns
 		if (MathCustom.AngleDir(currentPatch.midNode.forward, nextPatch.midNode.position, currentPatch.midNode.up) == 0)		
@@ -242,8 +257,8 @@ public class PlayerController : MonoBehaviour {
 		{
 			fVerticalPosition -= (fGravity*Time.deltaTime);
 			
-			if (fVerticalPosition <= fRayContactPosition)//reached the ground
-			{				
+			if (tPlayer.position.y <= fRayContactPosition)//reached the ground
+			{
 				(aPlayer.CrossFadeQueued("run", 0.5f, QueueMode.CompleteOthers) )
 					.speed = fRunAnimationSpeed;
 				hEnemyController.playEnemyAnimation(EnemyAnimation.run);
@@ -270,17 +285,17 @@ public class PlayerController : MonoBehaviour {
 	
 	private void updateForwardUnitVector()
 	{		
-		tPlayer.position = currentPatch.midNode.position;
+		tPlayer.position = new Vector3(currentPatch.midNode.position.x, tPlayer.position.y,
+			currentPatch.midNode.position.z);
 		forwardUnitVector = (nextPatch.midNode.position-currentPatch.midNode.position)/
-			MathCustom.VectorDistanceXZ(nextPatch.midNode.position, currentPatch.midNode.position);
-		//print(forwardUnitVector);
+			MathCustom.VectorDistanceXZ(nextPatch.midNode.position, currentPatch.midNode.position);		
 	}
 	
 	/// <summary>
 	/// Sets the horizontal position of the character in a lane.
 	/// </summary>
 	private void setHorizontalPosition()
-	{
+	{	
 		previousHorizontalPosition = currentHorizontalPosition;
 				
 		if (currentLane == 0)//mid lane
@@ -450,8 +465,8 @@ public class PlayerController : MonoBehaviour {
 		if ( 
 			(direction == SwipeDirection.Right && turnPatch.patchType == PatchTypes.left)//right swipe on a right turn?
 			|| (direction == SwipeDirection.Left && turnPatch.patchType == PatchTypes.right) //left swipe on a left turn?
-			|| (direction == SwipeDirection.Left && turnPatch.patchType == PatchTypes.TRight)
-			|| (direction == SwipeDirection.Right && turnPatch.patchType == PatchTypes.TLeft)
+			|| (direction == SwipeDirection.Left && turnPatch.patchType == PatchTypes.TRight)//left swipe on right T?
+			|| (direction == SwipeDirection.Right && turnPatch.patchType == PatchTypes.TLeft)//right swipe on left T?
 			)
 		{
 			changeLane(direction);
@@ -479,24 +494,24 @@ public class PlayerController : MonoBehaviour {
 			while (true)
 			{//print(MathCustom.VectorDistanceXZ(tPlayer.position, turnPatchMidNode.position));
 				yield return new WaitForFixedUpdate();
-								
+				
 				if (MathCustom.VectorDistanceXZ(tPlayer.position, turnPatch.midNode.position) <= fTurnRotateThreshold )//in range?
 				{
 					StartCoroutine(rotatePlayer(direction));//make the player face towards the new horizon
 					updateForwardUnitVector();	//update direction
-										
 					break;
 				}
 			}//end of while
 		}
 		
 		turnPatch = null;
+		//enteredTurnRadius = false;
 		ControlsEnabled = true;
 		StopCoroutine("turnPlayer");//stop current routine*/
 	}//end of turn player on next mid node coroutine
 			
 	private IEnumerator rotatePlayer(SwipeDirection direction)
-	{	
+	{
 		Quaternion newRoation = Quaternion.identity;
 				
 		if (direction == SwipeDirection.Right)
@@ -555,9 +570,9 @@ public class PlayerController : MonoBehaviour {
 	public bool isInJump() 
 	{
 		if (JumpState > 0)
-			return true;
-		else
-			return false;				
+			return true;		
+		else		
+			return false;		
 	}
 	
 	public bool isInDuck()
@@ -567,4 +582,6 @@ public class PlayerController : MonoBehaviour {
 		else
 			return false;
 	}
+	
+	public Vector3 getCurrentForwardUnitVector() { return forwardUnitVector; }
 }

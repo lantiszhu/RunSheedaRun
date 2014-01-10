@@ -8,13 +8,14 @@ public class PowerupElement : MonoBehaviour {
 	#endregion
 	
 	#region Constants
-	private const float pullSpeed = 1;
-	private const float elementContactDistance = 0.5f;
+	private const float pullSpeed = 5;
+	private const float elementContactDistance = 0.75f;
 	#endregion
 	
 	#region Variables
-	private Transform tPlayer;	//player's transform
+	private Transform tPlayerCharacter;	//player's transform
 	private Transform tPowerupElement;//the currently active element
+	private Transform tElementMesh;
 	
 	private int CollectionState;
 	
@@ -27,8 +28,9 @@ public class PowerupElement : MonoBehaviour {
 		hInGameController = (InGameController)GameObject.Find("Player").GetComponent(typeof(InGameController));
 		hPowerupController = (PowerupController)GameObject.Find("Player").GetComponent(typeof(PowerupController));
 				
-		tPowerupElement = this.transform;
-		tPlayer = GameObject.Find("Player").transform;		
+		tPowerupElement = this.transform;		
+		tPlayerCharacter = GameObject.Find("Player/CharacterGroup").transform;
+		tElementMesh = this.transform.Find("Mesh").transform;
 	}
 	
 	public void Init()
@@ -40,7 +42,7 @@ public class PowerupElement : MonoBehaviour {
 	{
 		if (CollectionState == 0)//wait to get close enough
 		{
-			if (Vector3.Distance(tPlayer.position, tPowerupElement.position)
+			if (Vector3.Distance(tPlayerCharacter.position, tPowerupElement.position)
 				<= hPowerupController.getElementPullDistance())
 			{
 				CollectionState = 1;				
@@ -48,15 +50,21 @@ public class PowerupElement : MonoBehaviour {
 		}//end of state 0
 		else if (CollectionState == 1)
 		{
-			tPowerupElement.position = Vector3.Lerp(tPowerupElement.position, tPlayer.position, Time.deltaTime*pullSpeed);
+			tPowerupElement.position = Vector3.Lerp(tPowerupElement.position, tPlayerCharacter.position, Time.deltaTime*pullSpeed);
+			tPowerupElement.localScale = Vector3.Lerp(tPowerupElement.localScale, new Vector3(0,0,0), Time.deltaTime);
 			
-			if (Vector3.Distance(tPlayer.position, tPowerupElement.position) == elementContactDistance)
+			if (Vector3.Distance(tPlayerCharacter.position, tPowerupElement.position) <= elementContactDistance)
 			{
-				hPowerupController.handlerPowerupCollection(powerupType);
-				//disable this element
+				hPowerupController.handleElementCollection(powerupType);//handle what to do with the collected item
+								
+				//TODO: Place this element back in the queue
+				this.gameObject.SetActive(false);//disable this element
+				
 				CollectionState = 2;//escape the loop
 			}
 		}
 		
+		tElementMesh.localEulerAngles = new Vector3(tElementMesh.localEulerAngles.x,
+			(Time.deltaTime*120)+tElementMesh.localEulerAngles.y, tElementMesh.localEulerAngles.z);
 	}//end of fixed update
 }

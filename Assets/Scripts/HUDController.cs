@@ -15,6 +15,7 @@ public class HUDController : MonoBehaviour {
 	
 	private Transform tHUDScoreContainer;
 	private Transform tHUDCurrencyContainer;
+	private Transform tCurrencyIcon;
 	private Transform tHUDMultiplierContainer;
 	
 	//HUD element Container sizes
@@ -41,6 +42,7 @@ public class HUDController : MonoBehaviour {
 		
 		tHUDScoreContainer = this.transform.Find("HUDScoreGroup/HUD_Score_BG").transform;//HUD Score Container
 		tHUDCurrencyContainer = this.transform.Find("HUDCurrencyGroup/HUD_Currency_BG").transform;
+		tCurrencyIcon = this.transform.Find("HUDCurrencyGroup/Icon_Coin").transform;
 		tHUDMultiplierContainer = this.transform.Find("MultiplierGroup/Background").transform;
 								
 		Init();
@@ -53,8 +55,8 @@ public class HUDController : MonoBehaviour {
 		iDivisorScore = 10;
 		iDivisorCurrency = 10;
 		iDivisorMultiplier = 10;
-		
-		InvokeRepeating("resizeDigitContainer", 1, 1);
+				
+		InvokeRepeating("resizeDigitContainer", 1, 1);//momentarily call the resize function
 	}
 	
 	private void Restart()
@@ -65,31 +67,38 @@ public class HUDController : MonoBehaviour {
 	void LateUpdate () 
 	{
 		accumulatedScore += hPlayerController.getDistanceCoveredInDeltaTime() 
-			* scoreCoreMultiplier * hGameController.getScoreMultiplier();
-		tmScore.text =  Mathf.RoundToInt(accumulatedScore).ToString();
+			* scoreCoreMultiplier * hGameController.getScoreMultiplier();	//calculate score
+		tmScore.text =  Mathf.RoundToInt(accumulatedScore).ToString();//show the earned score on HUD
+		
+		//show the earned currency on HUD
+		tmCurrency.text = hPowerupController.getCollectedStandardCurrency().ToString();
 	}
-	
-	//FUNCTION: Resize HUD Score and Currency containers according to digit count
+		
+	/// <summary>
+	/// Resize HUD Score and Currency containers according to digit count.
+	/// </summary>
 	private void resizeDigitContainer()
 	{		
 		if ( (accumulatedScore / iDivisorScore) >= 1 )
 		{			
-			tHUDScoreContainer.localScale = new Vector3(tHUDScoreContainer.localScale.x, tHUDScoreContainer.localScale.y, tHUDScoreContainer.localScale.z+0.4f);
+			tHUDScoreContainer.localScale = new Vector3(tHUDScoreContainer.localScale.x, tHUDScoreContainer.localScale.y,
+				tHUDScoreContainer.localScale.z+0.4f);//expand the background of the score count background
 			iDivisorScore *= 10;
 		}
 		
 		if ( (hPowerupController.getCollectedStandardCurrency() / iDivisorCurrency) >= 1 )
 		{
 			tHUDCurrencyContainer.localScale = new Vector3(tHUDCurrencyContainer.localScale.x,
-				tHUDCurrencyContainer.localScale.y, tHUDCurrencyContainer.localScale.z+0.4f);
-			//tHUDCurrencyIcon.transform.localPosition = new Vector3(tHUDCurrencyIcon.transform.localPosition.x-6, tHUDCurrencyIcon.transform.localPosition.y, tHUDCurrencyIcon.transform.localPosition.z);
+				tHUDCurrencyContainer.localScale.y, tHUDCurrencyContainer.localScale.z+0.4f);//expand the background of the coin count background
+			tCurrencyIcon.transform.localPosition = new Vector3(tCurrencyIcon.transform.localPosition.x-6, tCurrencyIcon.transform.localPosition.y,
+				tCurrencyIcon.transform.localPosition.z);//displace the coin icon on HUD
 			iDivisorCurrency *= 10;
 		}
 				
 		if ( (hGameController.getScoreMultiplier() / iDivisorMultiplier) >= 1 )
 		{			
 			tHUDMultiplierContainer.localScale = new Vector3(tHUDMultiplierContainer.localScale.x+0.4f,
-				tHUDMultiplierContainer.localScale.y, tHUDMultiplierContainer.localScale.z);
+				tHUDMultiplierContainer.localScale.y, tHUDMultiplierContainer.localScale.z);//expand the background of the multiplier background
 			iDivisorMultiplier *= 10;
 		}
 	}//end of resize digit container function

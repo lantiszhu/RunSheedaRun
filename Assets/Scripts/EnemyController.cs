@@ -26,7 +26,7 @@ public class EnemyController : MonoBehaviour {
 	private float fPlayerEnemyDistance = 5;
 	private int EnemyState;
 	private float fCurrentFollowTime;
-	private Vector3 previousForwardUnitVector;
+	//private Vector3 previousForwardUnitVector;
 	private Vector3 currentForwardUnitVector;
 	
 	private InGameController hInGameController;
@@ -76,17 +76,8 @@ public class EnemyController : MonoBehaviour {
 		if (hInGameController.isGamePaused())
 			return;
 		
-		previousForwardUnitVector = currentForwardUnitVector;
+		//previousForwardUnitVector = currentForwardUnitVector;
 		currentForwardUnitVector = hPlayerController.getCurrentForwardUnitVector();
-		/*if (currentForwardUnitVector != previousForwardUnitVector)
-		{
-			if (currentForwardUnitVector.x < currentForwardUnitVector.z)
-				tEnemy.position = new Vector3(tPlayerCharacter.position.x, tEnemy.position.y,
-					tPlayer.position.z-fPlayerEnemyDistance);
-			else
-				tEnemy.position = new Vector3(tPlayer.position.x-fPlayerEnemyDistance,
-					tEnemy.position.y, tPlayerCharacter.position.z);
-		}*/
 		
 		if (Mathf.Abs(currentForwardUnitVector.x) < Mathf.Abs(currentForwardUnitVector.z) )
 		{

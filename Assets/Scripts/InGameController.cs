@@ -104,6 +104,9 @@ public class InGameController : MonoBehaviour {
 		
 		hPlayerController.togglePlayerAnimation(false);
 		hEnemyController.toggleEnemyAnimation(false);
+		
+		System.GC.Collect();//clear unused memory
+		PlayerPrefs.Save();//save any unsaved data
 	}
 	
 	public void resumeGame()

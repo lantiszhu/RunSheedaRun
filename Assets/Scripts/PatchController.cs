@@ -38,7 +38,6 @@ public class PatchController : MonoBehaviour {
 			patchType = type;
 		}
 	}
-
 	public List<GameObject> straightPatchList;
 	public List<GameObject> leftTurnPatch;
 	public List<GameObject>	rightTurnPatch;
@@ -59,10 +58,9 @@ public class PatchController : MonoBehaviour {
 		PatchGroup = new GameObject();
 		PatchGroup.transform.name = "PatchGroup";
 
-		Init();
+		init();
 	}
-	
-	private void Init()
+	private void init()
 	{
 		if (!currentPatch)
 		{
@@ -82,13 +80,7 @@ public class PatchController : MonoBehaviour {
 			updatePatch();
 		}
 	}
-	
-	public void Restart()
-	{
-		clearAll();
-		Init();
-	}
-	
+
 	private void clearAll()
 	{
 		do
@@ -100,7 +92,6 @@ public class PatchController : MonoBehaviour {
 		}while(patchesList.First!=patchesList.Last);
 		currentPatch = null;
 	}
-	
 	public Patch getCurrentPatch()
 	{
 		return patchesList.Last.Value;
@@ -147,7 +138,12 @@ public class PatchController : MonoBehaviour {
 	/// </summary>
 	/// <returns>The nextpathc type.</returns>
 	/// 
-	
+
+	public void Restart()
+	{
+		clearAll();
+		init();
+	}
 	PatchTypes selectNextpatchType()
 	{
 		//return PatchTypes.straight; Un-comment to just have straight patches.
@@ -209,7 +205,7 @@ public class PatchController : MonoBehaviour {
 				lastTeeNode.Previous.Value.patchTransform.rotation = lastTeeNode.Value.endNode2.rotation;
 				reconnectPatches(lastTeeNode);
 			}
-			lastTeeNode = null;
+			//lastTeeNode = null;
 		}
 	}
 
@@ -223,7 +219,7 @@ public class PatchController : MonoBehaviour {
 	{
 		PatchTypes nextPatchType = selectNextpatchType();
 
-		if (lastTeeNode != null && nextPatchType == PatchTypes.tee)
+		if (lastTeeNode != null && (nextPatchType == PatchTypes.tee || nextPatchType==PatchTypes.TLeft || nextPatchType==PatchTypes.TRight))
 		{
 			nextPatchType = PatchTypes.left;
 		}
@@ -250,8 +246,10 @@ public class PatchController : MonoBehaviour {
 		{
 			Transform T = patchesList.Last.Value.patchTransform;
 
-			if (patchesList.Last.Value.patchType == PatchTypes.tee || patchesList.Last.Value.patchType==PatchTypes.TLeft || patchesList.Last.Value.patchType==PatchTypes.TRight)
+			if (patchesList.Last.Value.patchType == PatchTypes.tee || patchesList.Last.Value.patchType==PatchTypes.TLeft 
+				|| patchesList.Last.Value.patchType==PatchTypes.TRight)
 			{
+				//Debug.Log("nullyfy the T-Node");
 				lastTeeNode = null;
 			}
 

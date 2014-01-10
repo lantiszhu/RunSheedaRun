@@ -54,7 +54,7 @@ public class PlayerController : MonoBehaviour {
 	private float fVerticalPosition;
 	private float fRayContactPosition;
 	
-	private bool enteredTurnRadius;
+	//private bool enteredTurnRadius;
 	private bool ControlsEnabled;
 	private int JumpState;
 	private int DuckState;
@@ -99,7 +99,7 @@ public class PlayerController : MonoBehaviour {
 		fRayContactPosition = 0;
 		turnPatch = null;
 		
-		enteredTurnRadius = false;
+		//enteredTurnRadius = false;
 		ControlsEnabled = false;
 		JumpState = 0;
 		DuckState = 0;
@@ -161,7 +161,7 @@ public class PlayerController : MonoBehaviour {
 		if (MathCustom.VectorDistanceXZ(tPlayer.position, nextPatch.midNode.position) 
 			<= fSwitchMidNodeThreshold 
 			 /*&& enteredTurnRadius == false*/)
-		{print("regular switch condition executed");
+		{//print("regular switch condition executed");
 			hPatchController.updatePatch();//tell patch controller to switch to next mid node
 			updateNextMidNode();//get the detail of the next mid node
 		}//end of if
@@ -173,14 +173,15 @@ public class PlayerController : MonoBehaviour {
 		}
 		else if (enteredTurnRadius == true && turnPatch == null)//user made the turn
 		{print("condition 3 executed");
-			//updateNextMidNode();
 			
 			enteredTurnRadius = false;
 		}
 		else if (enteredTurnRadius == true
 			&& MathCustom.VectorDistanceXZ(tPlayer.position, turnPatch.midNode.position) > fTurnSwipeThreshold)//user did not make the turn
 		{print("condition 4 executed");
+			hPatchController.updatePatch();//tell patch controller to switch to next mid node
 			updateNextMidNode();
+			
 			enteredTurnRadius = false;
 		}*/
 		
@@ -347,7 +348,7 @@ public class PlayerController : MonoBehaviour {
 				else
 					changeLane(swipeDirection);
 			}//end of try
-			catch (System.Exception e) { changeLane(swipeDirection); }
+			catch (System.Exception) { changeLane(swipeDirection); }
 		}		
 		else if (swipeDirection == SwipeDirection.Jump)
 		{

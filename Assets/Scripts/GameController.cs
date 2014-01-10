@@ -65,6 +65,7 @@ public class GameController : MonoBehaviour {
 		hEnemyController.Restart();
 		hMenuScript.Restart();
 		hPrimaryColliderController.Restart();
+		hSecondaryColliderController.Restart();
 		
 		System.GC.Collect();
 	}

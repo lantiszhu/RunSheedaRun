@@ -24,6 +24,8 @@ public class InGameController : MonoBehaviour {
 	private GameController hGameController;
 	private PlayerController hPlayerController;
 	private EnemyController hEnemyController;
+	private MissionsController hMissionsController;
+	private SoundController hSoundController;
 	private PrimaryColliderController hPrimaryColliderController;
 	private SecondaryColliderController hSecondaryColliderController;
 	#endregion
@@ -31,9 +33,11 @@ public class InGameController : MonoBehaviour {
 	void Start ()
 	{		
 		hMenuScript = (MenuScript)GameObject.Find("GUIGroup/MenuGroup").GetComponent(typeof(MenuScript));
-		hGameController = (GameController)this.GetComponent(typeof(GameController));		
+		hGameController = (GameController)this.GetComponent(typeof(GameController));
 		hPlayerController = (PlayerController)this.GetComponent(typeof(PlayerController));
 		hEnemyController = (EnemyController)GameObject.Find("Enemy").GetComponent(typeof(EnemyController));
+		hMissionsController = this.GetComponent<MissionsController>();
+		hSoundController = GameObject.Find("SoundManager").GetComponent<SoundController>();
 		hPrimaryColliderController = (PrimaryColliderController)GameObject
 			.Find("Player/CharacterGroup/Colliders/PrimaryCollider").GetComponent(typeof(PrimaryColliderController));
 		hSecondaryColliderController = (SecondaryColliderController)GameObject
@@ -60,24 +64,7 @@ public class InGameController : MonoBehaviour {
 	}
 		
 	void FixedUpdate ()
-	{
-		//Pause GamePlay
-		/*if(iPauseStatus == 1)//pause game
-		{	
-			hMenuScript.toggleMenuScriptStatus(true);
-			//hMenuScript.displayPauseMenu();
-			hMenuScript.ShowMenu((int)Menus.PauseMenu);
-		
-			iPauseStatus = 2;
-		}
-		else if(iPauseStatus==3)//resume game
-		{		
-			hMenuScript.toggleMenuScriptStatus(false);
-			
-			bGamePaused = false;
-			iPauseStatus = 0;
-		}*/
-		
+	{			
 		getClicks();//check if pause button is clicked
 	}//end of fixed update
 	
@@ -94,6 +81,9 @@ public class InGameController : MonoBehaviour {
 		hMenuScript.toggleMenuScriptStatus(false);
 		hPlayerController.launchGame();//tell the PlayerController to start game
 		hEnemyController.launchGame();//tell the EnemyController to start following the player
+		
+		//tell the Missions Controller that a new game has been started
+		hMissionsController.incrementMissionCount(MissionTypes.StartGame);
 	}
 	
 	public void pauseGame()
@@ -105,6 +95,8 @@ public class InGameController : MonoBehaviour {
 		hPlayerController.togglePlayerAnimation(false);
 		hEnemyController.toggleEnemyAnimation(false);
 		
+		hSoundController.pausePlayerSound(PlayerSounds.Run);
+		
 		System.GC.Collect();//clear unused memory
 		PlayerPrefs.Save();//save any unsaved data
 	}
@@ -114,6 +106,8 @@ public class InGameController : MonoBehaviour {
 		bGamePaused = false;
 		hMenuScript.toggleHUDState(true);
 		hMenuScript.toggleMenuScriptStatus(false);
+		
+		hSoundController.playPlayerSound(PlayerSounds.Run);
 		
 		hPlayerController.togglePlayerAnimation(true);
 		hEnemyController.toggleEnemyAnimation(true);
@@ -152,8 +146,10 @@ public class InGameController : MonoBehaviour {
 				hMenuScript.toggleMenuScriptStatus(true);//enable menu script
 				hMenuScript.ShowMenu((int)Menus.Revive);
 				
+				hSoundController.pausePlayerSound(PlayerSounds.Run);
 				fReviveCountdownStart = Time.time;
 				
+				PlayerPrefs.Save();
 				iGameOverState = 1;
 			}
 			else if (iGameOverState == 1)//wait for user to revive
@@ -179,9 +175,11 @@ public class InGameController : MonoBehaviour {
 			
 			else if (iGameOverState == 51)//revive button pressed
 			{				
-				hMenuScript.toggleMenuScriptStatus(false);//enable menu script
+				hMenuScript.toggleMenuScriptStatus(false);//disable menu script
 				bGamePaused = false;
 				fReviveInvincibleStart = Time.time;
+				
+				hSoundController.playPlayerSound(PlayerSounds.Run);
 				
 				hPlayerController.revivePlayer();
 				hEnemyController.revivePlayer();

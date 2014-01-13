@@ -70,6 +70,8 @@ public class PlayerController : MonoBehaviour {
 	private InGameController hInGameController;
 	private EnemyController hEnemyController;
 	private CameraController hCameraController;
+	private MissionsController hMissionsController;
+	private SoundController hSoundController;
 	#endregion
 	
 	void Start () 
@@ -79,6 +81,8 @@ public class PlayerController : MonoBehaviour {
 		hInGameController = (InGameController)this.GetComponent(typeof(InGameController));
 		hEnemyController = (EnemyController)GameObject.Find("Enemy").GetComponent(typeof(EnemyController));
 		hCameraController = GameObject.Find("Main Camera").GetComponent<CameraController>();
+		hMissionsController = this.GetComponent<MissionsController>();
+		hSoundController = GameObject.Find("SoundManager").GetComponent<SoundController>();
 		
 		tPlayer = this.transform;
 		aPlayer = (Animation)this.transform.Find("CharacterGroup/Sheeda").GetComponent(typeof(Animation));
@@ -132,6 +136,7 @@ public class PlayerController : MonoBehaviour {
 		togglePlayerAnimation(true);//enable animations
 		aPlayer["run"].speed = fRunAnimationSpeed;
 		aPlayer.Play("run");	//play run animation
+		hSoundController.playPlayerSound(PlayerSounds.Run);
 		
 		ControlsEnabled = true;
 	}
@@ -159,31 +164,11 @@ public class PlayerController : MonoBehaviour {
 		
 		//get next patch's mid node when user reaches a mid node
 		if (MathCustom.VectorDistanceXZ(tPlayer.position, nextPatch.midNode.position) 
-			<= fSwitchMidNodeThreshold 
-			 /*&& enteredTurnRadius == false*/)
-		{//print("regular switch condition executed");
+			<= fSwitchMidNodeThreshold)
+		{
 			hPatchController.updatePatch();//tell patch controller to switch to next mid node
 			updateNextMidNode();//get the detail of the next mid node
 		}//end of if
-		
-		/*if (turnPatch != null && enteredTurnRadius == false
-			&& MathCustom.VectorDistanceXZ(tPlayer.position, turnPatch.midNode.position) <= fTurnSwipeThreshold)
-		{print("condition 2 executed");
-			enteredTurnRadius = true;
-		}
-		else if (enteredTurnRadius == true && turnPatch == null)//user made the turn
-		{print("condition 3 executed");
-			
-			enteredTurnRadius = false;
-		}
-		else if (enteredTurnRadius == true
-			&& MathCustom.VectorDistanceXZ(tPlayer.position, turnPatch.midNode.position) > fTurnSwipeThreshold)//user did not make the turn
-		{print("condition 4 executed");
-			hPatchController.updatePatch();//tell patch controller to switch to next mid node
-			updateNextMidNode();
-			
-			enteredTurnRadius = false;
-		}*/
 		
 	}//end of fixed update
 	
@@ -251,8 +236,12 @@ public class PlayerController : MonoBehaviour {
 			aPlayer.Play("jump");
 			hEnemyController.playEnemyAnimation(EnemyAnimation.jump);
 			
+			hSoundController.pausePlayerSound(PlayerSounds.Run);
+			
 			fVerticalPosition += fJumpForce;			
 			JumpState = 2;
+			
+			hMissionsController.incrementMissionCount(MissionTypes.Jump);//tell Missions Controller that a jump has been triggered
 		}
 		else if (JumpState == 2)//in air
 		{
@@ -264,9 +253,13 @@ public class PlayerController : MonoBehaviour {
 					.speed = fRunAnimationSpeed;
 				hEnemyController.playEnemyAnimation(EnemyAnimation.run);
 				
+				//play jump land and resume run sound
+				hSoundController.playPlayerSound(PlayerSounds.JumpLand);
+				hSoundController.playPlayerSound(PlayerSounds.Run);				
+				
 				JumpState = 0;
-			}
-		}
+			}//end of reached ground if
+		}//end of jump state 2
 		
 		tPlayer.position = new Vector3(tPlayer.position.x,
 			MathCustom.LerpLinear(tPlayer.position.y, fVerticalPosition, Time.deltaTime*fVerticalAccleration),
@@ -318,7 +311,7 @@ public class PlayerController : MonoBehaviour {
 		}
 		
 		//check if character is moving horizontally
-		deltaHorizontalPosition = previousHorizontalPosition-currentHorizontalPosition;
+		deltaHorizontalPosition = previousHorizontalPosition-currentHorizontalPosition;		
 	}//end of set Horizontal Position
 	
 	private bool isPlayerChangingLane()
@@ -349,7 +342,8 @@ public class PlayerController : MonoBehaviour {
 					changeLane(swipeDirection);
 			}//end of try
 			catch (System.Exception) { changeLane(swipeDirection); }
-		}		
+						
+		}
 		else if (swipeDirection == SwipeDirection.Jump)
 		{
 			if (!isInJump())
@@ -392,6 +386,11 @@ public class PlayerController : MonoBehaviour {
 				
 				fDuckStartTime = Time.time;//check when the duck started
 				DuckState = 1;
+				
+				hSoundController.pausePlayerSound(PlayerSounds.Run);
+				
+				//tell the Missions Controller that a duck has been triggered
+				hMissionsController.incrementMissionCount(MissionTypes.Duck);
 			}
 			else if (DuckState == 1)//wait for duck duration to pass
 			{
@@ -413,6 +412,8 @@ public class PlayerController : MonoBehaviour {
 				aPlayer["run"].speed = fRunAnimationSpeed;
 				aPlayer.CrossFade("run", 0.5f);//play run animation
 				hEnemyController.playEnemyAnimation(EnemyAnimation.run);
+				
+				hSoundController.playPlayerSound(PlayerSounds.Run);
 				
 				DuckState = 0;
 				break;

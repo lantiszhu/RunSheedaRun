@@ -7,6 +7,7 @@ public class HUDController : MonoBehaviour {
 	private const float scoreCoreMultiplier = 0.3f;
 	#endregion
 	
+	private float currentDeltaTimeScore;
 	private float accumulatedScore;
 	
 	private TextMesh tmScore;
@@ -25,15 +26,19 @@ public class HUDController : MonoBehaviour {
 	
 	#region Script References
 	private GameController hGameController;
+	private InGameController hInGameController;
 	private PlayerController hPlayerController;
 	private PowerupController hPowerupController;
+	private MissionsController hMissionsController;
 	#endregion
 	
 	void Start () 
 	{
 		hGameController = (GameController)GameObject.Find("Player").GetComponent(typeof(GameController));
-		hPlayerController = (PlayerController)GameObject.Find("Player").GetComponent(typeof(PlayerController));		
+		hPlayerController = (PlayerController)GameObject.Find("Player").GetComponent(typeof(PlayerController));
+		hInGameController = GameObject.Find("Player").GetComponent<InGameController>();
 		hPowerupController = (PowerupController)GameObject.Find("Player").GetComponent(typeof(PowerupController));
+		hMissionsController = GameObject.Find("Player").GetComponent<MissionsController>();
 		
 		tmScore = this.transform.Find("HUDScoreGroup/HUD_Score_Text").GetComponent("TextMesh") as TextMesh;
 		tmCurrency = this.transform.Find("HUDCurrencyGroup/HUD_Currency_Text").GetComponent("TextMesh") as TextMesh;		
@@ -66,12 +71,19 @@ public class HUDController : MonoBehaviour {
 	
 	void LateUpdate () 
 	{
-		accumulatedScore += hPlayerController.getDistanceCoveredInDeltaTime() 
+		if (hInGameController.isGamePaused())
+			return;
+		
+		currentDeltaTimeScore = hPlayerController.getDistanceCoveredInDeltaTime() 
 			* scoreCoreMultiplier * hGameController.getScoreMultiplier();	//calculate score
+		accumulatedScore += currentDeltaTimeScore;//the score since the game started		
 		tmScore.text =  Mathf.RoundToInt(accumulatedScore).ToString();//show the earned score on HUD
 		
 		//show the earned currency on HUD
 		tmCurrency.text = hPowerupController.getCollectedStandardCurrency().ToString();
+		
+		hMissionsController.incrementMissionCount(MissionTypes.Score,
+			Mathf.RoundToInt(currentDeltaTimeScore));//send the score earned in delta time to Missions Controller
 	}
 		
 	/// <summary>

@@ -26,8 +26,16 @@ public class PowerupController : MonoBehaviour {
 	private int collectedPremiumCurrency;//number of premium currency collected in the current run
 	#endregion
 	
+	#region Script References
+	private MissionsController hMissionsController;
+	private SoundController hSoundController;
+	#endregion
+	
 	void Start () 
 	{
+		hMissionsController = this.GetComponent<MissionsController>();
+		hSoundController = GameObject.Find("SoundManager").GetComponent<SoundController>();
+		
 		powerupCount = Powerups.GetValues(typeof(Powerups)).Length-2;//get the number of powerup types
 		elementPullDistance = defaultElementPullDistance;
 		
@@ -58,14 +66,25 @@ public class PowerupController : MonoBehaviour {
 	public void handleElementCollection(Powerups type)
 	{
 		if (type == Powerups.StandardCurrency)
-			collectedStandardCurrency ++;		
+		{
+			collectedStandardCurrency ++;
+			//tell the Missions Controller that a standard currency unit has been collected
+			hMissionsController.incrementMissionCount(MissionTypes.StandardCurrency);
+			
+			hSoundController.playPowerupSound(PowerupSounds.CurrencyCollection);
+		}
 		else if (type == Powerups.PremiumCurrency)
 			collectedPremiumCurrency ++;
-		else
+		else//if a power-up has been collected
 		{
 			activatePowerup(type);
-		}
-		
+			
+			if (type == Powerups.Magnetism)//tell Mission Controller if a magnetism power-up is collected
+				hMissionsController.incrementMissionCount(MissionTypes.MagnetismPowerup);
+			
+			//tell the Missions Controller that a power-up has been picked up
+			hMissionsController.incrementMissionCount(MissionTypes.Powerups);
+		}		
 	}//end of powerup collection handler
 	
 	/// <summary>

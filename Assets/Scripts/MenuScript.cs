@@ -75,14 +75,7 @@ public class MenuScript : MonoBehaviour {
 	public float getResolutionFactor() { return fResolutionFactor; }
 	
 	private Camera HUDCamera;//the menu camera
-	
-	//script references
-	/*private ControllerScriptCS hControllerScriptCS;
-	private SoundManagerCS hSoundManagerScriptCS;
-	private InGameControllerCS hInGameControllerCS;
-	private MissionsControllerCS hMissionsControllerCS;*/
-	private InGameController hInGameController;
-	
+		
 	private Transform[] tMenuTransforms;	//menu prefabs
 	//Main Menu
 	private Transform[] tMainMenuButtons;	//main menu buttons' transform
@@ -90,7 +83,7 @@ public class MenuScript : MonoBehaviour {
 	//Pause Menu
 	private Transform[] tPauseButtons;	//pause menu buttons transforms
 	private int iPauseButtonsCount = 2;	//total number of buttons on pause menu
-	//private TextMesh tmPauseMenuMissionList;//mission description on the pause menu
+	private TextMesh tmPauseMenuMissionList;//mission description on the pause menu
 	//Game Over Menu
 	private Transform[] tGameOverButtons;
 	private int iGameOverButtonsCount = 2;
@@ -102,13 +95,13 @@ public class MenuScript : MonoBehaviour {
 	private int iInstructionsButtonsCount = 1;
 	//settings menu
 	private Transform[] tSettingsButtons;
-	private int iSettingsButtonsCount = 7;
+	private int iSettingsButtonsCount = 7;*/
 	//missions menu
 	private Transform[] tMissionsMenuButtons;
 	private int iMissionsMenuButtonsCount=1;
 	private TextMesh tmMissionsMenuMissionList;
 	//achievements menu
-	private Transform[] tAchievementMenuButtons;
+	/*private Transform[] tAchievementMenuButtons;
 	private int iAchievementMenuButtonsCount=1;
 	private TextMesh tmAchievementsMenuDescription;
 	//the Ad
@@ -134,16 +127,18 @@ public class MenuScript : MonoBehaviour {
 	private int iResumeGameState = 0;
 	private float iResumeGameStartTime = 0;
 	private TextMesh tmPauseCountdown;	//count down numbers after resume
+	
+	#region Script References
+	private InGameController hInGameController;
+	private SoundController hSoundController;
+	#endregion
 		
 	void Start ()
-	{
-		HUDCamera = (Camera)GameObject.Find("GUIGroup/Camera").GetComponent(typeof(Camera));
-		/*hControllerScriptCS = (ControllerScriptCS)GameObject.Find("Player").GetComponent(typeof(ControllerScriptCS));
-		hSoundManagerScriptCS = (SoundManagerCS)GameObject.Find("SoundManager").GetComponent(typeof(SoundManagerCS));
-		hInGameControllerCS = (InGameControllerCS)GameObject.Find("Player").GetComponent(typeof(InGameControllerCS));
-		hMissionsControllerCS = (MissionsControllerCS)GameObject.Find("Player").GetComponent(typeof(MissionsControllerCS));*/
+	{		
 		hInGameController = (InGameController)GameObject.Find("Player").GetComponent(typeof(InGameController));
-				
+		hSoundController = GameObject.Find("SoundManager").GetComponent<SoundController>();
+		
+		HUDCamera = (Camera)GameObject.Find("GUIGroup/Camera").GetComponent(typeof(Camera));		
 		//the fResolutionFactor can be used to adjust components according to screen size
 		aspectRatio = ( (Screen.height * 1.0f)/(Screen.width * 1.0f) - 1.77f);
 		fResolutionFactor = (43.0f * (aspectRatio));
@@ -166,7 +161,7 @@ public class MenuScript : MonoBehaviour {
 		tPauseButtons = new Transform[iPauseButtonsCount];
 		tPauseButtons[0] = tMenuTransforms[(int)Menus.PauseMenu].Find("Buttons/Button_Back");
 		tPauseButtons[1] = tMenuTransforms[(int)Menus.PauseMenu].Find("Buttons/Button_Resume");
-		//tmPauseMenuMissionList = (TextMesh)tMenuTransforms[(int)Menus.PauseMenu].Find("Text_MissionDescription").GetComponent(typeof(TextMesh));
+		tmPauseMenuMissionList = (TextMesh)tMenuTransforms[(int)Menus.PauseMenu].Find("Text_MissionDescription").GetComponent(typeof(TextMesh));
 		
 		//game over menu initialization
 		tMenuTransforms[(int)Menus.GameOverMenu] = (Transform)tMenuGroup.Find("GameOver").GetComponent(typeof(Transform));
@@ -204,7 +199,7 @@ public class MenuScript : MonoBehaviour {
 		
 		//shop
 		tMenuTransforms[(int)Menus.Shop] = tMenuGroup.Find("Shop").GetComponent(typeof(Transform)) as Transform;
-		hShopScriptCS = (ShopScriptCS)tMenuTransforms[(int)Menus.Shop].GetComponent(typeof(ShopScriptCS));
+		hShopScriptCS = (ShopScriptCS)tMenuTransforms[(int)Menus.Shop].GetComponent(typeof(ShopScriptCS));*/
 			
 		//missions menu
 		tMenuTransforms[(int)Menus.MissionsMenu] = (Transform)tMenuGroup.Find("MissionsMenu").GetComponent(typeof(Transform));
@@ -213,7 +208,7 @@ public class MenuScript : MonoBehaviour {
 		tmMissionsMenuMissionList = (TextMesh)tMenuTransforms[(int)Menus.MissionsMenu].Find("Text_MissionDescription").GetComponent(typeof(TextMesh));
 		
 		//achievements menu
-		tMenuTransforms[(int)Menus.AchievementsMenu] = (Transform)tMenuGroup.Find("AchievementsMenu").GetComponent(typeof(Transform));
+		/*tMenuTransforms[(int)Menus.AchievementsMenu] = (Transform)tMenuGroup.Find("AchievementsMenu").GetComponent(typeof(Transform));
 		tAchievementMenuButtons = new Transform[iAchievementMenuButtonsCount];
 		tAchievementMenuButtons[0] = (Transform)tMenuTransforms[(int)Menus.AchievementsMenu].Find("Buttons/Button_Back").GetComponent(typeof(Transform));
 		tmAchievementsMenuDescription = (TextMesh)tMenuTransforms[(int)Menus.AchievementsMenu].Find("Text_Achievements").GetComponent(typeof(TextMesh));
@@ -366,10 +361,10 @@ public class MenuScript : MonoBehaviour {
 				/*else if (CurrentMenu == (int)Menus.InstructionsMenu)
 					handlerInstructionsMenu(hit.transform);
 				else if (CurrentMenu == (int)Menus.SettingsMenu)
-					handlerSettingsMenu(hit.transform);
+					handlerSettingsMenu(hit.transform);*/
 				else if (CurrentMenu == (int)Menus.MissionsMenu)
 					handlerMissionsMenu(hit.transform);
-				else if (CurrentMenu == (int)Menus.AchievementsMenu)
+				/*else if (CurrentMenu == (int)Menus.AchievementsMenu)
 					handlerAchievementsMenu(hit.transform);
 				else if (CurrentMenu == (int)Menus.Ad)
 					handlerAd(hit.transform);*/
@@ -379,11 +374,9 @@ public class MenuScript : MonoBehaviour {
 		}
 	}//end of listner function
 	
-	/*
-	 * FUNCTION:	Handler back button execution on android devices.
-	 * 
-	 * CALLED BY:	OnGUI()
-	 * */
+	/// <summary>
+	/// Handlers the android back button.
+	/// </summary>
 	private void handlerAndroidBackButton()
 	{
 		if (Input.GetKeyDown(KeyCode.Escape) && iAndroidBackTapState == 0)
@@ -416,9 +409,12 @@ public class MenuScript : MonoBehaviour {
 		}
 	}//end of handler android back button function
 	
-	/*
-	*	FUNCTION: Handle clicks on Main Menu
-	*/
+	/// <summary>
+	/// Handle clicks on Main Menu.
+	/// </summary>
+	/// <param name='buttonTransform'>
+	/// Button transform.
+	/// </param>
 	private void handlerMainMenu(Transform buttonTransform)
 	{
 		if (tMainMenuButtons[0] == buttonTransform)//Tap to Play button
@@ -443,13 +439,13 @@ public class MenuScript : MonoBehaviour {
 					
 			hShopScriptCS.setShopScriptEnabled(true);
 			toggleMenuScriptStatus(false);
-		}
+		}*/
 		else if (tMainMenuButtons[4] == buttonTransform)//mission menu button
 		{
 			CloseMenu((int)Menus.MainMenu);
 			ShowMenu((int)Menus.MissionsMenu);
 		}
-		else if (tMainMenuButtons[5] == buttonTransform)//achievements menu button
+		/*else if (tMainMenuButtons[5] == buttonTransform)//achievements menu button
 		{
 			CloseMenu((int)Menus.MainMenu);
 			ShowMenu((int)Menus.AchievementsMenu);
@@ -583,18 +579,20 @@ public class MenuScript : MonoBehaviour {
 		}
 	}*/
 	
-	/*
-	*	FUNCTION:	Handle the clicks on the Mission Menu
-	*	CALLED BY:	listenerClicks()
-	*/
-	/*private void handlerMissionsMenu(Transform buttonTransform)
+	/// <summary>
+	/// Handle the clicks on the Mission Menu.
+	/// </summary>
+	/// <param name='buttonTransform'>
+	/// Button transform.
+	/// </param>
+	private void handlerMissionsMenu(Transform buttonTransform)
 	{
 		if (tMissionsMenuButtons[0] == buttonTransform)
 		{
 			CloseMenu((int)Menus.MissionsMenu);
 			ShowMenu((int)Menus.MainMenu);
 		}
-	}*/
+	}
 	
 	/*
 	*	FUNCTION:	Handle the clicks on the Achievements Menu
@@ -685,7 +683,7 @@ public class MenuScript : MonoBehaviour {
 		
 		CurrentMenu = index;//set the current menu
 		toggleHUDState(false);	//hide the HUD
-		//hSoundManagerScriptCS.playSound(SoundManagerCS.MenuSounds.ButtonTap);
+		hSoundController.playGUISound(GUISounds.ButtonTap);
 	}
 	
 	/*
@@ -703,18 +701,18 @@ public class MenuScript : MonoBehaviour {
 	*	FUNCTION:	Display description of the currently active
 	*				missions on Pause Menu.
 	*/
-	/*public void updatePauseMenuMissions(string description)
+	public void updatePauseMenuMissions(string description)
 	{
 		tmPauseMenuMissionList.text = description;
-	}*/
+	}
 	
 	/*
 	*	FUNCTION:	Display the currently active mission on the Mission Menu.
 	*/
-	/*public void updateMissionsMenuMissions(string description)
+	public void updateMissionsMenuMissions(string description)
 	{
 		tmMissionsMenuMissionList.text = description;
-	}*/
+	}
 	
 	/*
 	*	FUNCTION:	Display the currently active mission on the Achievements Menu.
@@ -741,12 +739,13 @@ public class MenuScript : MonoBehaviour {
 	{
 		return bHUDState;
 	}
-	
-	/*
-	*	FUNCTION: Enable/ disable MenuScript.
-	*	CALLED BY: InGameController.Update()
-	*	ADDITIONAL INFO: The MenuScript is disabled during gameplay for improved performance.
-	*/
+		
+	/// <summary>
+	/// Enable/ disable MenuScript. MenuScript is disabled during gameplay to improve performance.
+	/// </summary>
+	/// <param name='flag'>
+	/// Flag.
+	/// </param>
 	public void toggleMenuScriptStatus(bool flag)
 	{
 		if (flag != this.enabled)

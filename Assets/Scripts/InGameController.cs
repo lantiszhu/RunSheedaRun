@@ -149,14 +149,15 @@ public class InGameController : MonoBehaviour {
 				hSoundController.pausePlayerSound(PlayerSounds.Run);
 				fReviveCountdownStart = Time.time;
 				
-				PlayerPrefs.Save();
 				iGameOverState = 1;
+				PlayerPrefs.Save();				
 			}
 			else if (iGameOverState == 1)//wait for user to revive
 			{
 				if ( (Time.time-fReviveCountdownStart) 
 					>= fReviveCountdownDuration )//if user didnt revive
 				{
+					hMenuScript.CloseMenu((int)Menus.Revive);
 					hPlayerController.routineGameOver();//signal player controller
 					fGameOverSceneStart = Time.time;
 					iGameOverState = 2;
@@ -202,10 +203,9 @@ public class InGameController : MonoBehaviour {
 		StopCoroutine("routineGameOver");
 	}//end of routine Game Over function
 	
-	/*
-	*	FUNCTION: Check if pause button is tapped in-game
-	*	CALLED BY:	Update()
-	*/
+	/// <summary>
+	/// Check if pause button is tapped during the run.
+	/// </summary>
 	private void getClicks()
 	{
 		if(Input.GetMouseButtonUp(0))
@@ -273,4 +273,11 @@ public class InGameController : MonoBehaviour {
 	
 	//paused state
 	public bool isGamePaused() { return bGamePaused; }
+	public bool isGameOverRoutineActive() 
+	{ 
+		if (iGameOverState > 0)
+			return true;
+		else
+			return false;
+	}
 }

@@ -31,11 +31,14 @@ public class EnemyController : MonoBehaviour {
 	
 	private InGameController hInGameController;
 	private PlayerController hPlayerController;
+	private SecondaryColliderController hSecondaryColliderController;
 	
 	void Start () 
 	{	
 		hInGameController = GameObject.Find("Player").GetComponent<InGameController>();
 		hPlayerController = GameObject.Find("Player").GetComponent<PlayerController>();
+		hSecondaryColliderController = GameObject.Find("Player/CharacterGroup/Colliders/SecondaryCollider")
+			.GetComponent<SecondaryColliderController>();
 		
 		tPlayer = GameObject.Find("Player").transform;
 		tPlayerCharacter = GameObject.Find("Player/CharacterGroup").transform;
@@ -75,8 +78,7 @@ public class EnemyController : MonoBehaviour {
 	{
 		if (hInGameController.isGamePaused())
 			return;
-		
-		//previousForwardUnitVector = currentForwardUnitVector;
+				
 		currentForwardUnitVector = hPlayerController.getCurrentForwardUnitVector();
 		
 		if (Mathf.Abs(currentForwardUnitVector.x) < Mathf.Abs(currentForwardUnitVector.z) )
@@ -99,7 +101,7 @@ public class EnemyController : MonoBehaviour {
 	{
 		if (EnemyState == 0)
 			StartCoroutine(followPlayer());
-		else
+		else if (EnemyState > 0 && !hInGameController.isGameOverRoutineActive())		
 			StartCoroutine(hInGameController.routineGameOver());
 	}
 	

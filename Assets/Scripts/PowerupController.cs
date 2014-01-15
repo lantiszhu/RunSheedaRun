@@ -37,8 +37,7 @@ public class PowerupController : MonoBehaviour {
 		hSoundController = GameObject.Find("SoundManager").GetComponent<SoundController>();
 		
 		powerupCount = Powerups.GetValues(typeof(Powerups)).Length-2;//get the number of powerup types
-		elementPullDistance = defaultElementPullDistance;
-		
+				
 		powerupActiveDuration = new float[powerupCount];
 		for (int i=0; i<powerupCount; i++)//TODO: discuss a proper implementation for powerup upgrades
 			powerupActiveDuration[i] = 5;
@@ -50,6 +49,7 @@ public class PowerupController : MonoBehaviour {
 	{
 		collectedStandardCurrency = 0;
 		collectedPremiumCurrency = 0;
+		elementPullDistance = defaultElementPullDistance;
 	}
 	
 	public void Restart()

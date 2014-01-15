@@ -32,10 +32,7 @@ public class PlayerController : MonoBehaviour {
 	private PatchController.Patch currentPatch;//informaiton of the current patch
 	private PatchController.Patch nextPatch;	//information of the next patch
 	private PatchController.Patch turnPatch;	//transform of the node on which to turn
-	/*private Transform currentMidNode;	//transform of the current mid node
-	private Transform nextMidNode;		//transform of the next mid node
-	private Transform turnPatchMidNode;	*/
-		
+
 	private float fCurrentForwardSpeed;
 	private float fRunAnimationSpeed;
 	private Vector3 forwardUnitVector;//direction of player
@@ -103,7 +100,9 @@ public class PlayerController : MonoBehaviour {
 		fRayContactPosition = 0;
 		turnPatch = null;
 		
-		//enteredTurnRadius = false;
+		deltaScorePosition = 0;
+		deltaHorizontalPosition = 0;
+		
 		ControlsEnabled = false;
 		JumpState = 0;
 		DuckState = 0;
@@ -128,9 +127,9 @@ public class PlayerController : MonoBehaviour {
 		Init();
 	}
 	
-	/*
-	*	FUNCTION: Enable controls, start player animation and movement
-	*/
+	/// <summary>
+	/// Enable controls, start player animation and movement.
+	/// </summary>
 	public void launchGame()
 	{		
 		togglePlayerAnimation(true);//enable animations
@@ -140,15 +139,7 @@ public class PlayerController : MonoBehaviour {
 		
 		ControlsEnabled = true;
 	}
-	
-	/*void Update()
-	{
-		if (hInGameController.isGamePaused())
-			return;
 		
-		
-	}*/
-	
 	void FixedUpdate () 
 	{
 		if (hInGameController.isGamePaused())

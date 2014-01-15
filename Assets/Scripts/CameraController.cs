@@ -22,7 +22,6 @@ public class CameraController : MonoBehaviour {
 		camPointRot = cameraNode.rotation.eulerAngles;
 		cameraNodeStartPos = cameraNode.localPosition;
 		cameraNodeStartRot = cameraNode.rotation;
-		//print (cameraNode.name);
 	}	
 	
 	public void Restart()

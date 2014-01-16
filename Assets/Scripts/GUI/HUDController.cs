@@ -7,10 +7,11 @@ public class HUDController : MonoBehaviour {
 	private const float scoreCoreMultiplier = 0.3f;
 	#endregion
 	
+	private int utilityIconState;
 	private float currentDeltaTimeScore;//score earned in delta time
 	private float accumulatedScore;//total score in the current run
 	private float missionRecordScore;//used for counting score for missions
-	
+		
 	private TextMesh tmScore;
 	private TextMesh tmCurrency;
 	private TextMesh tmMultiplier;
@@ -58,13 +59,14 @@ public class HUDController : MonoBehaviour {
 		scoreContainerScale = tHUDScoreContainer.localScale;
 		currencyIconPosition = tCurrencyIcon.localPosition;
 		currencyContainerScale = tHUDCurrencyContainer.localScale;
-		multiplierContainerScale = tHUDMultiplierContainer.localScale;		
-		
+		multiplierContainerScale = tHUDMultiplierContainer.localScale;
+				
 		Init();
 	}
 	
 	private void Init()
 	{
+		utilityIconState = 0;
 		currentDeltaTimeScore = 0;
 		accumulatedScore = 0;
 		missionRecordScore = 0;
@@ -107,7 +109,17 @@ public class HUDController : MonoBehaviour {
 				Mathf.RoundToInt(missionRecordScore));
 			missionRecordScore = 0;
 		}
-	}
+	}//end of late update
+	
+	private IEnumerator diplayUtilityIcons()
+	{
+		yield return new WaitForFixedUpdate();
+		
+		if (utilityIconState == 0)
+		{
+			
+		}
+	}//end of display utility icons coroutine
 		
 	/// <summary>
 	/// Resize HUD Score and Currency containers according to digit count.

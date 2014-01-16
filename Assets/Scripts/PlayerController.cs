@@ -50,6 +50,7 @@ public class PlayerController : MonoBehaviour {
 	//vertical position data
 	private float fVerticalPosition;
 	private float fRayContactPosition;
+	private float powerupHeightFactor;//vertical displacement if a power-up is active
 	
 	//private bool enteredTurnRadius;
 	private bool ControlsEnabled;
@@ -93,16 +94,18 @@ public class PlayerController : MonoBehaviour {
 	
 	private void Init()
 	{
+		turnPatch = null;
 		currentLane = 0;
 		fCurrentForwardSpeed = fStartForwardSpeed;
 		fRunAnimationSpeed = 0.8f;//run animation's speed
+		powerupHeightFactor = 0;
 		fVerticalPosition = 0;
 		fRayContactPosition = 0;
-		turnPatch = null;
-		
 		deltaScorePosition = 0;
 		deltaHorizontalPosition = 0;
-		
+		previousHorizontalPosition = 0;
+		currentHorizontalPosition = 0;
+				
 		ControlsEnabled = false;
 		JumpState = 0;
 		DuckState = 0;
@@ -253,8 +256,8 @@ public class PlayerController : MonoBehaviour {
 		}//end of jump state 2
 		
 		tPlayer.position = new Vector3(tPlayer.position.x,
-			MathCustom.LerpLinear(tPlayer.position.y, fVerticalPosition, Time.deltaTime*fVerticalAccleration),
-			tPlayer.position.z);		
+			MathCustom.LerpLinear(tPlayer.position.y, fVerticalPosition+powerupHeightFactor, 
+			Time.deltaTime*fVerticalAccleration), tPlayer.position.z);
 	}//end of set Vertical Position function
 		
 	private void setForwardPosition()
@@ -366,12 +369,13 @@ public class PlayerController : MonoBehaviour {
 					tSecondaryCollider.localPosition.z);
 				
 				//play the slide or roll animation
-				if (UnityEngine.Random.Range(0,2) == 0)
-					aPlayer.Play("slide");
+				if (UnityEngine.Random.Range(0,2) == 0)				
+					aPlayer.Play("slide");				
 				else
 				{
 					aPlayer["roll"].speed = 1.5f;
 					aPlayer.Play("roll");
+					(aPlayer.CrossFadeQueued("roll", 0.35f, QueueMode.CompleteOthers)).speed = 1.5f;
 				}
 				hEnemyController.playEnemyAnimation(EnemyAnimation.slide);
 				
@@ -401,7 +405,7 @@ public class PlayerController : MonoBehaviour {
 					tSecondaryCollider.localPosition.z);
 				
 				aPlayer["run"].speed = fRunAnimationSpeed;
-				aPlayer.CrossFade("run", 0.5f);//play run animation
+				aPlayer.CrossFade("run", 0.1f);//play run animation
 				hEnemyController.playEnemyAnimation(EnemyAnimation.run);
 				
 				hSoundController.playPlayerSound(PlayerSounds.Run);

@@ -91,7 +91,7 @@ public class MissionsController : MonoBehaviour {
 				if (PlayerPrefs.HasKey("ActiveMission_"+i.ToString()))
 				{
 					iActiveMissions[i] = PlayerPrefs.GetInt("ActiveMission_"+i.ToString());//get the index of active missions
-					missions[ iActiveMissions[i] ].progressCount = PlayerPrefs.GetInt("MissionProgress"+i.ToString());
+					missions[ iActiveMissions[i] ].progressCount = PlayerPrefs.GetInt("MissionProgress_"+i.ToString());
 				}
 				else
 				{				
@@ -99,12 +99,11 @@ public class MissionsController : MonoBehaviour {
 					PlayerPrefs.SetInt("ActiveMission_"+i.ToString(), iActiveMissions[i]);
 					
 					missions[ iActiveMissions[i] ].progressCount = 0;
-					PlayerPrefs.SetInt("MissionProgress"+i.ToString(), missions[ iActiveMissions[i] ].progressCount);
+					PlayerPrefs.SetInt("MissionProgress_"+i.ToString(), missions[ iActiveMissions[i] ].progressCount);
 				}
 			}//end of for
 			
-			updateMenuDescriptions();//update mission description on mission and pause menu
-			
+			updateMenuDescriptions();//update mission description on mission and pause menu			
 		}//end of else
 		
 		PlayerPrefs.Save();
@@ -120,11 +119,14 @@ public class MissionsController : MonoBehaviour {
 	{
 		for (int i=0; i<iActiveMissionCount; i++)
 		{
-			if (missions[i].type == type)
+			if (missions[ iActiveMissions[i] ].type == type)
 			{
-				missions[i].progressCount++;
+				missions[ iActiveMissions[i] ].progressCount++;
+				//permanently store mission progress
+				PlayerPrefs.SetInt("MissionProgress_"+iActiveMissions[i].ToString(), 
+					missions[ iActiveMissions[i] ].progressCount);
 				checkCompletion();
-				updateMenuDescriptions();
+				//updateMenuDescriptions();
 				break;
 			}
 		}//end of for
@@ -142,13 +144,14 @@ public class MissionsController : MonoBehaviour {
 	{
 		for (int i=0; i<iActiveMissionCount; i++)
 		{
-			if (missions[i].type == type)
+			if (missions[ iActiveMissions[i] ].type == type)
 			{
-				missions[i].progressCount += iVal;
+				missions[ iActiveMissions[i] ].progressCount += iVal;
 				//permanently store mission progress
-				PlayerPrefs.SetInt("MissionProgress"+i.ToString(), missions[i].progressCount);
+				PlayerPrefs.SetInt("MissionProgress_"+iActiveMissions[i].ToString(), 
+					missions[ iActiveMissions[i] ].progressCount);
 				checkCompletion();
-				updateMenuDescriptions();
+				//updateMenuDescriptions();
 				break;
 			}
 		}//end of for
@@ -191,10 +194,10 @@ public class MissionsController : MonoBehaviour {
 		//replace the completed mission with a new one
 		iActiveMissions[missionIndex] = getNextMission();
 		//reset the new active mission count
-		PlayerPrefs.SetInt("MissionProgress"+missionIndex.ToString(), 0);
+		PlayerPrefs.SetInt("MissionProgress_"+missionIndex.ToString(), 0);
 		
 		//permenantly save the new active mission
-		PlayerPrefs.SetInt("ActiveMission_"+missionIndex, iActiveMissions[missionIndex]);
+		PlayerPrefs.SetInt("ActiveMission_"+missionIndex.ToString(), iActiveMissions[missionIndex]);
 			
 		//update the mission decription on the pause menu and missions menu
 		updateMenuDescriptions();

@@ -3,9 +3,29 @@ using System.Collections;
 
 public class GameController : MonoBehaviour {
 	
-	private int userCurrency;
+	#region Variables
+	private int userStandardCurrency;
+	private int userPremiumCurrency;
 	private int defaultScoreMultiplier;//user's score multiplier
 	private int currentScoreMultiplier;//current multiplier
+	#endregion
+	
+	#region Utilities
+	private readonly int[] utilityPrice = {
+		100,	//Headstart
+		200,	//Mega Headstart
+		100,	//Score Booster
+		200		//Mega Score Booster
+	};
+	private readonly float[] utilityDuration = {
+		10,
+		15,
+		0,
+		0
+	};
+	private int[] utilityOwned;
+	private int utilityCount;
+	#endregion
 	
 	#region Script References
 	private MenuScript hMenuScript;
@@ -38,18 +58,29 @@ public class GameController : MonoBehaviour {
 		hSecondaryColliderController = (SecondaryColliderController)GameObject
 			.Find("Player/CharacterGroup/Colliders/SecondaryCollider").GetComponent(typeof(SecondaryColliderController));
 		
+		utilityCount = Utilities.GetValues(typeof(Utilities)).Length;
+		utilityOwned = new int[utilityCount];
+		
 		getUserData();
 		Init();
 	}
 	
 	void getUserData()
 	{
-		if (PlayerPrefs.HasKey("UserCurrency"))
-			userCurrency = PlayerPrefs.GetInt("UserCurrency");
+		if (PlayerPrefs.HasKey("UserStandardCurrency"))
+			userStandardCurrency = PlayerPrefs.GetInt("UserStandardCurrency");
 		else
 		{
-			PlayerPrefs.SetInt("UserCurrency", 0);
-			userCurrency = 0;
+			PlayerPrefs.SetInt("UserStandardCurrency", 0);
+			userStandardCurrency = 0;
+		}
+		
+		if (PlayerPrefs.HasKey("UserPremiumCurrency"))
+			userPremiumCurrency = PlayerPrefs.GetInt("UserPremiumCurrency");
+		else
+		{
+			PlayerPrefs.SetInt("UserPremiumCurrency", 0);
+			userPremiumCurrency = 0;
 		}
 		
 		if (PlayerPrefs.HasKey("ScoreMultiplier"))
@@ -60,8 +91,19 @@ public class GameController : MonoBehaviour {
 			PlayerPrefs.SetInt("ScoreMultiplier", defaultScoreMultiplier);
 		}
 		
+		for (int i=0; i<utilityCount; i++)
+		{
+			if (PlayerPrefs.HasKey("Utility_"+i.ToString()))
+				utilityOwned[i] = PlayerPrefs.GetInt("Utility_"+i.ToString());
+			else
+			{
+				utilityOwned[i] = 0;
+				PlayerPrefs.SetInt("Utility_"+i.ToString(), utilityOwned[i]);
+			}
+		}//end of for
+		
 		PlayerPrefs.Save();
-	}
+	}//end of get user data function
 	
 	void Init()
 	{
@@ -70,6 +112,7 @@ public class GameController : MonoBehaviour {
 	
 	public void relaunchGame()
 	{	
+		PlayerPrefs.Save();
 		StopAllCoroutines();
 		
 		hPatchController.Restart();
@@ -86,7 +129,8 @@ public class GameController : MonoBehaviour {
 		System.GC.Collect();
 	}
 	
-	public int getUserCurrency() { return userCurrency; }
+	public int getUserStandardCurrency() { return userStandardCurrency; }
+	public int getUserPremiumCurrency() { return userPremiumCurrency; }
 	public int getCurrentScoreMultiplier() { return currentScoreMultiplier; }
 	
 	/// <summary>
@@ -111,14 +155,46 @@ public class GameController : MonoBehaviour {
 		currentScoreMultiplier += val;
 	}
 	
-	public bool updateUserCurrency(int updateAmount)
+	public bool updateUserStandardCurrency(int updateAmount)
 	{
+		//on deduction check if user has enough currency
 		if (updateAmount < 0 
-			&& userCurrency < Mathf.Abs(updateAmount) )
+			&& userStandardCurrency < Mathf.Abs(updateAmount) )
 			return false;
 		
-		userCurrency += updateAmount;
-		PlayerPrefs.SetInt("UserCurrency",userCurrency);
+		userStandardCurrency += updateAmount;
+		PlayerPrefs.SetInt("UserStandardCurrency",userStandardCurrency);
 		return true;
 	}
+	
+	public bool updateUserPremiumCurrency(int updateAmount)
+	{
+		//on deduction check if user has enough currency
+		if (updateAmount < 0
+			&& userPremiumCurrency < Mathf.Abs(updateAmount))
+			return false;
+		
+		userPremiumCurrency += updateAmount;
+		PlayerPrefs.SetInt("UserPremiumCurrency", userPremiumCurrency);
+		return true;
+	}
+	
+	#region Utility Functions
+	public int getUtilityPrice(Utilities type) { return utilityPrice[(int)type]; }
+	public float getUtilityDuration(Utilities type) { return utilityDuration[(int)type]; }
+	
+	/// <summary>
+	/// Increases the number of utility items owned by one.
+	/// </summary>
+	/// <param name='type'>
+	/// Type.
+	/// </param>
+	public void updateUtilityOwned(Utilities type)
+	{
+		utilityOwned[(int)type] ++;
+		PlayerPrefs.SetInt("Utility_"+(int)type, utilityOwned[(int)type]);		
+	}
+	
+	public int getUtilityOwnedCount(Utilities type) { return utilityOwned[(int)type]; }
+	#endregion
 }

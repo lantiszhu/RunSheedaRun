@@ -37,6 +37,8 @@ public class PrimaryColliderController : MonoBehaviour {
 			return;		
 		else//regular case
 		{
+			togglePrimaryCollider(false);
+			hSecondaryColliderController.toggleSecondaryCollider(false);
 			StartCoroutine(hInGameController.routineGameOver());
 		}
 	}

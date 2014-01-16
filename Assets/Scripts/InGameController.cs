@@ -26,6 +26,7 @@ public class InGameController : MonoBehaviour {
 	private EnemyController hEnemyController;
 	private MissionsController hMissionsController;
 	private SoundController hSoundController;
+	private PowerupController hPowerupController;
 	private PrimaryColliderController hPrimaryColliderController;
 	private SecondaryColliderController hSecondaryColliderController;
 	#endregion
@@ -38,6 +39,7 @@ public class InGameController : MonoBehaviour {
 		hEnemyController = (EnemyController)GameObject.Find("Enemy").GetComponent(typeof(EnemyController));
 		hMissionsController = this.GetComponent<MissionsController>();
 		hSoundController = GameObject.Find("SoundManager").GetComponent<SoundController>();
+		hPowerupController = this.GetComponent<PowerupController>();
 		hPrimaryColliderController = (PrimaryColliderController)GameObject
 			.Find("Player/CharacterGroup/Colliders/PrimaryCollider").GetComponent(typeof(PrimaryColliderController));
 		hSecondaryColliderController = (SecondaryColliderController)GameObject
@@ -60,7 +62,8 @@ public class InGameController : MonoBehaviour {
 	
 	public void Restart()
 	{
-		Init();		
+		StopAllCoroutines();
+		Init();
 	}
 		
 	void FixedUpdate ()
@@ -132,10 +135,9 @@ public class InGameController : MonoBehaviour {
 	{
 		while(true)
 		{
-			yield return new WaitForFixedUpdate();
-			
 			if (iGameOverState == 0)//display and countdown revive menu
 			{
+				iGameOverState = 1;
 				bGamePaused = true;							
 				//turn off colliders
 				hPrimaryColliderController.togglePrimaryCollider(false);
@@ -147,9 +149,8 @@ public class InGameController : MonoBehaviour {
 				hMenuScript.ShowMenu((int)Menus.Revive);
 				
 				hSoundController.pausePlayerSound(PlayerSounds.Run);
-				fReviveCountdownStart = Time.time;
+				fReviveCountdownStart = Time.time;				
 				
-				iGameOverState = 1;
 				PlayerPrefs.Save();				
 			}
 			else if (iGameOverState == 1)//wait for user to revive
@@ -169,7 +170,11 @@ public class InGameController : MonoBehaviour {
 					iGameOverState = 3;
 			}
 			else if (iGameOverState == 3)//display the game over menu
-			{					
+			{	
+				hGameController.updateUserStandardCurrency(hPowerupController.getCollectedStandardCurrency());
+				hGameController.updateUserPremiumCurrency(hPowerupController.getCollectedPremiumCurrency());
+				PlayerPrefs.Save();
+				
 				hMenuScript.ShowMenu((int)Menus.GameOverMenu);//show game over menu
 				break;
 			}
@@ -197,6 +202,8 @@ public class InGameController : MonoBehaviour {
 					break;
 				}
 			}
+			
+			yield return new WaitForFixedUpdate();
 		}//end of while
 		
 		iGameOverState = 0;

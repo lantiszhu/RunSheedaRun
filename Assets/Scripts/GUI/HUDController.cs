@@ -7,8 +7,9 @@ public class HUDController : MonoBehaviour {
 	private const float scoreCoreMultiplier = 0.3f;
 	#endregion
 	
-	private float currentDeltaTimeScore;
-	private float accumulatedScore;
+	private float currentDeltaTimeScore;//score earned in delta time
+	private float accumulatedScore;//total score in the current run
+	private float missionRecordScore;//used for counting score for missions
 	
 	private TextMesh tmScore;
 	private TextMesh tmCurrency;
@@ -66,6 +67,7 @@ public class HUDController : MonoBehaviour {
 	{
 		currentDeltaTimeScore = 0;
 		accumulatedScore = 0;
+		missionRecordScore = 0;
 		
 		iDivisorScore = 10;
 		iDivisorCurrency = 10;
@@ -97,8 +99,14 @@ public class HUDController : MonoBehaviour {
 		//show the earned currency on HUD
 		tmCurrency.text = hPowerupController.getCollectedStandardCurrency().ToString();
 		
-		hMissionsController.incrementMissionCount(MissionTypes.Score,
-			Mathf.RoundToInt(currentDeltaTimeScore));//send the score earned in delta time to Missions Controller
+		//send the score earned to Missions Controller
+		missionRecordScore += currentDeltaTimeScore;
+		if (missionRecordScore >= 1)
+		{
+			hMissionsController.incrementMissionCount(MissionTypes.Score, 
+				Mathf.RoundToInt(missionRecordScore));
+			missionRecordScore = 0;
+		}
 	}
 		
 	/// <summary>

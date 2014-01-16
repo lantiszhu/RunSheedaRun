@@ -8,11 +8,19 @@ public enum Powerups
 	PremiumCurrency = 2
 }
 
+public enum Utilities
+{
+	Headstart = 0,
+	MegaHeadstart = 1,
+	ScoreBooster = 2,
+	MegaScoreBooster = 3
+}
+
 public class PowerupController : MonoBehaviour {
 	
 	#region Contants
 	private const float defaultElementPullDistance = 1;//default pull value
-	private const float magnetismPullDistance = 5;//pull value when magnetism is active
+	private const float magnetismPullDistance = 5;//pull value when magnetism is active	
 	#endregion
 	
 	#region Variables
@@ -145,4 +153,5 @@ public class PowerupController : MonoBehaviour {
 	
 	public float getElementPullDistance() { return elementPullDistance; }
 	public int getCollectedStandardCurrency() { return collectedStandardCurrency; }
+	public int getCollectedPremiumCurrency() { return collectedPremiumCurrency; }
 }

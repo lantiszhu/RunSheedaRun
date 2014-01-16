@@ -124,6 +124,7 @@ public class MenuScript : MonoBehaviour {
 	private InGameController hInGameController;
 	private SoundController hSoundController;
 	private ShopScript hShopScript;
+	private MissionsController hMissionsController;
 	#endregion
 		
 	void Start ()
@@ -131,6 +132,7 @@ public class MenuScript : MonoBehaviour {
 		hInGameController = (InGameController)GameObject.Find("Player").GetComponent(typeof(InGameController));
 		hSoundController = GameObject.Find("SoundManager").GetComponent<SoundController>();
 		hShopScript = this.transform.Find("Shop").GetComponent<ShopScript>();
+		hMissionsController = GameObject.Find("Player").GetComponent<MissionsController>();
 		
 		HUDCamera = (Camera)GameObject.Find("GUIGroup/Camera").GetComponent(typeof(Camera));		
 		//the fResolutionFactor can be used to adjust components according to screen size
@@ -403,8 +405,7 @@ public class MenuScript : MonoBehaviour {
 		else if (tMainMenuButtons[1] == buttonTransform)//information button
 		{
 			CloseMenu((int)Menus.MainMenu);
-			ShowMenu((int)Menus.InformationMenu);
-			CurrentMenu = (int)Menus.InformationMenu;
+			ShowMenu((int)Menus.InformationMenu);			
 		}
 		else if (tMainMenuButtons[2] == buttonTransform)//settings button
 		{
@@ -414,9 +415,7 @@ public class MenuScript : MonoBehaviour {
 		else if (tMainMenuButtons[3] == buttonTransform)//shop button
 		{
 			CloseMenu((int)Menus.MainMenu);
-					
-			hShopScript.setShopScriptEnabled(true);
-			toggleMenuScriptStatus(false);
+			ShowMenu((int)Menus.Shop);			
 		}
 		else if (tMainMenuButtons[4] == buttonTransform)//mission menu button
 		{
@@ -588,8 +587,16 @@ public class MenuScript : MonoBehaviour {
 	/// </param>
 	public void ShowMenu(int index)
 	{		
-		/*if ((int)Menus.MissionsMenu == index)//display mission menu
-			hMissionsControllerCS.updateMenuDescriptions();//list the mission on the missions menu*/
+		if ((int)Menus.MissionsMenu == index)//display mission menu
+			hMissionsController.updateMenuDescriptions();//list the mission on the missions menu
+		if ((int)Menus.PauseMenu == index)
+			hMissionsController.updateMenuDescriptions();//list the mission on the missions menu
+		else if ((int)Menus.Shop == index)
+		{
+			hShopScript.setShopScriptEnabled(true);
+			hShopScript.ShowMenu((int)ShopMenus.ShopHome);
+			toggleMenuScriptStatus(false);
+		}
 		
 		tMenuTransforms[index].localPosition = new Vector3(tMenuTransforms[index].localPosition.x,
 			0, tMenuTransforms[index].localPosition.z);//move the menu in front of the HUD Camera
@@ -637,9 +644,6 @@ public class MenuScript : MonoBehaviour {
 	
 	public void toggleHUDState(bool state)
 	{
-		if (state == bHUDState)//if state has not changed
-			return;
-		
 		if (state)
 			tHUDGroup.localPosition = new Vector3(0, 0, 0);//show HUD
 		else

@@ -1,24 +1,19 @@
-/*
-*	FUNCTION:
-*	- Defines the implementation of the complete shop.
-*	
-*	INFO:
-*	- 	The shop does not keep a permanent record of the purchased and 
-*		equiped items. Everything will be reset when the scene is restarted.
-*/
+/// <summary>
+/// Defines the implementation of the complete shop.
+/// </summary>
 using UnityEngine;
 using System.Collections;
 
-public class ShopScript : MonoBehaviour {
+public enum ShopMenus
+{
+	ShopHome = 0,
+	Costumes = 1,
+	Powerups = 2,
+	Utilities = 3,
+	IAPs = 4
+}
 
-	public enum ShopMenus
-	{
-		ShopHome = 0,
-		Costumes = 1,
-		Powerups = 2,
-		Utilities = 3,
-		IAPs = 4
-	}
+public class ShopScript : MonoBehaviour {
 	
 	//names of the available skins
 	public enum CharacterConstumes
@@ -200,8 +195,11 @@ public class ShopScript : MonoBehaviour {
 	private void handlerShopMenu(Transform buttonTransform)
 	{
 		if (buttonTransform == tShopHomeButtons[0])//back button
-		{			
+		{	
 			hMenuScript.toggleMenuScriptStatus(true);
+			hMenuScript.ShowMenu((int)Menus.MainMenu);
+			
+			CloseMenu((int)ShopMenus.ShopHome);
 			setShopScriptEnabled(false);
 		}
 		else if (buttonTransform == tShopHomeButtons[1])//costumes button
@@ -286,7 +284,7 @@ public class ShopScript : MonoBehaviour {
 	{
 		if (CurrentMenu != -1)//check if a menu is currently active
 			((TextMesh)tShopMenuTransforms[CurrentMenu].Find("CurrencyGroup/Text_Currency")
-			.GetComponent(typeof(TextMesh))).text = hGameController.getUserCurrency().ToString();
+			.GetComponent(typeof(TextMesh))).text = hGameController.getUserStandardCurrency().ToString();
 		
 	}
 	
@@ -304,12 +302,12 @@ public class ShopScript : MonoBehaviour {
 	/*
 	*	FUNCTION: Set the menu to show in front of the HUD Camera
 	*/
-	private void ShowMenu(int index)
+	public void ShowMenu(int index)
 	{
 		CurrentMenu = index;//set the active menu to the currently displayed
 		hSoundController.playGUISound(GUISounds.ButtonTap);//play tap sound
 		updateCurrencyOnHeader();//update currency on header
-		
+				
 		if (index == (int)ShopMenus.Costumes)
 		{
 			/*int itemCount=0;
@@ -349,7 +347,7 @@ public class ShopScript : MonoBehaviour {
 		}
 		else if (index == (int)ShopMenus.Utilities)
 		{
-			/*int itemCount=0;
+			int itemCount=0;
 			//set the items's parent as the currentTab to make the vertical scroll code work
 			currentTab = (Transform)tShopMenuTransforms[(int)ShopMenus.Utilities].Find("UtilitiesItemGroup").GetComponent(typeof(Transform));
 					
@@ -357,13 +355,13 @@ public class ShopScript : MonoBehaviour {
 			foreach (Transform costumeItem in currentTab)
 				if (costumeItem.name.Contains("UtilityItem"))
 				{
-					((ShopUtilityScriptCS)costumeItem.GetComponent(typeof(ShopUtilityScriptCS))).setShopUtilityScriptEnabled(true);
+					((ShopUtilityScript)costumeItem.GetComponent(typeof(ShopUtilityScript))).setShopUtilityScriptEnabled(true);
 					itemCount++;//count the number of utilities in utility shop menu
 				}
 			
 			currentTab.localPosition = new Vector3(currentTab.localPosition.x, 0, currentTab.localPosition.z);
 			//set the upper and lower limit of the scroll
-			scrollUpperLimit = currentTab.localPosition.y+(itemCount*15);*/			
+			scrollUpperLimit = currentTab.localPosition.y+(itemCount*15);
 		}
 		else if (index == (int)ShopMenus.IAPs)
 		{
@@ -385,7 +383,7 @@ public class ShopScript : MonoBehaviour {
 		}//end of else if IAPs
 		
 		//move the more menu in front of the HUD camera
-		tShopMenuTransforms[index].position = new Vector3(tShopMenuTransforms[index].position.x, 0, tShopMenuTransforms[index].position.z);
+		tShopMenuTransforms[index].localPosition = new Vector3(tShopMenuTransforms[index].localPosition.x, 0, tShopMenuTransforms[index].localPosition.z);
 	}//end of Show Menu function
 	
 	/*
@@ -434,8 +432,8 @@ public class ShopScript : MonoBehaviour {
 					((ShopIAPScriptCS)costumeItem.GetComponent(typeof(ShopIAPScriptCS))).setShopIAPScriptEnabled(false);
 		}*/
 		
-		tShopMenuTransforms[index].position = new Vector3(tShopMenuTransforms[index].position.x, 1000,
-			tShopMenuTransforms[index].position.z);//hide the menu
+		tShopMenuTransforms[index].localPosition = new Vector3(tShopMenuTransforms[index].localPosition.x, 1000,
+			tShopMenuTransforms[index].localPosition.z);//hide the menu
 		
 		currentTab = null;//disable scroll function
 		CurrentMenu = -1;
@@ -487,16 +485,9 @@ public class ShopScript : MonoBehaviour {
 	*/
 	public void setShopScriptEnabled(bool status)
 	{
-		if (status == true)
-		{
+		if (status == true)		
+			this.enabled = status;		
+		else if (status == false)		
 			this.enabled = status;
-			ShowMenu((int)ShopMenus.ShopHome);
-		}
-		else if (status == false)
-		{
-			this.enabled = status;
-			CloseMenu((int)ShopMenus.ShopHome);
-			hMenuScript.ShowMenu((int)Menus.MainMenu);
-		}
 	}//end of set shop script enabled function
 }

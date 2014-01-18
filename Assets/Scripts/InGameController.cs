@@ -159,7 +159,7 @@ public class InGameController : MonoBehaviour {
 			}
 			else if (iGameOverState == 1)//wait for user to revive
 			{
-				if ( (Time.time-fReviveCountdownStart) 
+				if ( (Time.time-fReviveCountdownStart)
 					>= fReviveCountdownDuration )//if user didnt revive
 				{
 					hMenuScript.CloseMenu((int)Menus.Revive);

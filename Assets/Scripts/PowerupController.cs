@@ -7,6 +7,13 @@ public enum Powerups
 	StandardCurrency = 1,
 	PremiumCurrency = 2
 }
+public struct Powerup
+{
+	public int levelCount;
+	public int currentLevel;
+	public float[] duration;
+	public int[] upgradeCost;
+}
 
 public enum Utilities
 {
@@ -17,9 +24,12 @@ public enum Utilities
 }
 public struct Utility
 {
-	public int cost;
-	public float duration;	
+	public int cost;	
 	public int ownedCount;
+	//any value associated with the utility
+	//multiplier in case of score booster and time duration
+	// in case of headstart
+	public float upgradeValue;
 }
 
 public class PowerupController : MonoBehaviour {
@@ -31,12 +41,12 @@ public class PowerupController : MonoBehaviour {
 	
 	#region Variables
 	private int powerupCount;//total types of powerups
-	private int utilityCount;//total types of utilities
+	private Powerup[] powerups;
 	private float elementPullDistance;	//when to pull currency towards the player
 	private float powerupStartTime;
 	
-	private Utility[] utilityData;
-	private float[] powerupActiveDuration;//number of seconds to keep a powerup active
+	private int utilityCount;//total types of utilities
+	private Utility[] utilityData;	
 	
 	private int collectedStandardCurrency;//number of standard currency collected in the current run
 	private int collectedPremiumCurrency;//number of premium currency collected in the current run
@@ -52,12 +62,7 @@ public class PowerupController : MonoBehaviour {
 		hMissionsController = this.GetComponent<MissionsController>();
 		hSoundController = GameObject.Find("SoundManager").GetComponent<SoundController>();
 		
-		powerupCount = Powerups.GetValues(typeof(Powerups)).Length-2;//get the number of powerup types
-						
-		powerupActiveDuration = new float[powerupCount];
-		for (int i=0; i<powerupCount; i++)//TODO: proper implementation for powerup upgrades
-			powerupActiveDuration[i] = 5;
-		
+		populatePowerupDataStruct();
 		populateUtilityDataStruct();
 		Init();
 	}
@@ -110,15 +115,15 @@ public class PowerupController : MonoBehaviour {
 	/// <param name='powerup'>
 	/// Powerup.
 	/// </param>
-	public void activatePowerup(Powerups powerup)
+	public void activatePowerup(Powerups type)
 	{
-		if (powerup == Powerups.Magnetism)
+		if (type == Powerups.Magnetism)
 		{
 			elementPullDistance = magnetismPullDistance;
 		}
 		
 		powerupStartTime = Time.time;
-		StartCoroutine(countdownPowerupDeactivation(powerup));
+		StartCoroutine(countdownPowerupDeactivation(type));
 	}
 	
 	/// <summary>
@@ -130,15 +135,16 @@ public class PowerupController : MonoBehaviour {
 	/// <param name='powerup'>
 	/// Powerup.
 	/// </param>
-	private IEnumerator countdownPowerupDeactivation(Powerups powerup)
+	private IEnumerator countdownPowerupDeactivation(Powerups type)
 	{
 		while (true)
 		{
 			yield return new WaitForFixedUpdate();
 			
-			if ( (Time.time-powerupStartTime) >= powerupActiveDuration[(int)powerup])
+			if ( (Time.time-powerupStartTime) >= 
+				powerups[(int)type].duration[ powerups[(int)type].currentLevel ])
 			{
-				deactivatePowerup(powerup);
+				deactivatePowerup(type);
 				break;
 			}
 		}//end of while
@@ -152,9 +158,9 @@ public class PowerupController : MonoBehaviour {
 	/// <param name='powerup'>
 	/// Powerup.
 	/// </param>
-	public void deactivatePowerup(Powerups powerup)
+	public void deactivatePowerup(Powerups type)
 	{
-		if (powerup == Powerups.Magnetism)
+		if (type == Powerups.Magnetism)
 		{
 			elementPullDistance = defaultElementPullDistance;
 		}
@@ -195,16 +201,69 @@ public class PowerupController : MonoBehaviour {
 		utilityData[(int)Utilities.ScoreBooster].cost = 100;
 		utilityData[(int)Utilities.MegaScoreBooster].cost = 100;
 		
-		//set the duration of each utility
-		utilityData[(int)Utilities.Headstart].duration = 10;
-		utilityData[(int)Utilities.MegaHeadstart].duration = 15;
+		//set the duration of headstart utility
+		utilityData[(int)Utilities.Headstart].upgradeValue = 10;
+		utilityData[(int)Utilities.MegaHeadstart].upgradeValue = 15;
+		//set the multiplier bonus of the score booster utility
+		utilityData[(int)Utilities.ScoreBooster].upgradeValue = 5;
+		utilityData[(int)Utilities.MegaScoreBooster].upgradeValue = 10;
 		
 	}//end of populate Utility Data Struct function
 	
+	/// <summary>
+	/// Updates the utility owned count.
+	/// </summary>
+	/// <param name='type'>
+	/// Type.
+	/// </param>
+	/// <param name='count'>
+	/// Count.
+	/// </param>
 	public void updateUtilityOwnedCount(Utilities type, int count) 
 	{ 
 		utilityData[(int)type].ownedCount += count;
 		PlayerPrefs.SetInt("Utility_"+ ((int)type).ToString(),
 			utilityData[(int)type].ownedCount);
+	}
+	
+	private void populatePowerupDataStruct()
+	{
+		powerupCount = Powerups.GetValues(typeof(Powerups)).Length-2;//get the number of powerup types
+		powerups = new Powerup[powerupCount];//allocate memory according to the number of powerups
+		
+		for (int i=0; i<powerupCount; i++)
+		{
+			powerups[i].levelCount = 4;	//total upgrade levels
+			powerups[i].duration = new float[powerups[i].levelCount];
+			powerups[i].upgradeCost = new int[powerups[i].levelCount-1];
+			
+			if (PlayerPrefs.HasKey("Powerup_"+i.ToString()))
+				powerups[i].currentLevel = PlayerPrefs.GetInt("Powerup_"+i.ToString());
+			else
+			{
+				powerups[i].currentLevel = 0;
+				PlayerPrefs.SetInt("Powerup_"+i.ToString(), powerups[i].currentLevel);
+			}
+		}//end of for
+		
+		//duration in seconds of each powerup
+		powerups[(int)Powerups.Magnetism].duration[0] = 7;
+		powerups[(int)Powerups.Magnetism].duration[1] = 10;
+		powerups[(int)Powerups.Magnetism].duration[2] = 13;
+		powerups[(int)Powerups.Magnetism].duration[3] = 16;
+		//upgrade cost for each powerup level
+		powerups[(int)Powerups.Magnetism].upgradeCost[0] = 100;
+		powerups[(int)Powerups.Magnetism].upgradeCost[1] = 100;
+		powerups[(int)Powerups.Magnetism].upgradeCost[2] = 100;
+	}//end of populate powerup data struct	
+	public Powerup getPowerupData(Powerups type)
+	{
+		return powerups[(int)type];
+	}	
+	public void upgradePowerupLevel(Powerups type)
+	{
+		powerups[(int)type].currentLevel ++;
+		PlayerPrefs.SetInt("Powerup_"+((int)type).ToString(), 
+			powerups[(int)type].currentLevel);
 	}
 }

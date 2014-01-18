@@ -329,7 +329,7 @@ public class ShopScript : MonoBehaviour {
 		}
 		else if (index == (int)ShopMenus.Powerups)
 		{
-			/*int itemCount=0;
+			int itemCount=0;
 			//set the items's parent as the currentTab to make the vertical scroll code work
 			currentTab = (Transform)tShopMenuTransforms[(int)ShopMenus.Powerups].Find("PowerupsItemGroup").GetComponent(typeof(Transform));
 					
@@ -343,7 +343,7 @@ public class ShopScript : MonoBehaviour {
 			
 			currentTab.localPosition = new Vector3(currentTab.localPosition.x, 0, currentTab.localPosition.z);
 			//set the upper and lower limit of the scroll
-			scrollUpperLimit = currentTab.localPosition.y+(itemCount*15);*/			
+			scrollUpperLimit = currentTab.localPosition.y+(itemCount*15);
 		}
 		else if (index == (int)ShopMenus.Utilities)
 		{

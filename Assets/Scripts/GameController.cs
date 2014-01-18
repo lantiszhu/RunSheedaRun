@@ -130,6 +130,7 @@ public class GameController : MonoBehaviour {
 	
 	/// <summary>
 	/// Updates the current score multiplier in case of multiplier power-up or utility collection/ usage.
+	/// Adds the value passed to the current multiplier.
 	/// </summary>
 	/// <param name='val'>
 	/// Value.
@@ -161,18 +162,5 @@ public class GameController : MonoBehaviour {
 		userPremiumCurrency += updateAmount;
 		PlayerPrefs.SetInt("UserPremiumCurrency", userPremiumCurrency);
 		return true;
-	}
-	
-	#region Utility Functions
-	/*public int getUtilityPrice(Utilities type) { return utilityPrice[(int)type]; }
-	public float getUtilityDuration(Utilities type) { return utilityDuration[(int)type]; }
-		
-	public void updateUtilityOwned(Utilities type)
-	{
-		utilityOwned[(int)type] ++;
-		PlayerPrefs.SetInt("Utility_"+(int)type, utilityOwned[(int)type]);		
-	}
-	
-	public int getUtilityOwnedCount(Utilities type) { return utilityOwned[(int)type]; }*/
-	#endregion
+	}	
 }

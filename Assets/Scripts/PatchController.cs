@@ -13,7 +13,6 @@ public class PatchController : MonoBehaviour {
 		public Transform endNode;
 		public Transform endNode2;
 		public PatchTypes patchType;
-		public Transform obstacleGroup;
 		
 		public Patch(Transform patchT,Transform start,Transform mid, Transform end,PatchTypes type)
 		{
@@ -30,11 +29,7 @@ public class PatchController : MonoBehaviour {
 			startNode = patchTransform.Find("Nodes/Start");
 			midNode = patchTransform.Find("Nodes/Mid");
 			endNode = patchTransform.Find("Nodes/End_1");
-<<<<<<< HEAD
-			obstacleGroup = patchTransform.Find("Obstacles");
-=======
 
->>>>>>> d014ce9d4d0b2c964a9c37c61bd26178aa9abee9
 			if(type==PatchTypes.tee || type==PatchTypes.TLeft || type==PatchTypes.TRight)
 			{
 				endNode2 = patchT.Find("Nodes/End_2");
@@ -57,20 +52,12 @@ public class PatchController : MonoBehaviour {
 	int queueCapacity = 5;
 	int straightPatchCount = 2;
 	Transform startPatch;
-	GameObject elementsMainGroup;
-
-	ElementsGenerator hElementsGenerator;
 
 	void Start () 
 	{	
-		hElementsGenerator = GameObject.Find("Controllers").GetComponent<ElementsGenerator>();
-		elementsMainGroup = (GameObject)GameObject.Find("ElementsMainGroup");
 		PatchGroup = new GameObject();
 		PatchGroup.transform.name = "PatchGroup";
-<<<<<<< HEAD
-=======
 
->>>>>>> d014ce9d4d0b2c964a9c37c61bd26178aa9abee9
 		init();
 	}
 	private void init()
@@ -81,40 +68,17 @@ public class PatchController : MonoBehaviour {
 			currentPatch = (GameObject)Instantiate(straightPatchList[0]);
 			currentPatch.transform.parent = PatchGroup.transform;
 			currentPatch.transform.position = new Vector3(0,0,-10);
-<<<<<<< HEAD
-			currentPatch.transform.name = "StartPatch";
-			//GameObject.Destroy(currentPatch.transform.Find("Obstacles").gameObject);
-=======
 			GameObject.Destroy(currentPatch.transform.Find("Obstacles").gameObject);
->>>>>>> d014ce9d4d0b2c964a9c37c61bd26178aa9abee9
 			patchesList.AddFirst(new Patch(currentPatch.transform,PatchTypes.straight));
 			currentpatchType = PatchTypes.straight;
-			//hElementsGenerator.addObstacles(currentPatch.transform,currentpatchType);
 		}
-<<<<<<< HEAD
-
-=======
 		
 		//tickTime = 0;
->>>>>>> d014ce9d4d0b2c964a9c37c61bd26178aa9abee9
 		straightPatchCount = Random.Range(2,4);
 		for (int i = 0; i < queueCapacity-1; i++)
 		{
 			updatePatch();
 		}
-		hElementsGenerator.InitCoins();
-	}
-
-	private void clearAll()
-	{
-		do
-		{
-			Transform T = patchesList.Last.Value.patchTransform;
-			lastTeeNode = null;
-			GameObject.Destroy(T.gameObject);
-			patchesList.RemoveLast();
-		}while(patchesList.First!=patchesList.Last);
-		currentPatch = null;
 	}
 
 	private void clearAll()
@@ -182,11 +146,7 @@ public class PatchController : MonoBehaviour {
 	}
 	PatchTypes selectNextpatchType()
 	{
-<<<<<<< HEAD
-		return PatchTypes.straight;// Un-comment to just have straight patches.
-=======
 		//return PatchTypes.straight; Un-comment to just have straight patches.
->>>>>>> d014ce9d4d0b2c964a9c37c61bd26178aa9abee9
 		PatchTypes patchType;
 		if (straightPatchCount>0)
 		{
@@ -255,7 +215,7 @@ public class PatchController : MonoBehaviour {
 	/// <returns>The patch.</returns>
 	/// <param name="decission">Directions decission</param>
 	/// 
-	public Transform updatePatch()
+	public Transform updatePatch(int decision = 1)
 	{
 		PatchTypes nextPatchType = selectNextpatchType();
 
@@ -264,11 +224,11 @@ public class PatchController : MonoBehaviour {
 			nextPatchType = PatchTypes.left;
 		}
 
-
-		Transform tempT = instentiatNextPach(nextPatchType);
+		GameObject nextPatch = getNextPatch(nextPatchType);
+		Transform tempT = ((GameObject)Instantiate(nextPatch, Vector3.zero, Quaternion.identity)).transform;
 		tempT.transform.parent = PatchGroup.transform;
 		LinkedListNode<Patch> newPatch = new LinkedListNode<Patch>(new Patch(tempT,nextPatchType));
-		print (patchesList.First.Value.endNode);
+
 		newPatch.Value.patchTransform.position = patchesList.First.Value.endNode.position;
 		newPatch.Value.patchTransform.rotation = patchesList.First.Value.endNode.rotation;
 
@@ -286,50 +246,20 @@ public class PatchController : MonoBehaviour {
 		{
 			Transform T = patchesList.Last.Value.patchTransform;
 
-<<<<<<< HEAD
-			if (patchesList.Last.Value.patchType == PatchTypes.tee || patchesList.Last.Value.patchType==PatchTypes.TLeft || patchesList.Last.Value.patchType==PatchTypes.TRight)
-=======
 			if (patchesList.Last.Value.patchType == PatchTypes.tee || patchesList.Last.Value.patchType==PatchTypes.TLeft 
 				|| patchesList.Last.Value.patchType==PatchTypes.TRight)
->>>>>>> d014ce9d4d0b2c964a9c37c61bd26178aa9abee9
 			{
 				//Debug.Log("nullyfy the T-Node");
 				lastTeeNode = null;
 			}
-			if ( patchesList.Last.Value.obstacleGroup != null)
-			{
-				Transform obsGroup = patchesList.Last.Value.obstacleGroup;
-				Debug.Log("++>"+obsGroup.childCount);
-				Transform[] tempObs = new Transform [obsGroup.childCount];
-				int i = 0;
-				for (i = 0; i < obsGroup.childCount; i++) 
-				{
-					tempObs[i] = obsGroup.GetChild(i);
-				}
 
-				for (i = 0; i < tempObs.Length; i++) 
-				{
-					tempObs[i].parent = elementsMainGroup.transform;
-				}
-
-			}
-			else Debug.Log("Usman");
 			GameObject.Destroy(T.gameObject);
 			patchesList.RemoveLast();
 		}
-		hElementsGenerator.addObstacles(patchesList.First.Next.Value.patchTransform,patchesList.First.Next.Value.patchType);
+	
 		return getNextPatchMidNode();
 
 	}
-
-	Transform instentiatNextPach(PatchTypes pType)
-	{
-		//if(patchesList.Count > queueCapacity)
-			
-		GameObject nextPatch = getNextPatch(pType);
-		return ((GameObject)Instantiate(nextPatch, Vector3.zero, Quaternion.identity)).transform ;
-	}
-
 	void reconnectPatches(LinkedListNode<Patch> p)
 	{
 		LinkedListNode<Patch> point = p.Previous;
@@ -346,7 +276,7 @@ public class PatchController : MonoBehaviour {
 			point = point.Previous;
 		}
 	}
-	float tick = 0;
+	/*float tick = 0;
 	void Update()
 	{
 		if (tick>1)
@@ -357,11 +287,11 @@ public class PatchController : MonoBehaviour {
 		tick += Time.deltaTime;
 		if (Input.GetKeyUp(KeyCode.D))
 		{
-			//makeDecision(2);
+			makeDecision(2);
 		}
 		if (Input.GetKeyUp(KeyCode.A))
 		{
 			updatePatch();
 		}
-	}
+	}*/
 }

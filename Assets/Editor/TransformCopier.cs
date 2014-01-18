@@ -1,9 +1,7 @@
 using UnityEngine;
 using UnityEditor;
 using System.Collections;
-using System.Collections.Generic;
 using System.IO;
-using System.Xml.Serialization;
  
 public class TransformCopier : ScriptableObject
 {
@@ -122,10 +120,6 @@ public class TransformCopier : ScriptableObject
 		midNode.position = new Vector3((start.position.x+end.position.x)/2,0,(start.position.z+end.position.z)/2);
 		midNode.rotation = Quaternion.identity;
 		
-	}	[MenuItem ("Custom/Level Editor/Save obsticle pattern &s")]
-	public static void saveObsticlePattern()
-	{
-		//LevelEditorOptions.saveObsticlePattern();
 	}
 	/*
 // copy glyph data from MyFont.ttf into a custom font called f2

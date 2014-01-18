@@ -61,11 +61,87 @@ public class PowerupController : MonoBehaviour {
 	{
 		hMissionsController = this.GetComponent<MissionsController>();
 		hSoundController = GameObject.Find("SoundManager").GetComponent<SoundController>();
+<<<<<<< HEAD
+=======
 		
+<<<<<<< HEAD
 		populatePowerupDataStruct();
+=======
+>>>>>>> d014ce9d4d0b2c964a9c37c61bd26178aa9abee9
+		powerupCount = Powerups.GetValues(typeof(Powerups)).Length-2;//get the number of powerup types
+						
+		powerupActiveDuration = new float[powerupCount];
+		for (int i=0; i<powerupCount; i++)//TODO: proper implementation for powerup upgrades
+			powerupActiveDuration[i] = 5;
+		
+>>>>>>> c32445305358594d33d2c9a079af4780a3453094
 		populateUtilityDataStruct();
 		Init();
 	}
+<<<<<<< HEAD
+	
+	void Init()
+	{
+		collectedStandardCurrency = 0;
+		collectedPremiumCurrency = 0;
+		elementPullDistance = defaultElementPullDistance;
+	}
+	
+	public void Restart()
+	{
+		Init();
+	}
+	
+	/// <summary>
+	/// Handles what to do when a pickable object is collected
+	/// </summary>
+	/// <param name='type'>
+	/// Type.
+	/// </param>
+	public void handleElementCollection(Powerups type)
+	{
+		if (type == Powerups.StandardCurrency)
+		{
+			collectedStandardCurrency ++;
+			//tell the Missions Controller that a standard currency unit has been collected
+			hMissionsController.incrementMissionCount(MissionTypes.StandardCurrency);
+			
+			hSoundController.playPowerupSound(PowerupSounds.CurrencyCollection);
+
+
+		}
+		else if (type == Powerups.PremiumCurrency)
+			collectedPremiumCurrency ++;
+		else//if a power-up has been collected
+		{
+			activatePowerup(type);
+			
+			if (type == Powerups.Magnetism)//tell Mission Controller if a magnetism power-up is collected
+				hMissionsController.incrementMissionCount(MissionTypes.MagnetismPowerup);
+			
+			//tell the Missions Controller that a power-up has been picked up
+			hMissionsController.incrementMissionCount(MissionTypes.Powerups);
+		}		
+	}//end of powerup collection handler
+	
+	/// <summary>
+	/// Activates a powerup.
+	/// </summary>
+	/// <param name='powerup'>
+	/// Powerup.
+	/// </param>
+	public void activatePowerup(Powerups type)
+	{
+		if (type == Powerups.Magnetism)
+		{
+			elementPullDistance = magnetismPullDistance;
+		}
+		
+		powerupStartTime = Time.time;
+		StartCoroutine(countdownPowerupDeactivation(type));
+	}
+	
+=======
 	
 	void Init()
 	{
@@ -115,17 +191,18 @@ public class PowerupController : MonoBehaviour {
 	/// <param name='powerup'>
 	/// Powerup.
 	/// </param>
-	public void activatePowerup(Powerups type)
+	public void activatePowerup(Powerups powerup)
 	{
-		if (type == Powerups.Magnetism)
+		if (powerup == Powerups.Magnetism)
 		{
 			elementPullDistance = magnetismPullDistance;
 		}
 		
 		powerupStartTime = Time.time;
-		StartCoroutine(countdownPowerupDeactivation(type));
+		StartCoroutine(countdownPowerupDeactivation(powerup));
 	}
 	
+>>>>>>> d014ce9d4d0b2c964a9c37c61bd26178aa9abee9
 	/// <summary>
 	/// Countdowns the powerup deactivation.
 	/// </summary>
@@ -148,6 +225,8 @@ public class PowerupController : MonoBehaviour {
 				break;
 			}
 		}//end of while
+<<<<<<< HEAD
+=======
 		
 		StopCoroutine("countdownPowerupDeactivation");
 	}
@@ -169,6 +248,29 @@ public class PowerupController : MonoBehaviour {
 	{
 		for (int i=0; i<powerupCount; i++)
 			deactivatePowerup( (Powerups)i );
+>>>>>>> d014ce9d4d0b2c964a9c37c61bd26178aa9abee9
+		
+		StopCoroutine("countdownPowerupDeactivation");
+	}
+	
+<<<<<<< HEAD
+	/// <summary>
+	/// Deactivates the powerup.
+	/// </summary>
+	/// <param name='powerup'>
+	/// Powerup.
+	/// </param>
+	public void deactivatePowerup(Powerups powerup)
+	{
+		if (powerup == Powerups.Magnetism)
+		{
+			elementPullDistance = defaultElementPullDistance;
+		}
+	}
+	public void deactivateAllPowerups()
+	{
+		for (int i=0; i<powerupCount; i++)
+			deactivatePowerup( (Powerups)i );
 		
 		StopCoroutine("countdownPowerupDeactivation");
 	}
@@ -181,6 +283,16 @@ public class PowerupController : MonoBehaviour {
 	public int getUtilityCount() { return utilityCount; }
 	private void populateUtilityDataStruct()
 	{
+=======
+	public float getElementPullDistance() { return elementPullDistance; }
+	public int getCollectedStandardCurrency() { return collectedStandardCurrency; }
+	public int getCollectedPremiumCurrency() { return collectedPremiumCurrency; }
+	
+	public Utility getUtilityData(Utilities type) { return utilityData[(int)type]; }	
+	public int getUtilityCount() { return utilityCount; }
+	private void populateUtilityDataStruct()
+	{
+>>>>>>> d014ce9d4d0b2c964a9c37c61bd26178aa9abee9
 		utilityCount = Utilities.GetValues(typeof(Utilities)).Length;
 		utilityData = new Utility[utilityCount];
 				

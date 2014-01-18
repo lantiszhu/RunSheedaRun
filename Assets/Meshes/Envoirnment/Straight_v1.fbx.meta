@@ -3,37 +3,122 @@ guid: 3f5b9a99d545e484bac04ff0a62110fa
 ModelImporter:
   serializedVersion: 15
   fileIDToRecycleName:
-    100000: polySurface357
-    100002: polySurface378
-    100004: //RootNode
-    100006: EndNode
-    100008: Nodes
-    100010: StartNode
-    100012: End
-    100014: ENO
-    100016: ENO 1
-    100018: Node
-    100020: Start
-    400000: polySurface357
-    400002: polySurface378
-    400004: //RootNode
-    400006: EndNode
-    400008: Nodes
-    400010: StartNode
-    400012: End
-    400014: ENO
-    400016: ENO 1
-    400018: Node
-    400020: Start
-    2300000: polySurface357
-    2300002: polySurface378
-    3300000: polySurface357
-    3300002: polySurface378
-    4300000: polySurface378
-    4300002: polySurface357
+    100000: 014
+    100002: 015
+    100004: 016
+    100006: 02
+    100008: BL_T_04
+    100010: BL_T_05
+    100012: BLT_01
+    100014: BLT_02
+    100016: BLT_03
+    100018: BLT_04
+    100020: brokenShop
+    100022: brokenShop1
+    100024: End
+    100026: ENO
+    100028: group11
+    100030: group12
+    100032: group17
+    100034: group18
+    100036: Node
+    100038: polySurface20
+    100040: small shop 2
+    100042: small shop 3
+    100044: smallshop
+    100046: smallshop1
+    100048: Start
+    100050: //RootNode
+    100052: underconsthouse002
+    100054: underconsthouse003
+    400000: 014
+    400002: 015
+    400004: 016
+    400006: 02
+    400008: BL_T_04
+    400010: BL_T_05
+    400012: BLT_01
+    400014: BLT_02
+    400016: BLT_03
+    400018: BLT_04
+    400020: brokenShop
+    400022: brokenShop1
+    400024: End
+    400026: ENO
+    400028: group11
+    400030: group12
+    400032: group17
+    400034: group18
+    400036: Node
+    400038: polySurface20
+    400040: small shop 2
+    400042: small shop 3
+    400044: smallshop
+    400046: smallshop1
+    400048: Start
+    400050: //RootNode
+    400052: underconsthouse002
+    400054: underconsthouse003
+    2300000: 014
+    2300002: 015
+    2300004: 016
+    2300006: 02
+    2300008: BL_T_04
+    2300010: BL_T_05
+    2300012: BLT_01
+    2300014: BLT_02
+    2300016: BLT_03
+    2300018: BLT_04
+    2300020: brokenShop
+    2300022: brokenShop1
+    2300024: polySurface20
+    2300026: small shop 2
+    2300028: small shop 3
+    2300030: smallshop
+    2300032: smallshop1
+    2300034: underconsthouse002
+    2300036: underconsthouse003
+    3300000: 014
+    3300002: 015
+    3300004: 016
+    3300006: 02
+    3300008: BL_T_04
+    3300010: BL_T_05
+    3300012: BLT_01
+    3300014: BLT_02
+    3300016: BLT_03
+    3300018: BLT_04
+    3300020: brokenShop
+    3300022: brokenShop1
+    3300024: polySurface20
+    3300026: small shop 2
+    3300028: small shop 3
+    3300030: smallshop
+    3300032: smallshop1
+    3300034: underconsthouse002
+    3300036: underconsthouse003
+    4300000: polySurface20
+    4300002: BLT_03
+    4300004: BLT_04
+    4300006: 015
+    4300008: BL_T_05
+    4300010: brokenShop1
+    4300012: underconsthouse003
+    4300014: smallshop1
+    4300016: small shop 3
+    4300018: 016
+    4300020: BLT_01
+    4300022: BLT_02
+    4300024: 02
+    4300026: BL_T_04
+    4300028: brokenShop
+    4300030: underconsthouse002
+    4300032: smallshop
+    4300034: small shop 2
+    4300036: 014
     9500000: //RootNode
   materials:
-    importMaterials: 0
+    importMaterials: 1
     materialName: 0
     materialSearch: 1
   animations:
@@ -47,17 +132,17 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     clipAnimations: []
-    isReadable: 1
+    isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
-    meshCompression: 3
+    globalScale: .00999999978
+    meshCompression: 0
     addColliders: 0
-    importBlendShapes: 1
+    importBlendShapes: 0
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 1
+    optimizeMeshForGPU: 0
     weldVertices: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001

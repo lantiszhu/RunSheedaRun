@@ -3,29 +3,217 @@ guid: d5291e4c745db4af29f9741b5b47783b
 ModelImporter:
   serializedVersion: 15
   fileIDToRecycleName:
-    100000: polySurface377
-    100002: Shda_RN_T
-    100004: //RootNode
-    100006: End
-    100008: ENO
-    100010: Nodes
-    100012: Start
-    400000: polySurface377
-    400002: Shda_RN_T
-    400004: //RootNode
-    400006: End
-    400008: ENO
-    400010: Nodes
-    400012: Start
-    2300000: polySurface377
-    2300002: Shda_RN_T
-    3300000: polySurface377
-    3300002: Shda_RN_T
-    4300000: Shda_RN_T
-    4300002: polySurface377
+    100000: 014
+    100002: 015
+    100004: 016
+    100006: 02
+    100008: 021
+    100010: 022
+    100012: 023
+    100014: 024
+    100016: 026
+    100018: BL_T_011
+    100020: BL_T_014
+    100022: BL_T_05
+    100024: BL_T_08
+    100026: BLT_01
+    100028: BLT_010
+    100030: BLT_011
+    100032: BLT_012
+    100034: BLT_015
+    100036: BLT_02
+    100038: BLT_03
+    100040: BLT_04
+    100042: BLT_09
+    100044: brokenShop
+    100046: brokenShop1
+    100048: brokenShop4
+    100050: End
+    100052: ENO
+    100054: group24
+    100056: group25
+    100058: group26
+    100060: group27
+    100062: Node
+    100064: polySurface27
+    100066: small shop 2
+    100068: small shop 3
+    100070: small shop 6
+    100072: small shop 7
+    100074: smallshop
+    100076: smallshop1
+    100078: smallshop11
+    100080: smallshop5
+    100082: Start
+    100084: //RootNode
+    100086: underconsthouse002
+    100088: underconsthouse003
+    100090: underconsthouse006
+    100092: underconsthouse007
+    400000: 014
+    400002: 015
+    400004: 016
+    400006: 02
+    400008: 021
+    400010: 022
+    400012: 023
+    400014: 024
+    400016: 026
+    400018: BL_T_011
+    400020: BL_T_014
+    400022: BL_T_05
+    400024: BL_T_08
+    400026: BLT_01
+    400028: BLT_010
+    400030: BLT_011
+    400032: BLT_012
+    400034: BLT_015
+    400036: BLT_02
+    400038: BLT_03
+    400040: BLT_04
+    400042: BLT_09
+    400044: brokenShop
+    400046: brokenShop1
+    400048: brokenShop4
+    400050: End
+    400052: ENO
+    400054: group24
+    400056: group25
+    400058: group26
+    400060: group27
+    400062: Node
+    400064: polySurface27
+    400066: small shop 2
+    400068: small shop 3
+    400070: small shop 6
+    400072: small shop 7
+    400074: smallshop
+    400076: smallshop1
+    400078: smallshop11
+    400080: smallshop5
+    400082: Start
+    400084: //RootNode
+    400086: underconsthouse002
+    400088: underconsthouse003
+    400090: underconsthouse006
+    400092: underconsthouse007
+    2300000: 014
+    2300002: 015
+    2300004: 016
+    2300006: 02
+    2300008: 021
+    2300010: 022
+    2300012: 023
+    2300014: 024
+    2300016: 026
+    2300018: BL_T_011
+    2300020: BL_T_014
+    2300022: BL_T_05
+    2300024: BL_T_08
+    2300026: BLT_01
+    2300028: BLT_010
+    2300030: BLT_011
+    2300032: BLT_012
+    2300034: BLT_015
+    2300036: BLT_02
+    2300038: BLT_03
+    2300040: BLT_04
+    2300042: BLT_09
+    2300044: brokenShop
+    2300046: brokenShop1
+    2300048: brokenShop4
+    2300050: polySurface27
+    2300052: small shop 2
+    2300054: small shop 3
+    2300056: small shop 6
+    2300058: small shop 7
+    2300060: smallshop
+    2300062: smallshop1
+    2300064: smallshop11
+    2300066: smallshop5
+    2300068: underconsthouse002
+    2300070: underconsthouse003
+    2300072: underconsthouse006
+    2300074: underconsthouse007
+    3300000: 014
+    3300002: 015
+    3300004: 016
+    3300006: 02
+    3300008: 021
+    3300010: 022
+    3300012: 023
+    3300014: 024
+    3300016: 026
+    3300018: BL_T_011
+    3300020: BL_T_014
+    3300022: BL_T_05
+    3300024: BL_T_08
+    3300026: BLT_01
+    3300028: BLT_010
+    3300030: BLT_011
+    3300032: BLT_012
+    3300034: BLT_015
+    3300036: BLT_02
+    3300038: BLT_03
+    3300040: BLT_04
+    3300042: BLT_09
+    3300044: brokenShop
+    3300046: brokenShop1
+    3300048: brokenShop4
+    3300050: polySurface27
+    3300052: small shop 2
+    3300054: small shop 3
+    3300056: small shop 6
+    3300058: small shop 7
+    3300060: smallshop
+    3300062: smallshop1
+    3300064: smallshop11
+    3300066: smallshop5
+    3300068: underconsthouse002
+    3300070: underconsthouse003
+    3300072: underconsthouse006
+    3300074: underconsthouse007
+    4300000: BLT_011
+    4300002: BLT_012
+    4300004: 023
+    4300006: underconsthouse007
+    4300008: smallshop5
+    4300010: small shop 7
+    4300012: 024
+    4300014: BLT_09
+    4300016: BLT_010
+    4300018: 021
+    4300020: BL_T_08
+    4300022: brokenShop4
+    4300024: underconsthouse006
+    4300026: small shop 6
+    4300028: 022
+    4300030: BLT_015
+    4300032: BLT_01
+    4300034: BLT_02
+    4300036: 02
+    4300038: brokenShop
+    4300040: underconsthouse002
+    4300042: smallshop
+    4300044: small shop 2
+    4300046: 014
+    4300048: BL_T_014
+    4300050: smallshop11
+    4300052: BLT_03
+    4300054: BLT_04
+    4300056: 015
+    4300058: BL_T_05
+    4300060: brokenShop1
+    4300062: underconsthouse003
+    4300064: smallshop1
+    4300066: small shop 3
+    4300068: 016
+    4300070: 026
+    4300072: BL_T_011
+    4300074: polySurface27
     9500000: //RootNode
   materials:
-    importMaterials: 0
+    importMaterials: 1
     materialName: 0
     materialSearch: 1
   animations:
@@ -39,17 +227,17 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     clipAnimations: []
-    isReadable: 1
+    isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: .00999999978
     meshCompression: 0
     addColliders: 0
-    importBlendShapes: 1
+    importBlendShapes: 0
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 1
+    optimizeMeshForGPU: 0
     weldVertices: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001

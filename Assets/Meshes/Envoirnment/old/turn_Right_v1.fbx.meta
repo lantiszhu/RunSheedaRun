@@ -1,0 +1,78 @@
+fileFormatVersion: 2
+guid: 68480bd3958534dcdb99597f1f85376c
+ModelImporter:
+  serializedVersion: 15
+  fileIDToRecycleName:
+    100000: End
+    100002: ENO
+    100004: Nodes
+    100006: polySurface377
+    100008: Shda_RN_T
+    100010: Start
+    100012: //RootNode
+    400000: End
+    400002: ENO
+    400004: Nodes
+    400006: polySurface377
+    400008: Shda_RN_T
+    400010: Start
+    400012: //RootNode
+    2300000: polySurface377
+    2300002: Shda_RN_T
+    3300000: polySurface377
+    3300002: Shda_RN_T
+    4300000: Shda_RN_T
+    4300002: polySurface377
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  userData: 

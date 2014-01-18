@@ -69,7 +69,7 @@ public class HUDController : MonoBehaviour {
 		tmScore = this.transform.Find("HUDScoreGroup/HUD_Score_Text").GetComponent("TextMesh") as TextMesh;
 		tmCurrency = this.transform.Find("HUDCurrencyGroup/HUD_Currency_Text").GetComponent("TextMesh") as TextMesh;		
 		tmMultiplier = this.transform.Find("MultiplierGroup/Text_Multiplier").GetComponent("TextMesh") as TextMesh;
-		updateMultiplierHUDValue();//update the value of the multiplier on HUD
+		tmMultiplier.text = hGameController.getCurrentScoreMultiplier() + "x";
 		
 		tHUDScoreContainer = this.transform.Find("HUDScoreGroup/HUD_Score_BG").transform;//HUD Score Container
 		tHUDCurrencyContainer = this.transform.Find("HUDCurrencyGroup/HUD_Currency_BG").transform;
@@ -100,13 +100,13 @@ public class HUDController : MonoBehaviour {
 		tCurrencyIcon.localPosition = currencyIconPosition;
 		tHUDCurrencyContainer.localScale = currencyContainerScale;
 		tHUDMultiplierContainer.localScale = multiplierContainerScale;		
-				
-		//InvokeRepeating("resizeDigitContainer", 1, 1);//momentarily call the resize function
+		
+		CancelInvoke();
+		InvokeRepeating("resizeDigitContainer", 1, 1);//momentarily call the resize function
 	}
 	
 	public void Restart()
 	{
-		CancelInvoke();
 		Init();
 	}
 	
@@ -203,10 +203,6 @@ public class HUDController : MonoBehaviour {
 					handlerUtilityButtons(Utilities.Headstart);
 				else if (hit.transform == tUtilityButtons[(int)Utilities.MegaHeadstart])
 					handlerUtilityButtons(Utilities.MegaHeadstart);
-				else if (hit.transform == tUtilityButtons[(int)Utilities.ScoreBooster])
-					handlerUtilityButtons(Utilities.ScoreBooster);
-				else if (hit.transform == tUtilityButtons[(int)Utilities.MegaScoreBooster])
-					handlerUtilityButtons(Utilities.MegaScoreBooster);
 			}//end of if raycast
 						
 			iTapState = 0;		
@@ -225,28 +221,15 @@ public class HUDController : MonoBehaviour {
 			StartCoroutine(hPlayerController.headstartRoutine(Utilities.MegaHeadstart));
 			hPowerupController.updateUtilityOwnedCount(type, -1);
 		}
-		else if (type == Utilities.ScoreBooster)
-		{
-			hGameController.updateCurrentScoreMultiplier((int)
-				hPowerupController.getUtilityData(type).upgradeValue);
-			hPowerupController.updateUtilityOwnedCount(type, -1);
-			updateMultiplierHUDValue();
-		}
-		else if (type == Utilities.MegaScoreBooster)
-		{
-			hGameController.updateCurrentScoreMultiplier((int)
-				hPowerupController.getUtilityData(type).upgradeValue);
-			hPowerupController.updateUtilityOwnedCount(type, -1);
-			updateMultiplierHUDValue();
-		}
+		//else if (buttonTransform == tUtilityButtons[(int)Utilities.ScoreBooster])
 		
-		utilityIconState = 2;//make the icon disappear
+		utilityIconState = 2;
 	}
 		
 	/// <summary>
 	/// Resize HUD Score and Currency containers according to digit count.
 	/// </summary>
-	/*private void resizeDigitContainer()
+	private void resizeDigitContainer()
 	{		
 		if ( (accumulatedScore / iDivisorScore) >= 1 )
 		{			
@@ -270,7 +253,5 @@ public class HUDController : MonoBehaviour {
 				tHUDMultiplierContainer.localScale.y, tHUDMultiplierContainer.localScale.z);//expand the background of the multiplier background
 			iDivisorMultiplier *= 10;
 		}
-	}//end of resize digit container function*/
-	
-	public void updateMultiplierHUDValue() { tmMultiplier.text = hGameController.getCurrentScoreMultiplier() + "x"; }
+	}//end of resize digit container function
 }

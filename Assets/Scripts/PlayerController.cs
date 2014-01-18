@@ -5,7 +5,7 @@ public class PlayerController : MonoBehaviour {
 	
 	#region Constants	
 	private const float fStartForwardSpeed = 12.0f;	//player's speed when game starts
-	private const float fLanePositionThreshold = 1.5f;//strafe distance from the center
+	private const float fLanePositionThreshold = 1.5f;//distance from the center
 	private const float fLaneSwitchSpeed = 5.0f;//how fast to strafe
 	
 	private const float fGravity = 270.0f;	//the value with which to pull down the player
@@ -114,7 +114,7 @@ public class PlayerController : MonoBehaviour {
 		turnPatch = null;
 		currentLane = 0;
 		fCurrentForwardSpeed = fStartForwardSpeed;
-		fRunAnimationSpeed = 0.9f;//run animation's speed
+		fRunAnimationSpeed = 0.8f;//run animation's speed		
 		fVerticalPosition = 0;
 		fRayContactPosition = 0;
 		deltaScorePosition = 0;
@@ -620,7 +620,7 @@ public class PlayerController : MonoBehaviour {
 				catch (System.Exception) { continue; }				
 				
 				if ( (Time.time-headstartStartTime) >= 
-					hPowerupController.getUtilityData(headstartType).upgradeValue)//escape when duration is over
+					hPowerupController.getUtilityData(headstartType).duration)//escape when duration is over
 					headstartState = 2;
 			}
 			else if (headstartState == 2)//turn off the headstart utility

@@ -7,36 +7,41 @@ using System.Collections;
 
 public class ShopPowerupScript : MonoBehaviour {
 
-	public Powerups powerup;
-	private Powerup powerupData;
+	/*public int powerupUpgradeLevelMAX;
+	public int upgradeCost;
+	public PowerupsMainControllerCS.PowerUps powerup;
 	
 	private int iTapState = 0;//state of tap on screen
 	private RaycastHit hit;//used for detecting taps
 	private Camera HUDCamera;//the HUD/Menu orthographic camera
 	
+	private int currentPowerupLevel = 1;
+	
 	private Transform tBuyButton;
 	private TextMesh tmCost;
 	
-	#region Script References
-	private ShopScript hShopScript;
-	private GameController hGameController;
-	private PowerupController hPowerupController;
-	#endregion
+	private ShopScriptCS hShopScriptCS;
+	private InGameScriptCS hInGameScriptCS;
+	private PowerupsMainControllerCS hPowerupsMainControllerCS;
 	
 	void Start ()
 	{
-		HUDCamera = (Camera)GameObject.Find("GUIGroup/Camera").GetComponent(typeof(Camera));
-		hShopScript = GameObject.Find("GUIGroup/MenuGroup/Shop").GetComponent<ShopScript>();
-		hGameController = GameObject.Find("Player").GetComponent<GameController>();
-		hPowerupController = GameObject.Find("Player").GetComponent<PowerupController>();
-				
+		HUDCamera = (Camera)GameObject.Find("HUDMainGroup/HUDCamera").GetComponent(typeof(Camera));
+		hShopScriptCS = (ShopScriptCS)GameObject.Find("MenuGroup/Shop").GetComponent(typeof(ShopScriptCS));
+		hInGameScriptCS = (InGameScriptCS)GameObject.Find("Player").GetComponent(typeof(InGameScriptCS));
+		hPowerupsMainControllerCS = (PowerupsMainControllerCS)GameObject.Find("Player").GetComponent(typeof(PowerupsMainControllerCS));
+		
+		if (upgradeCost <= 0)
+			Debug.Log("EXCEPTION: No cost assigned to the Power-up shop element. Check the user documentation.");
+		else if (powerupUpgradeLevelMAX <= 0)
+			Debug.Log("EXCEPTION: Power-up upgrade level cannot be zero. Check the user documentation.");
+		
 		tBuyButton = (Transform)this.transform.Find("Buttons/Button_Buy").GetComponent(typeof(Transform));
 		tmCost = (TextMesh)this.transform.Find("CostGroup/Text_Currency").GetComponent(typeof(TextMesh));
+		tmCost.text = upgradeCost.ToString();//set the cost of the item as specified by the user
 		
-		powerupData = hPowerupController.getPowerupData(powerup);
-		tmCost.text = powerupData.upgradeCost[powerupData.currentLevel].ToString();//set the cost of the item as specified by the user
-				
-		updatePowerupDescription();//Update the text on the power-up item in shop
+		//Update the text on the power-up item in shop
+		(this.transform.Find("Text_ItemLevel").GetComponent("TextMesh") as TextMesh).text = "Level "+currentPowerupLevel;
 		
 		setShopPowerupScriptEnabled(false);//turn off current script
 	}
@@ -82,26 +87,21 @@ public class ShopPowerupScript : MonoBehaviour {
 		if (buttonTransform == tBuyButton)
 		{
 			//increase the powerup level
-			if (powerupData.currentLevel < powerupData.levelCount //check if the max level has not been achieved
-			&& hGameController.getUserStandardCurrency() >= powerupData.upgradeCost[powerupData.currentLevel])//check if user has enough currency
-			{	
-				hPowerupController.upgradePowerupLevel(powerup);//increase the power-up level
+			if (currentPowerupLevel < powerupUpgradeLevelMAX //check if the max level has not been achieved
+			&& hInGameScriptCS.getCurrencyCount() >= upgradeCost)//check if user has enough currency
+			{
+				currentPowerupLevel++;//increase the power-up level
 						
-				hGameController.updateUserStandardCurrency(-powerupData.upgradeCost[powerupData.currentLevel]);//deduct the cost of power-up upgrade
-				hShopScript.updateCurrencyOnHeader();//update the currency on the header bar
+				hInGameScriptCS.alterCurrencyCount(-upgradeCost);//deduct the cost of power-up upgrade
+				hShopScriptCS.updateCurrencyOnHeader();//update the currency on the header bar
 				
-				powerupData = hPowerupController.getPowerupData(powerup);
+				//tell the power-up script to increase the duration of the power-up
+				hPowerupsMainControllerCS.upgradePowerup(powerup);
+				
 				//Update the text on the power-up item in shop
-				updatePowerupDescription();
-				PlayerPrefs.Save();
+				(this.transform.Find("Text_ItemLevel").GetComponent("TextMesh") as TextMesh).text = "Level "+currentPowerupLevel;
 			}
 		}//end of if
-	}
-	
-	private void updatePowerupDescription()
-	{
-		(this.transform.Find("Text_ItemLevel").GetComponent("TextMesh") as TextMesh).text = 
-			"Level " + (powerupData.currentLevel+1).ToString();
 	}
 	
 	/// <summary>
@@ -113,5 +113,5 @@ public class ShopPowerupScript : MonoBehaviour {
 	public void setShopPowerupScriptEnabled(bool state)
 	{	
 		this.enabled = state;	
-	}
+	}*/
 }

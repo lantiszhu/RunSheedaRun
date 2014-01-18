@@ -62,6 +62,14 @@ public class PlayerController : MonoBehaviour {
 	private RaycastHit hitInfo;
 	#endregion
 	
+	#region Headstart
+	private int headstartState;
+	private bool turnState;
+	private float headstartStartTime;
+	private const float headstartForwardSpeed = 36;
+	private const float fActivePowerupHeight = 2.5f;
+	#endregion
+	
 	#region Script References
 	private PatchController hPatchController;
 	private SwipeControls hSwipeControls;
@@ -70,6 +78,9 @@ public class PlayerController : MonoBehaviour {
 	private CameraController hCameraController;
 	private MissionsController hMissionsController;
 	private SoundController hSoundController;
+	private PowerupController hPowerupController;
+	private PrimaryColliderController hPrimaryColliderController;
+	private SecondaryColliderController hSecondaryColliderController;
 	#endregion
 	
 	void Start () 
@@ -81,6 +92,11 @@ public class PlayerController : MonoBehaviour {
 		hCameraController = GameObject.Find("Main Camera").GetComponent<CameraController>();
 		hMissionsController = this.GetComponent<MissionsController>();
 		hSoundController = GameObject.Find("SoundManager").GetComponent<SoundController>();
+		hPowerupController = this.GetComponent<PowerupController>();
+		hPrimaryColliderController = GameObject.Find("Player/CharacterGroup/Colliders/PrimaryCollider")
+			.GetComponent<PrimaryColliderController>();
+		hSecondaryColliderController = GameObject.Find("Player/CharacterGroup/Colliders/SecondaryCollider")
+			.GetComponent<SecondaryColliderController>();
 		
 		tPlayer = this.transform;
 		aPlayer = (Animation)this.transform.Find("CharacterGroup/Sheeda").GetComponent(typeof(Animation));
@@ -94,11 +110,11 @@ public class PlayerController : MonoBehaviour {
 	
 	private void Init()
 	{
+		turnState = false;
 		turnPatch = null;
 		currentLane = 0;
 		fCurrentForwardSpeed = fStartForwardSpeed;
-		fRunAnimationSpeed = 0.8f;//run animation's speed
-		powerupHeightFactor = 0;
+		fRunAnimationSpeed = 0.8f;//run animation's speed		
 		fVerticalPosition = 0;
 		fRayContactPosition = 0;
 		deltaScorePosition = 0;
@@ -109,6 +125,7 @@ public class PlayerController : MonoBehaviour {
 		ControlsEnabled = false;
 		JumpState = 0;
 		DuckState = 0;
+		headstartState = 0;
 		
 		//get patch information
 		currentPatch = hPatchController.getCurrentPatch();
@@ -152,9 +169,8 @@ public class PlayerController : MonoBehaviour {
 		setForwardPosition();//set the position in which player is running
 				
 		setHorizontalPosition();//set lane position
-		
-		if (ControlsEnabled)
-			handlerSwipes();//handle user commands
+				
+		handlerSwipes();//handle user commands
 		
 		//get next patch's mid node when user reaches a mid node
 		if (MathCustom.VectorDistanceXZ(tPlayer.position, nextPatch.midNode.position) 
@@ -232,7 +248,7 @@ public class PlayerController : MonoBehaviour {
 			
 			hSoundController.pausePlayerSound(PlayerSounds.Run);
 			
-			fVerticalPosition += fJumpForce;			
+			fVerticalPosition += fJumpForce;
 			JumpState = 2;
 			
 			hMissionsController.incrementMissionCount(MissionTypes.Jump);//tell Missions Controller that a jump has been triggered
@@ -256,10 +272,20 @@ public class PlayerController : MonoBehaviour {
 		}//end of jump state 2
 		
 		tPlayer.position = new Vector3(tPlayer.position.x,
-			MathCustom.LerpLinear(tPlayer.position.y, fVerticalPosition+powerupHeightFactor, 
+			MathCustom.LerpLinear(tPlayer.position.y, fVerticalPosition, 
 			Time.deltaTime*fVerticalAccleration), tPlayer.position.z);
 	}//end of set Vertical Position function
-		
+	
+	private void forceLandPlayer() { JumpState = 2; }
+	private void forceJumpPlayer()
+	{
+		JumpState = -1;
+		fVerticalPosition = fActivePowerupHeight;//set height for utility
+	}
+	
+	/// <summary>
+	/// Makes the player move forward according to the unity vector.
+	/// </summary>
 	private void setForwardPosition()
 	{
 		initialScorePosition = finalScorePosition;//keep record of previous position
@@ -271,6 +297,9 @@ public class PlayerController : MonoBehaviour {
 	
 	public float getDistanceCoveredInDeltaTime() { return deltaScorePosition; }
 	
+	/// <summary>
+	/// Updates the forward unit vector to the mid node of the next patch.
+	/// </summary>
 	private void updateForwardUnitVector()
 	{		
 		tPlayer.position = new Vector3(currentPatch.midNode.position.x, tPlayer.position.y,
@@ -319,10 +348,13 @@ public class PlayerController : MonoBehaviour {
 	/// <summary>
 	/// Handlers the swipes.
 	/// </summary>
-	SwipeDirection swipeDirection;
+	SwipeDirection swipeDirection = SwipeDirection.Null;
 	private void handlerSwipes()
 	{
-		swipeDirection = hSwipeControls.getSwipeDirection();
+		if (ControlsEnabled)
+			swipeDirection = hSwipeControls.getSwipeDirection();//get the direction in which user swiped
+		else
+			swipeDirection = SwipeDirection.Null;
 		
 		//handle strafes or turns
 		if (swipeDirection == SwipeDirection.Right || swipeDirection == SwipeDirection.Left)
@@ -457,7 +489,7 @@ public class PlayerController : MonoBehaviour {
 	}
 	
 	private IEnumerator turnPlayerOnNextMidNode(SwipeDirection direction)
-	{		
+	{
 		ControlsEnabled = false;
 		if ( 
 			(direction == SwipeDirection.Right && turnPatch.patchType == PatchTypes.left)//right swipe on a right turn?
@@ -499,12 +531,12 @@ public class PlayerController : MonoBehaviour {
 					break;
 				}
 			}//end of while
-		}
+		}//end of else
 		
+		turnState = false;//used by headstart utility 
 		turnPatch = null;
-		//enteredTurnRadius = false;
 		ControlsEnabled = true;
-		StopCoroutine("turnPlayer");//stop current routine*/
+		StopCoroutine("turnPlayerOnNextMidNode");//stop current routine
 	}//end of turn player on next mid node coroutine
 			
 	private IEnumerator rotatePlayer(SwipeDirection direction)
@@ -548,14 +580,77 @@ public class PlayerController : MonoBehaviour {
 		StopCoroutine("rotatePlayer");
 		StartCoroutine(hEnemyController.rotateEnemy(direction));
 	}
+		
+	public IEnumerator headstartRoutine(Utilities headstartType)
+	{
+		while (true)
+		{
+			yield return new WaitForFixedUpdate();
+			
+			if (headstartState == 0)//start the power-up
+			{
+				ControlsEnabled = false;				
+				fCurrentForwardSpeed = headstartForwardSpeed;
+				forceJumpPlayer();
+								
+				hEnemyController.deactivateEnemy();
+				hPrimaryColliderController.togglePrimaryCollider(false);
+				hSecondaryColliderController.toggleSecondaryCollider(false);
+				
+				headstartStartTime = Time.time;
+				headstartState = 1;
+			}
+			else if (headstartState == 1)//make turns automatically when headstart is active
+			{
+				try
+				{
+					if (turnState == false && turnPatch != null
+						&& MathCustom.VectorDistanceXZ(tPlayer.position, turnPatch.midNode.position) <= fTurnSwipeThreshold)
+					{
+						if (turnPatch.patchType == PatchTypes.left || turnPatch.patchType == PatchTypes.TLeft)
+							StartCoroutine(turnPlayerOnNextMidNode(SwipeDirection.Left));							
+						else if (turnPatch.patchType == PatchTypes.right || turnPatch.patchType == PatchTypes.TRight)
+							StartCoroutine(turnPlayerOnNextMidNode(SwipeDirection.Right));							
+						else if (turnPatch.patchType == PatchTypes.tee)
+							StartCoroutine(turnPlayerOnNextMidNode(SwipeDirection.Left));
+						
+						turnState = true;//do not turn if the turn routine is active
+					}
+				}//end of try
+				catch (System.Exception) { continue; }				
+				
+				if ( (Time.time-headstartStartTime) >= 
+					hPowerupController.getUtilityData(headstartType).duration)//escape when duration is over
+					headstartState = 2;
+			}
+			else if (headstartState == 2)//turn off the headstart utility
+			{
+				ControlsEnabled = true;
+				turnState = false;
+				fCurrentForwardSpeed = fStartForwardSpeed;
+				forceLandPlayer();
+				
+				hPrimaryColliderController.togglePrimaryCollider(true);
+				hSecondaryColliderController.toggleSecondaryCollider(true);
+				
+				headstartState = 0;
+				break;
+			}			
+		}//end of while
+		
+		StopCoroutine("headstartRoutine");
+	}
 	
-	/*
-	*	FUNCTION: Turn player animations On or Off
-	*/
-	public void togglePlayerAnimation(bool bValue) 
+	/// <summary>
+	/// Turn player animations On or Off.
+	/// </summary>
+	/// <param name='bValue'>
+	/// state.
+	/// </param>
+	public void togglePlayerAnimation(bool state) 
 	{ 
-		if (aPlayer.enabled != bValue)
-			aPlayer.enabled = bValue;
+		if (aPlayer.enabled != state)
+			aPlayer.enabled = state;
 	}
 	
 	/// <summary>
@@ -581,4 +676,13 @@ public class PlayerController : MonoBehaviour {
 	}
 	
 	public Vector3 getCurrentForwardUnitVector() { return forwardUnitVector; }
+	
+	/// <summary>
+	/// Turns the user swipe controls on or off.
+	/// </summary>
+	/// <param name='state'>
+	/// State.
+	/// </param>
+	public void toggleControlsState(bool state) { ControlsEnabled = state; }
+	public bool getControlsState() { return ControlsEnabled; }
 }

@@ -15,6 +15,12 @@ public enum Utilities
 	ScoreBooster = 2,
 	MegaScoreBooster = 3
 }
+public struct Utility
+{
+	public int cost;
+	public float duration;	
+	public int ownedCount;
+}
 
 public class PowerupController : MonoBehaviour {
 	
@@ -25,9 +31,11 @@ public class PowerupController : MonoBehaviour {
 	
 	#region Variables
 	private int powerupCount;//total types of powerups
+	private int utilityCount;//total types of utilities
 	private float elementPullDistance;	//when to pull currency towards the player
 	private float powerupStartTime;
 	
+	private Utility[] utilityData;
 	private float[] powerupActiveDuration;//number of seconds to keep a powerup active
 	
 	private int collectedStandardCurrency;//number of standard currency collected in the current run
@@ -45,11 +53,12 @@ public class PowerupController : MonoBehaviour {
 		hSoundController = GameObject.Find("SoundManager").GetComponent<SoundController>();
 		
 		powerupCount = Powerups.GetValues(typeof(Powerups)).Length-2;//get the number of powerup types
-				
+						
 		powerupActiveDuration = new float[powerupCount];
-		for (int i=0; i<powerupCount; i++)//TODO: discuss a proper implementation for powerup upgrades
+		for (int i=0; i<powerupCount; i++)//TODO: proper implementation for powerup upgrades
 			powerupActiveDuration[i] = 5;
 		
+		populateUtilityDataStruct();
 		Init();
 	}
 	
@@ -150,8 +159,52 @@ public class PowerupController : MonoBehaviour {
 			elementPullDistance = defaultElementPullDistance;
 		}
 	}
+	public void deactivateAllPowerups()
+	{
+		for (int i=0; i<powerupCount; i++)
+			deactivatePowerup( (Powerups)i );
+		
+		StopCoroutine("countdownPowerupDeactivation");
+	}
 	
 	public float getElementPullDistance() { return elementPullDistance; }
 	public int getCollectedStandardCurrency() { return collectedStandardCurrency; }
 	public int getCollectedPremiumCurrency() { return collectedPremiumCurrency; }
+	
+	public Utility getUtilityData(Utilities type) { return utilityData[(int)type]; }	
+	public int getUtilityCount() { return utilityCount; }
+	private void populateUtilityDataStruct()
+	{
+		utilityCount = Utilities.GetValues(typeof(Utilities)).Length;
+		utilityData = new Utility[utilityCount];
+				
+		for (int i=0; i<utilityCount; i++)
+		{						
+			if (PlayerPrefs.HasKey("Utility_"+i.ToString()))
+				utilityData[i].ownedCount = PlayerPrefs.GetInt("Utility_"+i.ToString());
+			else
+			{
+				utilityData[i].ownedCount = 0;
+				PlayerPrefs.SetInt("Utility_"+i.ToString(), utilityData[i].ownedCount);
+			}
+		}//end of for
+		
+		//set the cost of each utility
+		utilityData[(int)Utilities.Headstart].cost = 100;
+		utilityData[(int)Utilities.MegaHeadstart].cost = 100;
+		utilityData[(int)Utilities.ScoreBooster].cost = 100;
+		utilityData[(int)Utilities.MegaScoreBooster].cost = 100;
+		
+		//set the duration of each utility
+		utilityData[(int)Utilities.Headstart].duration = 10;
+		utilityData[(int)Utilities.MegaHeadstart].duration = 15;
+		
+	}//end of populate Utility Data Struct function
+	
+	public void updateUtilityOwnedCount(Utilities type, int count) 
+	{ 
+		utilityData[(int)type].ownedCount += count;
+		PlayerPrefs.SetInt("Utility_"+ ((int)type).ToString(),
+			utilityData[(int)type].ownedCount);
+	}
 }

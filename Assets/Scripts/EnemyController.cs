@@ -147,6 +147,15 @@ public class EnemyController : MonoBehaviour {
 		StopCoroutine("followPlayer");
 	}//end of follow Player coroutine
 	
+	/// <summary>
+	/// Deactivates the enemy and makes it stop following the user.
+	/// </summary>
+	public void deactivateEnemy()
+	{
+		if (isEnemyActive())
+			EnemyState = 2;
+	}
+	
 	public IEnumerator rotateEnemy(SwipeDirection direction)
 	{
 		Quaternion newRoation = Quaternion.identity;

@@ -27,6 +27,7 @@ public class InGameController : MonoBehaviour {
 	private MissionsController hMissionsController;
 	private SoundController hSoundController;
 	private PowerupController hPowerupController;
+	private HUDController hHUDController;
 	private PrimaryColliderController hPrimaryColliderController;
 	private SecondaryColliderController hSecondaryColliderController;
 	#endregion
@@ -40,6 +41,7 @@ public class InGameController : MonoBehaviour {
 		hMissionsController = this.GetComponent<MissionsController>();
 		hSoundController = GameObject.Find("SoundManager").GetComponent<SoundController>();
 		hPowerupController = this.GetComponent<PowerupController>();
+		hHUDController = GameObject.Find("GUIGroup/HUDGroup").GetComponent<HUDController>();
 		hPrimaryColliderController = (PrimaryColliderController)GameObject
 			.Find("Player/CharacterGroup/Colliders/PrimaryCollider").GetComponent(typeof(PrimaryColliderController));
 		hSecondaryColliderController = (SecondaryColliderController)GameObject
@@ -84,6 +86,7 @@ public class InGameController : MonoBehaviour {
 		hMenuScript.toggleMenuScriptStatus(false);
 		hPlayerController.launchGame();//tell the PlayerController to start game
 		hEnemyController.launchGame();//tell the EnemyController to start following the player
+		hHUDController.launchGame();
 		
 		//tell the Missions Controller that a new game has been started
 		hMissionsController.incrementMissionCount(MissionTypes.StartGame);
@@ -144,6 +147,7 @@ public class InGameController : MonoBehaviour {
 				hPrimaryColliderController.togglePrimaryCollider(false);
 				
 				hEnemyController.toggleEnemyAnimation(false);//stop enemy animation
+				hPlayerController.toggleControlsState(false);
 								
 				hMenuScript.toggleMenuScriptStatus(true);//enable menu script
 				hMenuScript.ShowMenu((int)Menus.Revive);

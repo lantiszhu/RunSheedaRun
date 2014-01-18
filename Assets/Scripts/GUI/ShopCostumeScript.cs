@@ -6,7 +6,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class ShopCostumeScriptCS : MonoBehaviour {
+public class ShopCostumeScript : MonoBehaviour {
 
 	//the characters material used by costumes menu
 	//to change the skin

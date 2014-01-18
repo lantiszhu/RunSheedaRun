@@ -11,7 +11,7 @@ public class GameController : MonoBehaviour {
 	#endregion
 	
 	#region Utilities
-	private readonly int[] utilityPrice = {
+	/*private readonly int[] utilityPrice = {
 		100,	//Headstart
 		200,	//Mega Headstart
 		100,	//Score Booster
@@ -22,9 +22,7 @@ public class GameController : MonoBehaviour {
 		15,
 		0,
 		0
-	};
-	private int[] utilityOwned;
-	private int utilityCount;
+	};*/
 	#endregion
 	
 	#region Script References
@@ -57,10 +55,7 @@ public class GameController : MonoBehaviour {
 			.Find("Player/CharacterGroup/Colliders/PrimaryCollider").GetComponent(typeof(PrimaryColliderController));
 		hSecondaryColliderController = (SecondaryColliderController)GameObject
 			.Find("Player/CharacterGroup/Colliders/SecondaryCollider").GetComponent(typeof(SecondaryColliderController));
-		
-		utilityCount = Utilities.GetValues(typeof(Utilities)).Length;
-		utilityOwned = new int[utilityCount];
-		
+				
 		getUserData();
 		Init();
 	}
@@ -90,17 +85,6 @@ public class GameController : MonoBehaviour {
 			defaultScoreMultiplier = 1;
 			PlayerPrefs.SetInt("ScoreMultiplier", defaultScoreMultiplier);
 		}
-		
-		for (int i=0; i<utilityCount; i++)
-		{
-			if (PlayerPrefs.HasKey("Utility_"+i.ToString()))
-				utilityOwned[i] = PlayerPrefs.GetInt("Utility_"+i.ToString());
-			else
-			{
-				utilityOwned[i] = 0;
-				PlayerPrefs.SetInt("Utility_"+i.ToString(), utilityOwned[i]);
-			}
-		}//end of for
 		
 		PlayerPrefs.Save();
 	}//end of get user data function
@@ -180,21 +164,15 @@ public class GameController : MonoBehaviour {
 	}
 	
 	#region Utility Functions
-	public int getUtilityPrice(Utilities type) { return utilityPrice[(int)type]; }
+	/*public int getUtilityPrice(Utilities type) { return utilityPrice[(int)type]; }
 	public float getUtilityDuration(Utilities type) { return utilityDuration[(int)type]; }
-	
-	/// <summary>
-	/// Increases the number of utility items owned by one.
-	/// </summary>
-	/// <param name='type'>
-	/// Type.
-	/// </param>
+		
 	public void updateUtilityOwned(Utilities type)
 	{
 		utilityOwned[(int)type] ++;
 		PlayerPrefs.SetInt("Utility_"+(int)type, utilityOwned[(int)type]);		
 	}
 	
-	public int getUtilityOwnedCount(Utilities type) { return utilityOwned[(int)type]; }
+	public int getUtilityOwnedCount(Utilities type) { return utilityOwned[(int)type]; }*/
 	#endregion
 }

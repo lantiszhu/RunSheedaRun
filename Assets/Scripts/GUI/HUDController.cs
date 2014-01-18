@@ -4,17 +4,29 @@ using System.Collections;
 public class HUDController : MonoBehaviour {
 	
 	#region Constants
-	private const float scoreCoreMultiplier = 0.3f;
+	private const float scoreCoreMultiplier = 0.3f;//multiplicative factor of distance covered in delta time
+	
+	private const float utilityIconDisplacementY = 22;//distance between two utility icons
+	private const float utilityIconDisplayDuration = 5;//time duration to display utility icons
 	#endregion
 	
-	private int utilityIconState;
+	private RaycastHit hit;
+	private int iTapState;
+	private Camera HUDCamera;
 	private float currentDeltaTimeScore;//score earned in delta time
 	private float accumulatedScore;//total score in the current run
 	private float missionRecordScore;//used for counting score for missions
-		
+	
 	private TextMesh tmScore;
 	private TextMesh tmCurrency;
 	private TextMesh tmMultiplier;
+	
+	#region Utility Variables
+	private int utilityIconState;
+	private Transform[] tUtilityButtons;
+	private float utilityIconPositionY;//where to place the utility icon
+	private float utilityIconDisplayTimeStart;
+	#endregion
 	
 	private Transform tHUDScoreContainer;
 	private Transform tCurrencyIcon;
@@ -46,6 +58,13 @@ public class HUDController : MonoBehaviour {
 		hInGameController = GameObject.Find("Player").GetComponent<InGameController>();
 		hPowerupController = (PowerupController)GameObject.Find("Player").GetComponent(typeof(PowerupController));
 		hMissionsController = GameObject.Find("Player").GetComponent<MissionsController>();
+		HUDCamera = GameObject.Find("GUIGroup/Camera").camera;
+		
+		tUtilityButtons = new Transform[Utilities.GetValues(typeof(Utilities)).Length];
+		tUtilityButtons[(int)Utilities.Headstart] = this.transform.Find("UtilityButtonsGroup/Headstart");
+		tUtilityButtons[(int)Utilities.MegaHeadstart] = this.transform.Find("UtilityButtonsGroup/MegaHeadstart");
+		tUtilityButtons[(int)Utilities.ScoreBooster] = this.transform.Find("UtilityButtonsGroup/ScoreBooster");
+		tUtilityButtons[(int)Utilities.MegaScoreBooster] = this.transform.Find("UtilityButtonsGroup/MegaScoreBooster");
 		
 		tmScore = this.transform.Find("HUDScoreGroup/HUD_Score_Text").GetComponent("TextMesh") as TextMesh;
 		tmCurrency = this.transform.Find("HUDCurrencyGroup/HUD_Currency_Text").GetComponent("TextMesh") as TextMesh;		
@@ -66,7 +85,10 @@ public class HUDController : MonoBehaviour {
 	
 	private void Init()
 	{
+		iTapState = 0;
 		utilityIconState = 0;
+		utilityIconPositionY = -22;
+		
 		currentDeltaTimeScore = 0;
 		accumulatedScore = 0;
 		missionRecordScore = 0;
@@ -86,6 +108,11 @@ public class HUDController : MonoBehaviour {
 	public void Restart()
 	{
 		Init();
+	}
+	
+	public void launchGame()
+	{
+		StartCoroutine(displayUtilityIcons());
 	}
 	
 	void LateUpdate () 
@@ -111,15 +138,93 @@ public class HUDController : MonoBehaviour {
 		}
 	}//end of late update
 	
-	private IEnumerator diplayUtilityIcons()
-	{
-		yield return new WaitForFixedUpdate();
-		
-		if (utilityIconState == 0)
+	private IEnumerator displayUtilityIcons()
+	{	
+		while (true)
 		{
+			yield return new WaitForFixedUpdate();
 			
-		}
+			if (hInGameController.isGamePaused())
+				continue;
+						
+			if (utilityIconState == 0)//display owned utilities
+			{
+				for (int i=0; i<hPowerupController.getUtilityCount(); i++)
+				{
+					if (hPowerupController.getUtilityData( (Utilities)i ).ownedCount > 0)
+					{
+						tUtilityButtons[i].localPosition = new Vector3(tUtilityButtons[i].localPosition.x,
+							utilityIconPositionY, tUtilityButtons[i].localPosition.z);
+						utilityIconPositionY += utilityIconDisplacementY;
+					}
+				}//end of for
+				
+				utilityIconDisplayTimeStart = Time.time;
+				utilityIconState = 1;
+			}
+			else if (utilityIconState == 1)//display utility buttons and wait
+			{
+				if ( (Time.time - utilityIconDisplayTimeStart) >= utilityIconDisplayDuration )
+					utilityIconState = 2;
+			}
+			else if (utilityIconState == 2)//make the utility buttons disappear
+			{
+				for (int i=0; i<hPowerupController.getUtilityCount(); i++)
+				{
+					tUtilityButtons[i].localPosition = new Vector3(tUtilityButtons[i].localPosition.x,
+						1000, tUtilityButtons[i].localPosition.z);
+				}//end of for
+				break;
+			}//end of state 2
+		
+			listenerUtilityButtons();//listen for clicks on the utility buttons
+		}//end of while
+		
+		StopCoroutine("diplayUtilityIcons");
 	}//end of display utility icons coroutine
+		
+	private void listenerUtilityButtons()
+	{
+		if (Input.GetMouseButtonDown(0) && iTapState == 0)//detect taps
+		{	
+			iTapState = 1;			
+		}//end of if get mouse button
+		else if (iTapState == 1)//call relevent handler
+		{
+			if (Input.GetMouseButtonUp(0))			
+				iTapState = 2;
+		}		
+		else if (iTapState == 2)//wait for user to release before detcting next tap
+		{
+			if (Physics.Raycast(HUDCamera.ScreenPointToRay(Input.mousePosition), out hit))//if a button has been tapped		
+			{
+				//call the listner function of the active menu
+				if (hit.transform == tUtilityButtons[(int)Utilities.Headstart])
+					handlerUtilityButtons(Utilities.Headstart);
+				else if (hit.transform == tUtilityButtons[(int)Utilities.MegaHeadstart])
+					handlerUtilityButtons(Utilities.MegaHeadstart);
+			}//end of if raycast
+						
+			iTapState = 0;		
+		}
+	}
+	
+	private void handlerUtilityButtons(Utilities type)
+	{
+		if (type == Utilities.Headstart)
+		{
+			StartCoroutine(hPlayerController.headstartRoutine(Utilities.Headstart));
+			hPowerupController.updateUtilityOwnedCount(type, -1);
+		}
+		else if (type == Utilities.MegaHeadstart)
+		{
+			StartCoroutine(hPlayerController.headstartRoutine(Utilities.MegaHeadstart));
+			hPowerupController.updateUtilityOwnedCount(type, -1);
+		}
+		//else if (buttonTransform == tUtilityButtons[(int)Utilities.ScoreBooster])
+		
+		utilityIconState = 2;
+	}
 		
 	/// <summary>
 	/// Resize HUD Score and Currency containers according to digit count.

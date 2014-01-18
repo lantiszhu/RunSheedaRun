@@ -5,7 +5,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class ShopIAPScriptCS : MonoBehaviour {
+public class ShopIAPScript : MonoBehaviour {
 
 	/*public float itemCost;//price of the in-app purchase
 	public int itemReward;//amount of currency units user will get in return

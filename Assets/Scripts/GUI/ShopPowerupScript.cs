@@ -5,7 +5,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class ShopPowerupScriptCS : MonoBehaviour {
+public class ShopPowerupScript : MonoBehaviour {
 
 	/*public int powerupUpgradeLevelMAX;
 	public int upgradeCost;

@@ -7,7 +7,8 @@ using System.Collections;
 public class ShopUtilityScript : MonoBehaviour {
 	
 	public Utilities utility;
-	private int itemCost;//exposed variable to store the item cost
+	private Utility currentUtilityData;	//all utility data
+	//private int itemCost;//exposed variable to store the item cost
 
 	private int iTapState = 0;//state of tap on screen
 	private RaycastHit hit;//used for detecting taps
@@ -19,7 +20,7 @@ public class ShopUtilityScript : MonoBehaviour {
 	
 	#region Script References
 	private ShopScript hShopScript;
-	private InGameController hInGameController;
+	private PowerupController hPowerupController;
 	private GameController hGameController;
 	#endregion
 	
@@ -27,15 +28,15 @@ public class ShopUtilityScript : MonoBehaviour {
 	{
 		HUDCamera = (Camera)GameObject.Find("GUIGroup/Camera").GetComponent(typeof(Camera));
 		hShopScript = (ShopScript)GameObject.Find("GUIGroup/MenuGroup/Shop").GetComponent(typeof(ShopScript));
-		hInGameController = (InGameController)GameObject.Find("Player").GetComponent(typeof(InGameController));
+		
 		hGameController = GameObject.Find("Player").GetComponent<GameController>();
-				
+		hPowerupController = GameObject.Find("Player").GetComponent<PowerupController>();
 		tBuyButton = (Transform)this.transform.Find("Buttons/Button_Buy").GetComponent(typeof(Transform));
 		tmCost = (TextMesh)this.transform.Find("CostGroup/Text_Currency").GetComponent(typeof(TextMesh));
 		tmOwned = this.transform.Find("Text_Owned").GetComponent<TextMesh>();
 		
-		itemCost = hGameController.getUtilityPrice(utility);
-		tmCost.text = itemCost.ToString();//set the cost of the item as specified
+		currentUtilityData = hPowerupController.getUtilityData(utility);//get all there is to know about the utility		
+		tmCost.text = currentUtilityData.cost.ToString();//set the cost of the item as specified
 		updateOwnedUtilityText();
 		
 		setShopUtilityScriptEnabled(false);//turn off current script
@@ -81,12 +82,12 @@ public class ShopUtilityScript : MonoBehaviour {
 		if (buttonTransform == tBuyButton)
 		{
 			//give the utility to user and deduct the item cost
-			if (hGameController.getUserStandardCurrency() >= itemCost)//check if user has enough currency
+			if (hGameController.getUserStandardCurrency() >= currentUtilityData.cost)//check if user has enough currency
 			{					
-				hGameController.updateUserStandardCurrency(-itemCost);//deduct the cost of utility
+				hGameController.updateUserStandardCurrency(-currentUtilityData.cost);//deduct the cost of utility
 				hShopScript.updateCurrencyOnHeader();//update the currency on the header bar				
 				
-				hGameController.updateUtilityOwned(utility);//add a untility item in user's inventory
+				hPowerupController.updateUtilityOwnedCount(utility, 1);//add a untility item in user's inventory
 				updateOwnedUtilityText();
 				PlayerPrefs.Save();
 			}
@@ -107,7 +108,8 @@ public class ShopUtilityScript : MonoBehaviour {
 	/// Updates the owned utility text on the item element.
 	/// </summary>
 	private void updateOwnedUtilityText() 
-	{ 
-		tmOwned.text = "Owned: "+hGameController.getUtilityOwnedCount(utility).ToString(); 
+	{
+		currentUtilityData = hPowerupController.getUtilityData(utility);
+		tmOwned.text = "Owned: " + currentUtilityData.ownedCount.ToString();
 	}
 }
